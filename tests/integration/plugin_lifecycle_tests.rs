@@ -1,10 +1,9 @@
 //! Integration tests for complete plugin lifecycle
 
-use crate::plugin_loader::PluginLoader;
-use crate::plugin_host::PluginHost;
-use crate::permission_system::PermissionSystem;
-use crate::plugin_manager::{PluginManager, PluginStatus};
-use crate::tests::common::{TestFixtures, helpers};
+use tauri_windows_plugin_system::plugin_loader::PluginLoader;
+use tauri_windows_plugin_system::plugin_host::PluginHost;
+use tauri_windows_plugin_system::permission_system::PermissionSystem;
+use tauri_windows_plugin_system::plugin_manager::{PluginManager, PluginStatus};
 use std::path::Path;
 use tempfile::tempdir;
 use std::fs;

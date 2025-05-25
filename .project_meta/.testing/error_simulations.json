@@ -1,0 +1,198 @@
+{
+  "simulations": {
+    "file_system_errors": {
+      "description": "Simulate file system errors to test error handling and recovery.",
+      "scenarios": [
+        {
+          "id": "FSE-001",
+          "name": "Missing Required Files",
+          "description": "Missing required files in project structure.",
+          "simulation_code": "function simulateMissingFiles() { /* Move required files temporarily */ }",
+          "verification": "function verifyErrorDetection() { /* Verify error is detected and logged */ }",
+          "status": "pending"
+        },
+        {
+          "id": "FSE-002",
+          "name": "Invalid File Permissions",
+          "description": "Invalid file permissions preventing access or modification.",
+          "simulation_code": "function simulateInvalidPermissions() { /* Change file permissions temporarily */ }",
+          "verification": "function verifyErrorHandling() { /* Verify appropriate error handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "FSE-003",
+          "name": "Corrupted JSON Files",
+          "description": "Corrupted JSON metadata files with schema violations.",
+          "simulation_code": "function simulateCorruptedJson() { /* Modify JSON files to be invalid */ }",
+          "verification": "function verifyRecovery() { /* Verify recovery mechanism works */ }",
+          "status": "pending"
+        },
+        {
+          "id": "FSE-004",
+          "name": "Disk Space Limitations",
+          "description": "Disk space limitations during file operations.",
+          "simulation_code": "function simulateDiskSpaceLimitation() { /* Create large files to fill disk */ }",
+          "verification": "function verifySpaceHandling() { /* Verify space handling mechanism */ }",
+          "status": "pending"
+        },
+        {
+          "id": "FSE-005",
+          "name": "File Locking Conflicts",
+          "description": "File locking conflicts during concurrent access.",
+          "simulation_code": "function simulateFileLocking() { /* Create file locks */ }",
+          "verification": "function verifyConcurrencyHandling() { /* Verify concurrency handling */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "tool_execution_errors": {
+      "description": "Simulate tool execution errors to test error handling and recovery.",
+      "scenarios": [
+        {
+          "id": "TEE-001",
+          "name": "Search Tool Timeouts",
+          "description": "Search tool timeouts with complex queries on large codebases.",
+          "simulation_code": "function simulateSearchTimeout() { /* Create large codebase and complex query */ }",
+          "verification": "function verifyTimeoutHandling() { /* Verify timeout handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "TEE-002",
+          "name": "Code Generation Failures",
+          "description": "Code generation failures with incompatible requirements.",
+          "simulation_code": "function simulateCodeGenFailure() { /* Create incompatible requirements */ }",
+          "verification": "function verifyFailureHandling() { /* Verify failure handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "TEE-003",
+          "name": "Terminal Command Failures",
+          "description": "Terminal command execution failures with security violations.",
+          "simulation_code": "function simulateCommandFailure() { /* Create security violation */ }",
+          "verification": "function verifySecurityHandling() { /* Verify security handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "TEE-004",
+          "name": "JSON Parsing Errors",
+          "description": "JSON parsing errors with malformed data.",
+          "simulation_code": "function simulateJsonParseError() { /* Create malformed JSON */ }",
+          "verification": "function verifyParseErrorHandling() { /* Verify parse error handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "TEE-005",
+          "name": "Pattern Analysis Failures",
+          "description": "Pattern analysis failures with unexpected code structures.",
+          "simulation_code": "function simulatePatternFailure() { /* Create unexpected code structure */ }",
+          "verification": "function verifyPatternErrorHandling() { /* Verify pattern error handling */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "workflow_errors": {
+      "description": "Simulate workflow execution errors to test error handling and recovery.",
+      "scenarios": [
+        {
+          "id": "WFE-001",
+          "name": "PRD Validation Failures",
+          "description": "PRD validation failures with incomplete requirements.",
+          "simulation_code": "function simulatePrdFailure() { /* Create incomplete PRD */ }",
+          "verification": "function verifyPrdErrorHandling() { /* Verify PRD error handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WFE-002",
+          "name": "Architecture Analysis Failures",
+          "description": "Architecture analysis failures with conflicting constraints.",
+          "simulation_code": "function simulateArchFailure() { /* Create conflicting constraints */ }",
+          "verification": "function verifyArchErrorHandling() { /* Verify architecture error handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WFE-003",
+          "name": "Roadmap Creation Failures",
+          "description": "Roadmap creation failures with circular dependencies.",
+          "simulation_code": "function simulateRoadmapFailure() { /* Create circular dependencies */ }",
+          "verification": "function verifyRoadmapErrorHandling() { /* Verify roadmap error handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WFE-004",
+          "name": "Story Execution Failures",
+          "description": "Story execution failures with missing resources.",
+          "simulation_code": "function simulateStoryFailure() { /* Create missing resources */ }",
+          "verification": "function verifyStoryErrorHandling() { /* Verify story error handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WFE-005",
+          "name": "Integration Testing Failures",
+          "description": "Integration testing failures with component incompatibilities.",
+          "simulation_code": "function simulateIntegrationFailure() { /* Create component incompatibilities */ }",
+          "verification": "function verifyIntegrationErrorHandling() { /* Verify integration error handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WFE-006",
+          "name": "Error Handling Failures",
+          "description": "Error handling failures with cascading errors.",
+          "simulation_code": "function simulateErrorHandlingFailure() { /* Create cascading errors */ }",
+          "verification": "function verifyMetaErrorHandling() { /* Verify meta-error handling */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "data_integrity_errors": {
+      "description": "Simulate data integrity errors to test error handling and recovery.",
+      "scenarios": [
+        {
+          "id": "DIE-001",
+          "name": "Cross-reference Inconsistencies",
+          "description": "Cross-reference inconsistencies between related metadata files.",
+          "simulation_code": "function simulateCrossRefError() { /* Create inconsistent cross-references */ }",
+          "verification": "function verifyCrossRefErrorHandling() { /* Verify cross-ref error handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "DIE-002",
+          "name": "Version Control Conflicts",
+          "description": "Version control conflicts during concurrent operations.",
+          "simulation_code": "function simulateVcsConflict() { /* Create VCS conflicts */ }",
+          "verification": "function verifyVcsConflictHandling() { /* Verify VCS conflict handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "DIE-003",
+          "name": "Dependency Graph Inconsistencies",
+          "description": "Dependency graph inconsistencies with missing or circular references.",
+          "simulation_code": "function simulateDependencyError() { /* Create dependency inconsistencies */ }",
+          "verification": "function verifyDependencyErrorHandling() { /* Verify dependency error handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "DIE-004",
+          "name": "Metadata Schema Violations",
+          "description": "Metadata schema violations after partial updates.",
+          "simulation_code": "function simulateSchemaViolation() { /* Create schema violations */ }",
+          "verification": "function verifySchemaErrorHandling() { /* Verify schema error handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "DIE-005",
+          "name": "Transaction Failures",
+          "description": "Transaction failures during multi-step operations.",
+          "simulation_code": "function simulateTransactionFailure() { /* Create transaction failures */ }",
+          "verification": "function verifyTransactionErrorHandling() { /* Verify transaction error handling */ }",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  "total_scenarios": 21,
+  "pending_scenarios": 21,
+  "executed_scenarios": 0,
+  "passed_scenarios": 0,
+  "failed_scenarios": 0,
+  "last_updated": "2025-05-25T10:52:08+03:00"
+}

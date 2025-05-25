@@ -1,0 +1,269 @@
+{
+  "workflow_tests": {
+    "initialize_project_structure": {
+      "description": "Tests for project initialization step",
+      "test_cases": [
+        {
+          "id": "WF-INIT-001",
+          "name": "Standard Initialization",
+          "description": "Test standard project initialization.",
+          "test_code": "function testStandardInit() { /* Test standard initialization */ }",
+          "verification": "function verifyStandardInit() { /* Verify standard initialization */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-INIT-002",
+          "name": "Custom Configuration",
+          "description": "Test initialization with custom configuration parameters.",
+          "test_code": "function testCustomConfig() { /* Test custom configuration */ }",
+          "verification": "function verifyCustomConfig() { /* Verify custom configuration */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "load_context_from_chats": {
+      "description": "Tests for context loading step",
+      "test_cases": [
+        {
+          "id": "WF-CTX-001",
+          "name": "Complete Context",
+          "description": "Test loading complete context.",
+          "test_code": "function testCompleteContext() { /* Test complete context */ }",
+          "verification": "function verifyCompleteContext() { /* Verify complete context */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-CTX-002",
+          "name": "Incomplete Context",
+          "description": "Test loading with incomplete context.",
+          "test_code": "function testIncompleteContext() { /* Test incomplete context */ }",
+          "verification": "function verifyIncompleteContext() { /* Verify incomplete context handling */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "validate_prd": {
+      "description": "Tests for PRD validation step",
+      "test_cases": [
+        {
+          "id": "WF-PRD-001",
+          "name": "Valid PRD",
+          "description": "Test validation with valid PRD.",
+          "test_code": "function testValidPrd() { /* Test valid PRD */ }",
+          "verification": "function verifyValidPrd() { /* Verify valid PRD handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-PRD-002",
+          "name": "Incomplete Requirements",
+          "description": "Test validation with incomplete requirements.",
+          "test_code": "function testIncompleteReqs() { /* Test incomplete requirements */ }",
+          "verification": "function verifyIncompleteReqs() { /* Verify incomplete requirements handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-PRD-003",
+          "name": "Inconsistent Requirements",
+          "description": "Test validation with inconsistent requirements.",
+          "test_code": "function testInconsistentReqs() { /* Test inconsistent requirements */ }",
+          "verification": "function verifyInconsistentReqs() { /* Verify inconsistent requirements handling */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "analyze_initial_architecture": {
+      "description": "Tests for architecture analysis step",
+      "test_cases": [
+        {
+          "id": "WF-ARCH-001",
+          "name": "Standard Architecture",
+          "description": "Test architecture analysis with standard requirements.",
+          "test_code": "function testStandardArch() { /* Test standard architecture */ }",
+          "verification": "function verifyStandardArch() { /* Verify standard architecture */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-ARCH-002",
+          "name": "Conflicting Constraints",
+          "description": "Test architecture analysis with conflicting constraints.",
+          "test_code": "function testConflictingConstraints() { /* Test conflicting constraints */ }",
+          "verification": "function verifyConflictingConstraints() { /* Verify conflicting constraints handling */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "define_modular_structure": {
+      "description": "Tests for module definition step",
+      "test_cases": [
+        {
+          "id": "WF-MOD-001",
+          "name": "Standard Modules",
+          "description": "Test module definition with standard architecture.",
+          "test_code": "function testStandardModules() { /* Test standard modules */ }",
+          "verification": "function verifyStandardModules() { /* Verify standard modules */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-MOD-002",
+          "name": "Boundary Conditions",
+          "description": "Test module definition with boundary conditions.",
+          "test_code": "function testBoundaryConditions() { /* Test boundary conditions */ }",
+          "verification": "function verifyBoundaryConditions() { /* Verify boundary conditions handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-MOD-003",
+          "name": "Dependency Validation",
+          "description": "Test module definition with dependency validation.",
+          "test_code": "function testDependencyValidation() { /* Test dependency validation */ }",
+          "verification": "function verifyDependencyValidation() { /* Verify dependency validation */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "create_roadmap_and_stories": {
+      "description": "Tests for roadmap and story creation step",
+      "test_cases": [
+        {
+          "id": "WF-ROAD-001",
+          "name": "Standard Roadmap",
+          "description": "Test roadmap creation with standard modules.",
+          "test_code": "function testStandardRoadmap() { /* Test standard roadmap */ }",
+          "verification": "function verifyStandardRoadmap() { /* Verify standard roadmap */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-ROAD-002",
+          "name": "Circular Dependencies",
+          "description": "Test roadmap creation with circular dependencies.",
+          "test_code": "function testCircularDeps() { /* Test circular dependencies */ }",
+          "verification": "function verifyCircularDeps() { /* Verify circular dependencies handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-ROAD-003",
+          "name": "Conflicting Priorities",
+          "description": "Test roadmap creation with conflicting priorities.",
+          "test_code": "function testConflictingPriorities() { /* Test conflicting priorities */ }",
+          "verification": "function verifyConflictingPriorities() { /* Verify conflicting priorities handling */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "execute_next_story": {
+      "description": "Tests for story execution step",
+      "test_cases": [
+        {
+          "id": "WF-EXEC-001",
+          "name": "Standard Story",
+          "description": "Test execution of standard story.",
+          "test_code": "function testStandardStory() { /* Test standard story */ }",
+          "verification": "function verifyStandardStory() { /* Verify standard story */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-EXEC-002",
+          "name": "Missing Dependencies",
+          "description": "Test execution with missing dependencies.",
+          "test_code": "function testMissingDeps() { /* Test missing dependencies */ }",
+          "verification": "function verifyMissingDeps() { /* Verify missing dependencies handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-EXEC-003",
+          "name": "Missing Resources",
+          "description": "Test execution with missing resources.",
+          "test_code": "function testMissingResources() { /* Test missing resources */ }",
+          "verification": "function verifyMissingResources() { /* Verify missing resources handling */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "integration_phase": {
+      "description": "Tests for integration step",
+      "test_cases": [
+        {
+          "id": "WF-INT-001",
+          "name": "Standard Integration",
+          "description": "Test standard integration scenario.",
+          "test_code": "function testStandardIntegration() { /* Test standard integration */ }",
+          "verification": "function verifyStandardIntegration() { /* Verify standard integration */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-INT-002",
+          "name": "Component Incompatibilities",
+          "description": "Test integration with component incompatibilities.",
+          "test_code": "function testComponentIncompatibilities() { /* Test component incompatibilities */ }",
+          "verification": "function verifyComponentIncompatibilities() { /* Verify component incompatibilities handling */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "handle_error": {
+      "description": "Tests for error handling step",
+      "test_cases": [
+        {
+          "id": "WF-ERR-001",
+          "name": "Standard Error",
+          "description": "Test handling of standard error.",
+          "test_code": "function testStandardError() { /* Test standard error */ }",
+          "verification": "function verifyStandardError() { /* Verify standard error handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-ERR-002",
+          "name": "Cascading Errors",
+          "description": "Test handling of cascading errors.",
+          "test_code": "function testCascadingErrors() { /* Test cascading errors */ }",
+          "verification": "function verifyCascadingErrors() { /* Verify cascading errors handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-ERR-003",
+          "name": "Recovery Scenarios",
+          "description": "Test various recovery scenarios.",
+          "test_code": "function testRecoveryScenarios() { /* Test recovery scenarios */ }",
+          "verification": "function verifyRecoveryScenarios() { /* Verify recovery scenarios */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "learn_patterns": {
+      "description": "Tests for pattern learning step",
+      "test_cases": [
+        {
+          "id": "WF-PAT-001",
+          "name": "Standard Patterns",
+          "description": "Test learning of standard patterns.",
+          "test_code": "function testStandardPatterns() { /* Test standard patterns */ }",
+          "verification": "function verifyStandardPatterns() { /* Verify standard patterns learning */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-PAT-002",
+          "name": "Edge Cases",
+          "description": "Test pattern learning with edge cases.",
+          "test_code": "function testEdgeCases() { /* Test edge cases */ }",
+          "verification": "function verifyEdgeCases() { /* Verify edge cases handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WF-PAT-003",
+          "name": "Code Quality Metrics",
+          "description": "Test pattern learning with various code quality metrics.",
+          "test_code": "function testCodeQualityMetrics() { /* Test code quality metrics */ }",
+          "verification": "function verifyCodeQualityMetrics() { /* Verify code quality metrics handling */ }",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "total_tests": 26,
+    "pending_tests": 26,
+    "passed_tests": 0,
+    "failed_tests": 0
+  },
+  "last_updated": "2025-05-25T10:52:08+03:00"
+}

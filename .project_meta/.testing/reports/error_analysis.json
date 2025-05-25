@@ -1,0 +1,122 @@
+{
+  "analysis": {
+    "error_categorization": {
+      "by_type": {
+        "syntax": {
+          "count": 0,
+          "percentage": 0,
+          "examples": []
+        },
+        "semantic": {
+          "count": 0,
+          "percentage": 0,
+          "examples": []
+        },
+        "runtime": {
+          "count": 0,
+          "percentage": 0,
+          "examples": []
+        },
+        "integration": {
+          "count": 0,
+          "percentage": 0,
+          "examples": []
+        },
+        "architectural": {
+          "count": 0,
+          "percentage": 0,
+          "examples": []
+        },
+        "pattern_related": {
+          "count": 0,
+          "percentage": 0,
+          "examples": []
+        }
+      },
+      "by_severity": {
+        "critical": {
+          "count": 0,
+          "percentage": 0,
+          "examples": []
+        },
+        "high": {
+          "count": 0,
+          "percentage": 0,
+          "examples": []
+        },
+        "medium": {
+          "count": 0,
+          "percentage": 0,
+          "examples": []
+        },
+        "low": {
+          "count": 0,
+          "percentage": 0,
+          "examples": []
+        }
+      },
+      "by_location": {
+        "workflow_steps": {},
+        "components": {}
+      }
+    },
+    "root_cause_analysis": {
+      "primary_causes": {},
+      "contributing_factors": {},
+      "common_patterns": []
+    },
+    "recovery_effectiveness": {
+      "overall_recovery_rate": 0,
+      "by_strategy": {
+        "retry": {
+          "usage_count": 0,
+          "success_rate": 0
+        },
+        "rollback": {
+          "usage_count": 0,
+          "success_rate": 0
+        },
+        "alternative_implementation": {
+          "usage_count": 0,
+          "success_rate": 0
+        },
+        "dependency_resolution": {
+          "usage_count": 0,
+          "success_rate": 0
+        },
+        "resource_provision": {
+          "usage_count": 0,
+          "success_rate": 0
+        },
+        "constraint_relaxation": {
+          "usage_count": 0,
+          "success_rate": 0
+        },
+        "fallback_mechanism": {
+          "usage_count": 0,
+          "success_rate": 0
+        }
+      },
+      "by_error_type": {
+        "syntax": 0,
+        "semantic": 0,
+        "runtime": 0,
+        "integration": 0,
+        "architectural": 0,
+        "pattern_related": 0
+      }
+    },
+    "transaction_integrity": {
+      "overall_integrity_rate": 0,
+      "consistency_issues": [],
+      "recovery_point_effectiveness": 0
+    }
+  },
+  "recommendations": {
+    "error_prevention": [],
+    "recovery_improvements": [],
+    "architectural_changes": [],
+    "process_improvements": []
+  },
+  "last_updated": "2025-05-25T10:59:24+03:00"
+}

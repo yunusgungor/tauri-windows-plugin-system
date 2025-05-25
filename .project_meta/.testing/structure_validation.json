@@ -1,0 +1,129 @@
+{
+  "validation_results": {
+    "directory_structure": {
+      "status": "passed",
+      "required_directories": [
+        {
+          "path": ".project_meta",
+          "exists": true,
+          "has_correct_permissions": true
+        },
+        {
+          "path": ".project_meta/.architecture",
+          "exists": true,
+          "has_correct_permissions": true
+        },
+        {
+          "path": ".project_meta/.chats",
+          "exists": true,
+          "has_correct_permissions": true
+        },
+        {
+          "path": ".project_meta/.dependencies",
+          "exists": true,
+          "has_correct_permissions": true
+        },
+        {
+          "path": ".project_meta/.docs",
+          "exists": true,
+          "has_correct_permissions": true
+        },
+        {
+          "path": ".project_meta/.errors",
+          "exists": true,
+          "has_correct_permissions": true
+        },
+        {
+          "path": ".project_meta/.integration",
+          "exists": true,
+          "has_correct_permissions": true
+        },
+        {
+          "path": ".project_meta/.patterns",
+          "exists": true,
+          "has_correct_permissions": true
+        },
+        {
+          "path": ".project_meta/.stories",
+          "exists": true,
+          "has_correct_permissions": true
+        },
+        {
+          "path": ".project_meta/.testing",
+          "exists": true,
+          "has_correct_permissions": true
+        },
+        {
+          "path": ".project_meta/.testing/test_fixtures",
+          "exists": true,
+          "has_correct_permissions": true
+        },
+        {
+          "path": ".project_meta/.testing/test_results",
+          "exists": true,
+          "has_correct_permissions": true
+        },
+        {
+          "path": ".project_meta/.testing/reports",
+          "exists": true,
+          "has_correct_permissions": true
+        }
+      ],
+      "issues_found": [],
+      "last_validated": "2025-05-25T08:03:23.135Z"
+    },
+    "json_schema_compliance": {
+      "status": "pending",
+      "validated_files": [],
+      "issues_found": [],
+      "last_validated": "2025-05-25T10:52:08+03:00"
+    },
+    "required_files": {
+      "status": "passed",
+      "critical_files": [
+        {
+          "path": "PRD.md",
+          "exists": true,
+          "is_valid": true
+        },
+        {
+          "path": ".project_meta/.architecture/module_definitions.json",
+          "exists": true,
+          "is_valid": true
+        },
+        {
+          "path": ".project_meta/.architecture/coding_standards.md",
+          "exists": true,
+          "is_valid": true
+        },
+        {
+          "path": ".project_meta/.stories/roadmap.json",
+          "exists": true,
+          "is_valid": true
+        },
+        {
+          "path": ".project_meta/.errors/error_log.json",
+          "exists": true,
+          "is_valid": true
+        }
+      ],
+      "issues_found": [],
+      "last_validated": "2025-05-25T08:03:23.135Z"
+    },
+    "file_naming_conventions": {
+      "status": "pending",
+      "checked_directories": [],
+      "issues_found": [],
+      "last_validated": "2025-05-25T10:52:08+03:00"
+    }
+  },
+  "validation_summary": {
+    "total_checks": 4,
+    "passed_checks": 2,
+    "failed_checks": 0,
+    "pending_checks": 2,
+    "critical_issues": 0,
+    "warnings": 0
+  },
+  "last_full_validation": "2025-05-25T08:03:23.135Z"
+}

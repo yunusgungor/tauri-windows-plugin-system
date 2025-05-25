@@ -1,8 +1,7 @@
 //! Unit tests for the UI integration functionality
 
-use crate::ui_integration::{UiIntegration, CommandError};
-use crate::plugin_manager::{PluginManager, PluginInfo, PluginStatus};
-use crate::tests::common::mocks;
+use tauri_windows_plugin_system::ui_integration::{UiIntegration, CommandError};
+use tauri_windows_plugin_system::plugin_manager::{PluginManager, PluginInfo, PluginStatus};
 use std::path::Path;
 use tempfile::tempdir;
 use std::fs;

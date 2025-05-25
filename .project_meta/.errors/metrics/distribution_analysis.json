@@ -1,0 +1,47 @@
+{
+  "distribution": {
+    "by_component": {},
+    "by_error_type": {
+      "syntax": 0,
+      "semantic": 0,
+      "runtime": 0,
+      "integration": 0,
+      "architectural": 0,
+      "pattern_related": 0
+    },
+    "by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "by_workflow_step": {
+      "initialize_project_structure": 0,
+      "load_context_from_chats": 0,
+      "validate_prd": 0,
+      "analyze_initial_architecture": 0,
+      "define_modular_structure": 0,
+      "create_roadmap_and_stories": 0,
+      "execute_next_story": 0,
+      "integration_phase": 0,
+      "handle_error": 0,
+      "learn_patterns": 0
+    },
+    "by_root_cause": {}
+  },
+  "correlation_analysis": {
+    "component_error_correlation": [],
+    "error_type_severity_correlation": [],
+    "workflow_step_error_correlation": []
+  },
+  "hotspot_analysis": {
+    "component_hotspots": [],
+    "workflow_step_hotspots": [],
+    "error_type_hotspots": []
+  },
+  "trend_analysis": {
+    "distribution_trend": "stable",
+    "hotspot_trend": "stable"
+  },
+  "last_updated": "2025-05-25T10:52:08+03:00"
+}

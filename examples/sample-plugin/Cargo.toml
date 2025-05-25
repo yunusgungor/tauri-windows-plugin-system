@@ -1,0 +1,17 @@
+[package]
+name = "sample-plugin"
+version = "0.1.0"
+edition = "2021"
+description = "Sample plugin for tauri-windows-plugin-system"
+authors = ["Yunus Gungor <mail@yunusgungor.com>"]
+license = "MIT"
+
+[dependencies]
+tauri-windows-plugin-system = { path = "../../" }
+serde = { version = "1.0.152", features = ["derive"] }
+serde_json = "1.0.93"
+
+[lib]
+name = "sample_plugin"
+path = "src/lib.rs"
+crate-type = ["cdylib"]

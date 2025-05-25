@@ -1,0 +1,44 @@
+{
+  "checksums": {
+    "project_structure": {
+      "directories": {
+        ".project_meta": null,
+        ".project_meta/.architecture": null,
+        ".project_meta/.chats": null,
+        ".project_meta/.dependencies": null,
+        ".project_meta/.docs": null,
+        ".project_meta/.errors": null,
+        ".project_meta/.integration": null,
+        ".project_meta/.patterns": null,
+        ".project_meta/.stories": null,
+        ".project_meta/.testing": null
+      },
+      "last_verified": "2025-05-25T10:52:08+03:00"
+    },
+    "critical_files": {
+      "files": {
+        "PRD.md": null,
+        ".project_meta/.architecture/module_definitions.json": null,
+        ".project_meta/.architecture/coding_standards.md": null,
+        ".project_meta/.stories/roadmap.json": null,
+        ".project_meta/.errors/error_log.json": null
+      },
+      "last_verified": "2025-05-25T10:52:08+03:00"
+    },
+    "test_infrastructure": {
+      "files": {
+        ".project_meta/.testing/test_cases.json": null,
+        ".project_meta/.testing/test_metrics.json": null,
+        ".project_meta/.testing/error_simulations.json": null,
+        ".project_meta/.testing/recovery_scenarios.json": null,
+        ".project_meta/.testing/verification_checksums.json": null,
+        ".project_meta/.testing/structure_validation.json": null,
+        ".project_meta/.testing/tool_functionality_tests.json": null,
+        ".project_meta/.testing/workflow_validation.json": null
+      },
+      "last_verified": "2025-05-25T10:52:08+03:00"
+    }
+  },
+  "verification_history": [],
+  "last_full_verification": "2025-05-25T10:52:08+03:00"
+}

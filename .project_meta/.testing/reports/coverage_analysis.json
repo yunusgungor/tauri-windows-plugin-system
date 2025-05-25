@@ -1,0 +1,238 @@
+{
+  "coverage": {
+    "overall_coverage": {
+      "percentage": 0,
+      "target": 95,
+      "status": "below_target"
+    },
+    "workflow_step_coverage": {
+      "initialize_project_structure": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "load_context_from_chats": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "validate_prd": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "analyze_initial_architecture": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "define_modular_structure": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "create_roadmap_and_stories": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "execute_next_story": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "integration_phase": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "handle_error": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "learn_patterns": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      }
+    },
+    "tool_coverage": {
+      "list_dir": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "read_file": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "edit_file": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "file_search": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "codebase_search": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "grep_search": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "run_terminal_cmd": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "delete_file": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "reapply": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "web_search": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "code_generator": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "json_handler": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "pattern_learner": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "pattern_analyzer": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "architecture_analyzer": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "impact_analyzer": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "cross_reference_manager": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "dependency_resolver": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "cycle_detector": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "integration_tester": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "error_analyzer": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "error_metrics_analyzer": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "recovery_orchestrator": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "roadmap_manager": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "doc_generator": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "doc_watcher": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "doc_validator": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "doc_reference_analyzer": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      },
+      "doc_analytics": {
+        "percentage": 0,
+        "test_cases": [],
+        "uncovered_aspects": []
+      }
+    },
+    "edge_case_coverage": {
+      "percentage": 0,
+      "covered_edge_cases": [],
+      "uncovered_edge_cases": []
+    },
+    "error_scenario_coverage": {
+      "percentage": 0,
+      "covered_scenarios": [],
+      "uncovered_scenarios": []
+    }
+  },
+  "coverage_gaps": {
+    "critical_gaps": [],
+    "significant_gaps": [],
+    "minor_gaps": []
+  },
+  "recommendations": {
+    "high_priority": [],
+    "medium_priority": [],
+    "low_priority": []
+  },
+  "code_path_analysis": {
+    "execution_frequency": {},
+    "most_executed_paths": [],
+    "least_executed_paths": []
+  },
+  "historical_data": {
+    "coverage_trend": [],
+    "gap_trend": []
+  },
+  "last_updated": "2025-05-25T10:59:24+03:00"
+}

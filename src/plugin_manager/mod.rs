@@ -227,6 +227,7 @@ impl PluginManager {
         registry_path: PathBuf,
         permission_system: Arc<PermissionSystem>,
     ) -> Result<Self, PluginError> {
+
         // Create plugins directory if it doesn't exist
         fs::create_dir_all(&plugins_dir)?;
         
@@ -266,7 +267,7 @@ impl PluginManager {
             registry_path,
         })
     }
-    
+
     /// Save the plugin registry to disk
     fn save_registry(&self) -> Result<(), PluginError> {
         let registry = self.registry.lock().unwrap();

@@ -1,7 +1,7 @@
 //! Unit tests for the plugin manifest validation functionality
 
-use crate::plugin_loader::manifest::{PluginManifest, ManifestError};
-use std::path::PathBuf;
+use tauri_windows_plugin_system::plugin_loader::{PluginManifest, PluginLoadError};
+use serde_json;
 
 #[test]
 fn test_valid_manifest() {

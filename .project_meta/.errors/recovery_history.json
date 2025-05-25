@@ -1,0 +1,81 @@
+{
+  "recovery_records": [],
+  "recovery_summary": {
+    "total_recovery_attempts": 0,
+    "successful_recoveries": 0,
+    "failed_recoveries": 0,
+    "success_rate": 0,
+    "average_recovery_time_seconds": 0
+  },
+  "recovery_strategies": {
+    "retry": {
+      "usage_count": 0,
+      "success_rate": 0,
+      "average_recovery_time_seconds": 0
+    },
+    "rollback": {
+      "usage_count": 0,
+      "success_rate": 0,
+      "average_recovery_time_seconds": 0
+    },
+    "alternative_implementation": {
+      "usage_count": 0,
+      "success_rate": 0,
+      "average_recovery_time_seconds": 0
+    },
+    "dependency_resolution": {
+      "usage_count": 0,
+      "success_rate": 0,
+      "average_recovery_time_seconds": 0
+    },
+    "resource_provision": {
+      "usage_count": 0,
+      "success_rate": 0,
+      "average_recovery_time_seconds": 0
+    },
+    "constraint_relaxation": {
+      "usage_count": 0,
+      "success_rate": 0,
+      "average_recovery_time_seconds": 0
+    },
+    "fallback_mechanism": {
+      "usage_count": 0,
+      "success_rate": 0,
+      "average_recovery_time_seconds": 0
+    }
+  },
+  "recovery_by_error_type": {
+    "syntax": {
+      "recovery_count": 0,
+      "success_rate": 0,
+      "most_effective_strategy": null
+    },
+    "semantic": {
+      "recovery_count": 0,
+      "success_rate": 0,
+      "most_effective_strategy": null
+    },
+    "runtime": {
+      "recovery_count": 0,
+      "success_rate": 0,
+      "most_effective_strategy": null
+    },
+    "integration": {
+      "recovery_count": 0,
+      "success_rate": 0,
+      "most_effective_strategy": null
+    },
+    "architectural": {
+      "recovery_count": 0,
+      "success_rate": 0,
+      "most_effective_strategy": null
+    },
+    "pattern_related": {
+      "recovery_count": 0,
+      "success_rate": 0,
+      "most_effective_strategy": null
+    }
+  },
+  "historical_data": [],
+  "last_updated": "2025-05-25T10:59:24+03:00"
+}

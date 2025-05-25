@@ -1,5 +1,8 @@
 # Tauri Windows Plugin System
 
+![Tests](https://github.com/yunusgungor/tauri-windows-plugin-system/actions/workflows/test.yml/badge.svg)
+[![codecov](https://codecov.io/gh/yunusgungor/tauri-windows-plugin-system/branch/main/graph/badge.svg)](https://codecov.io/gh/yunusgungor/tauri-windows-plugin-system)
+
 A modular, secure plugin system for Tauri applications running on Windows. This system allows dynamic loading and unloading of plugins with a comprehensive permission system, providing a robust foundation for extending your Tauri applications.
 
 ## Features

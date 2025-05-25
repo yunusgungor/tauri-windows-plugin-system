@@ -1,7 +1,6 @@
 //! Unit tests for the permission system functionality
 
-use crate::permission_system::{PermissionSystem, Permission, PermissionError};
-use std::collections::HashSet;
+use tauri_windows_plugin_system::permission_system::{PermissionSystem, Permission, PermissionError};
 
 #[test]
 fn test_permission_validation_with_valid_permissions() {

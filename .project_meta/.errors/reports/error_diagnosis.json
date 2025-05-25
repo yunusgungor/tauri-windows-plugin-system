@@ -1,0 +1,37 @@
+{
+  "error_diagnoses": [],
+  "diagnostic_summary": {
+    "total_errors_diagnosed": 0,
+    "root_cause_identified_count": 0,
+    "root_cause_identified_rate": 0,
+    "resolution_recommended_count": 0,
+    "resolution_recommended_rate": 0
+  },
+  "diagnostic_categories": {
+    "syntax_errors": {
+      "count": 0,
+      "resolution_success_rate": 0
+    },
+    "semantic_errors": {
+      "count": 0,
+      "resolution_success_rate": 0
+    },
+    "runtime_errors": {
+      "count": 0,
+      "resolution_success_rate": 0
+    },
+    "integration_errors": {
+      "count": 0,
+      "resolution_success_rate": 0
+    },
+    "architectural_errors": {
+      "count": 0,
+      "resolution_success_rate": 0
+    },
+    "pattern_related_errors": {
+      "count": 0,
+      "resolution_success_rate": 0
+    }
+  },
+  "last_updated": "2025-05-25T10:59:24+03:00"
+}

@@ -1,0 +1,203 @@
+{
+  "tool_tests": {
+    "file_operations": {
+      "description": "Tests for file operation tools (list_dir, read_file, edit_file, delete_file)",
+      "test_cases": [
+        {
+          "id": "FO-001",
+          "name": "Empty File Creation",
+          "description": "Test creating an empty file.",
+          "tool": "edit_file",
+          "test_code": "function testEmptyFile() { /* Test empty file creation */ }",
+          "verification": "function verifyEmptyFile() { /* Verify empty file */ }",
+          "status": "pending"
+        },
+        {
+          "id": "FO-002",
+          "name": "Large File Handling",
+          "description": "Test handling large files.",
+          "tool": "read_file",
+          "test_code": "function testLargeFile() { /* Test large file handling */ }",
+          "verification": "function verifyLargeFile() { /* Verify large file handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "FO-003",
+          "name": "Invalid Content Handling",
+          "description": "Test handling invalid file content.",
+          "tool": "edit_file",
+          "test_code": "function testInvalidContent() { /* Test invalid content */ }",
+          "verification": "function verifyInvalidContent() { /* Verify invalid content handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "FO-004",
+          "name": "Directory Listing",
+          "description": "Test directory listing with various conditions.",
+          "tool": "list_dir",
+          "test_code": "function testDirListing() { /* Test directory listing */ }",
+          "verification": "function verifyDirListing() { /* Verify directory listing */ }",
+          "status": "pending"
+        },
+        {
+          "id": "FO-005",
+          "name": "File Deletion",
+          "description": "Test file deletion with error handling.",
+          "tool": "delete_file",
+          "test_code": "function testFileDeletion() { /* Test file deletion */ }",
+          "verification": "function verifyFileDeletion() { /* Verify file deletion */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "search_tools": {
+      "description": "Tests for search tools (file_search, codebase_search, grep_search)",
+      "test_cases": [
+        {
+          "id": "ST-001",
+          "name": "Complex Query Testing",
+          "description": "Test search tools with complex queries.",
+          "tool": "codebase_search",
+          "test_code": "function testComplexQuery() { /* Test complex query */ }",
+          "verification": "function verifyComplexQuery() { /* Verify complex query results */ }",
+          "status": "pending"
+        },
+        {
+          "id": "ST-002",
+          "name": "Boundary Condition Testing",
+          "description": "Test search tools with boundary conditions.",
+          "tool": "grep_search",
+          "test_code": "function testBoundaryConditions() { /* Test boundary conditions */ }",
+          "verification": "function verifyBoundaryConditions() { /* Verify boundary condition handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "ST-003",
+          "name": "Pattern Matching",
+          "description": "Test regex pattern matching.",
+          "tool": "grep_search",
+          "test_code": "function testPatternMatching() { /* Test pattern matching */ }",
+          "verification": "function verifyPatternMatching() { /* Verify pattern matching */ }",
+          "status": "pending"
+        },
+        {
+          "id": "ST-004",
+          "name": "File Pattern Search",
+          "description": "Test file pattern search.",
+          "tool": "file_search",
+          "test_code": "function testFilePatternSearch() { /* Test file pattern search */ }",
+          "verification": "function verifyFilePatternSearch() { /* Verify file pattern search */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "code_generation": {
+      "description": "Tests for code generation tools",
+      "test_cases": [
+        {
+          "id": "CG-001",
+          "name": "Basic Code Generation",
+          "description": "Test basic code generation functionality.",
+          "tool": "code_generator",
+          "test_code": "function testBasicCodeGen() { /* Test basic code generation */ }",
+          "verification": "function verifyBasicCodeGen() { /* Verify basic code generation */ }",
+          "status": "pending"
+        },
+        {
+          "id": "CG-002",
+          "name": "Complex Requirements",
+          "description": "Test code generation with complex requirements.",
+          "tool": "code_generator",
+          "test_code": "function testComplexRequirements() { /* Test complex requirements */ }",
+          "verification": "function verifyComplexRequirements() { /* Verify complex requirements handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "CG-003",
+          "name": "Constraint Handling",
+          "description": "Test code generation with various constraints.",
+          "tool": "code_generator",
+          "test_code": "function testConstraintHandling() { /* Test constraint handling */ }",
+          "verification": "function verifyConstraintHandling() { /* Verify constraint handling */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "json_handling": {
+      "description": "Tests for JSON handling tools",
+      "test_cases": [
+        {
+          "id": "JH-001",
+          "name": "Schema Validation",
+          "description": "Test JSON schema validation.",
+          "tool": "json_handler",
+          "test_code": "function testSchemaValidation() { /* Test schema validation */ }",
+          "verification": "function verifySchemaValidation() { /* Verify schema validation */ }",
+          "status": "pending"
+        },
+        {
+          "id": "JH-002",
+          "name": "Error Recovery",
+          "description": "Test JSON error recovery.",
+          "tool": "json_handler",
+          "test_code": "function testErrorRecovery() { /* Test error recovery */ }",
+          "verification": "function verifyErrorRecovery() { /* Verify error recovery */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "terminal_commands": {
+      "description": "Tests for terminal command execution tool",
+      "test_cases": [
+        {
+          "id": "TC-001",
+          "name": "Security Constraints",
+          "description": "Test terminal command security constraints.",
+          "tool": "run_terminal_cmd",
+          "test_code": "function testSecurityConstraints() { /* Test security constraints */ }",
+          "verification": "function verifySecurityConstraints() { /* Verify security constraints */ }",
+          "status": "pending"
+        },
+        {
+          "id": "TC-002",
+          "name": "Error Handling",
+          "description": "Test terminal command error handling.",
+          "tool": "run_terminal_cmd",
+          "test_code": "function testErrorHandling() { /* Test error handling */ }",
+          "verification": "function verifyErrorHandling() { /* Verify error handling */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "pattern_analysis": {
+      "description": "Tests for pattern analysis tools",
+      "test_cases": [
+        {
+          "id": "PA-001",
+          "name": "Diverse Code Samples",
+          "description": "Test pattern analysis with diverse code samples.",
+          "tool": "pattern_learner",
+          "test_code": "function testDiverseCodeSamples() { /* Test diverse code samples */ }",
+          "verification": "function verifyDiverseCodeSamples() { /* Verify diverse code samples handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "PA-002",
+          "name": "Edge Case Handling",
+          "description": "Test pattern analysis with edge cases.",
+          "tool": "pattern_analyzer",
+          "test_code": "function testEdgeCaseHandling() { /* Test edge case handling */ }",
+          "verification": "function verifyEdgeCaseHandling() { /* Verify edge case handling */ }",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "total_tests": 18,
+    "pending_tests": 18,
+    "passed_tests": 0,
+    "failed_tests": 0
+  },
+  "last_updated": "2025-05-25T10:52:08+03:00"
+}

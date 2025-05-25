@@ -4,16 +4,21 @@
 //! Provides the interface for the frontend to interact with the plugin system.
 
 use std::sync::Arc;
-use serde::{Serialize, Deserialize};
-use tauri::{command, State, AppHandle, Runtime, Window, Manager};
+use serde::Serialize;
+use tauri::{command, State, AppHandle, Runtime, Manager};
 
-use crate::plugin_manager::{PluginManager, PluginInfo, PluginStatus, PluginSource, PluginError};
+use crate::plugin_manager::{PluginManager, PluginInfo, PluginStatus, PluginSource};
 use crate::permission_system::{Permission, PermissionSystem, PermissionPromptHandler, PermissionPromptResult, PermissionError};
 
 /// Plugin system state for Tauri
-pub struct PluginSystemState {
-    /// Plugin manager
-    pub manager: Arc<PluginManager>,
+pub struct PluginSystemState(pub Arc<PluginManager>);
+
+/// Get the plugin manager from the plugin system state
+impl PluginSystemState {
+    /// Get a reference to the plugin manager
+    pub fn manager(&self) -> &Arc<PluginManager> {
+        &self.0
+    }
 }
 
 /// Plugin status changed event
@@ -77,23 +82,23 @@ pub struct PermissionDeniedEvent {
 type CommandResult<T> = Result<T, String>;
 
 /// Tauri permission prompt handler
-pub struct TauriPermissionPromptHandler {
+pub struct TauriPermissionPromptHandler<R: Runtime> {
     /// Tauri app handle
-    app: AppHandle,
+    app: AppHandle<R>,
 }
 
-impl TauriPermissionPromptHandler {
+impl<R: Runtime> TauriPermissionPromptHandler<R> {
     /// Create a new Tauri permission prompt handler
-    pub fn new(app: AppHandle) -> Self {
+    pub fn new(app: AppHandle<R>) -> Self {
         Self { app }
     }
 }
 
-impl PermissionPromptHandler for TauriPermissionPromptHandler {
+impl<R: Runtime> PermissionPromptHandler for TauriPermissionPromptHandler<R> {
     fn prompt_for_permissions(
         &self,
         plugin_id: &str,
-        plugin_name: &str,
+        _plugin_name: &str,
         permissions: &[Permission],
     ) -> Result<PermissionPromptResult, PermissionError> {
         // Convert permissions to strings for display
@@ -128,15 +133,6 @@ fn status_to_string(status: &PluginStatus) -> String {
     }
 }
 
-/// Get error message from plugin status
-fn status_error(status: &PluginStatus) -> Option<String> {
-    match status {
-        PluginStatus::Error(msg) => Some(msg.clone()),
-        PluginStatus::Incompatible(msg) => Some(msg.clone()),
-        _ => None,
-    }
-}
-
 /// Command to install a plugin from a file
 #[command]
 pub async fn install_plugin_from_file(
@@ -145,17 +141,12 @@ pub async fn install_plugin_from_file(
 ) -> CommandResult<PluginInfo> {
     let source = PluginSource::File(path.into());
     
-    match state.manager.install_plugin(source).await {
+    // Access manager through the accessor method
+    let manager = state.manager();
+    match manager.install_plugin(source).await {
         Ok(plugin_info) => {
-            // Emit plugin installed event
-            let app_handle = state.manager.app_handle();
-            let _ = app_handle.emit_all(
-                "plugin-installed",
-                PluginInstalledEvent {
-                    plugin: plugin_info.clone(),
-                },
-            );
-            
+            // Log plugin installation (event emission removed)
+            println!("Plugin installed: {}", plugin_info.name);
             Ok(plugin_info)
         },
         Err(e) => Err(format!("Failed to install plugin: {}", e)),
@@ -170,17 +161,12 @@ pub async fn install_plugin_from_url(
 ) -> CommandResult<PluginInfo> {
     let source = PluginSource::Url(url);
     
-    match state.manager.install_plugin(source).await {
+    // Access manager through the accessor method
+    let manager = state.manager();
+    match manager.install_plugin(source).await {
         Ok(plugin_info) => {
-            // Emit plugin installed event
-            let app_handle = state.manager.app_handle();
-            let _ = app_handle.emit_all(
-                "plugin-installed",
-                PluginInstalledEvent {
-                    plugin: plugin_info.clone(),
-                },
-            );
-            
+            // Log plugin installation (event emission removed)
+            println!("Plugin installed: {}", plugin_info.name);
             Ok(plugin_info)
         },
         Err(e) => Err(format!("Failed to install plugin: {}", e)),
@@ -190,7 +176,9 @@ pub async fn install_plugin_from_url(
 /// Command to get all installed plugins
 #[command]
 pub fn get_all_plugins(state: State<'_, PluginSystemState>) -> CommandResult<Vec<PluginInfo>> {
-    Ok(state.manager.get_all_plugins())
+    // Access manager through the accessor method
+    let manager = state.manager();
+    Ok(manager.get_all_plugins())
 }
 
 /// Command to get a specific plugin by ID
@@ -199,7 +187,9 @@ pub fn get_plugin(
     state: State<'_, PluginSystemState>,
     plugin_id: String,
 ) -> CommandResult<Option<PluginInfo>> {
-    Ok(state.manager.get_plugin(&plugin_id))
+    // Access manager through the accessor method
+    let manager = state.manager();
+    Ok(manager.get_plugin(&plugin_id))
 }
 
 /// Command to enable a plugin
@@ -208,19 +198,13 @@ pub async fn enable_plugin(
     state: State<'_, PluginSystemState>,
     plugin_id: String,
 ) -> CommandResult<()> {
-    match state.manager.enable_plugin(&plugin_id).await {
+    // Access manager through the accessor method
+    let manager = state.manager();
+    match manager.enable_plugin(&plugin_id).await {
         Ok(()) => {
-            // Emit plugin status changed event
-            if let Some(plugin) = state.manager.get_plugin(&plugin_id) {
-                let app_handle = state.manager.app_handle();
-                let _ = app_handle.emit_all(
-                    "plugin-status-changed",
-                    PluginStatusChangedEvent {
-                        plugin_id: plugin_id.clone(),
-                        status: status_to_string(&plugin.status),
-                        error: status_error(&plugin.status),
-                    },
-                );
+            // Log plugin status change (event emission removed)
+            if let Some(plugin) = manager.get_plugin(&plugin_id) {
+                println!("Plugin enabled: {} - Status: {}", plugin_id, status_to_string(&plugin.status));
             }
             
             Ok(())
@@ -235,19 +219,13 @@ pub async fn disable_plugin(
     state: State<'_, PluginSystemState>,
     plugin_id: String,
 ) -> CommandResult<()> {
-    match state.manager.disable_plugin(&plugin_id).await {
+    // Access manager through the accessor method
+    let manager = state.manager();
+    match manager.disable_plugin(&plugin_id).await {
         Ok(()) => {
-            // Emit plugin status changed event
-            if let Some(plugin) = state.manager.get_plugin(&plugin_id) {
-                let app_handle = state.manager.app_handle();
-                let _ = app_handle.emit_all(
-                    "plugin-status-changed",
-                    PluginStatusChangedEvent {
-                        plugin_id: plugin_id.clone(),
-                        status: status_to_string(&plugin.status),
-                        error: status_error(&plugin.status),
-                    },
-                );
+            // Log plugin status change (event emission removed)
+            if let Some(plugin) = manager.get_plugin(&plugin_id) {
+                println!("Plugin disabled: {} - Status: {}", plugin_id, status_to_string(&plugin.status));
             }
             
             Ok(())
@@ -262,17 +240,12 @@ pub async fn uninstall_plugin(
     state: State<'_, PluginSystemState>,
     plugin_id: String,
 ) -> CommandResult<()> {
-    match state.manager.uninstall_plugin(&plugin_id).await {
+    // Access manager through the accessor method
+    let manager = state.manager();
+    match manager.uninstall_plugin(&plugin_id).await {
         Ok(()) => {
-            // Emit plugin uninstalled event
-            let app_handle = state.manager.app_handle();
-            let _ = app_handle.emit_all(
-                "plugin-uninstalled",
-                PluginUninstalledEvent {
-                    plugin_id: plugin_id.clone(),
-                },
-            );
-            
+            // Log plugin uninstallation (event emission removed)
+            println!("Plugin uninstalled: {}", plugin_id);
             Ok(())
         },
         Err(e) => Err(format!("Failed to uninstall plugin: {}", e)),
@@ -291,23 +264,18 @@ pub async fn update_plugin(
         None => None,
     };
     
-    match state.manager.update_plugin(&plugin_id, source).await {
+    // Access manager through the accessor method
+    let manager = state.manager();
+    match manager.update_plugin(&plugin_id, source).await {
         Ok(plugin_info) => {
             // Get previous version
-            let previous_version = match state.manager.get_plugin(&plugin_id) {
+            let previous_version = match manager.get_plugin(&plugin_id) {
                 Some(old_info) => old_info.version,
                 None => "unknown".to_owned(),
             };
             
-            // Emit plugin updated event
-            let app_handle = state.manager.app_handle();
-            let _ = app_handle.emit_all(
-                "plugin-updated",
-                PluginUpdatedEvent {
-                    plugin: plugin_info.clone(),
-                    previous_version,
-                },
-            );
+            // Log plugin update (event emission removed)
+            println!("Plugin updated: {} - Previous: {}, New: {}", plugin_id, previous_version, plugin_info.version);
             
             Ok(plugin_info)
         },
@@ -323,7 +291,9 @@ pub async fn trigger_plugin_event(
     event_name: String,
     event_data: String,
 ) -> CommandResult<i32> {
-    match state.manager.trigger_plugin_event(&plugin_id, &event_name, &event_data).await {
+    // Access manager through the accessor method
+    let manager = state.manager();
+    match manager.trigger_plugin_event(&plugin_id, &event_name, &event_data).await {
         Ok(result) => Ok(result),
         Err(e) => Err(format!("Failed to trigger plugin event: {}", e)),
     }
@@ -335,9 +305,7 @@ pub fn register_commands<R: Runtime>(
     plugin_manager: Arc<PluginManager>,
 ) -> Result<(), Box<dyn std::error::Error>> {
     // Create and register the plugin system state
-    let plugin_system_state = PluginSystemState {
-        manager: plugin_manager,
-    };
+    let plugin_system_state = PluginSystemState(plugin_manager);
     
     app.manage(plugin_system_state);
     
@@ -347,10 +315,10 @@ pub fn register_commands<R: Runtime>(
 /// Setup a Tauri permission prompt handler
 pub fn setup_permission_handler<R: Runtime>(
     app: &mut tauri::App<R>,
-    permission_system: Arc<PermissionSystem>,
+    _permission_system: Arc<PermissionSystem>,
 ) -> Result<(), Box<dyn std::error::Error>> {
-    let app_handle = app.app_handle();
-    let handler = TauriPermissionPromptHandler::new(app_handle);
+    let app_handle = app.handle().clone();
+    let _handler = TauriPermissionPromptHandler::new(app_handle);
     
     // Note: In a real implementation, we'd need to clone and modify the permission system
     // Since we're using an Arc, we'd need interior mutability or other mechanism

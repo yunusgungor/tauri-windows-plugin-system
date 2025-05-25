@@ -1,7 +1,6 @@
 //! Unit tests for the plugin package loading functionality
 
-use crate::plugin_loader::package::{PluginPackage, PackageError};
-use crate::tests::common::{TestFixtures, helpers};
+use tauri_windows_plugin_system::plugin_loader::package::{PluginPackage, PackageError};
 use std::path::Path;
 use tempfile::tempdir;
 use std::fs;

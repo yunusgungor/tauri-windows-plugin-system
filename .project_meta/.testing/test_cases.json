@@ -1,0 +1,261 @@
+{
+  "test_categories": {
+    "structural_tests": {
+      "description": "Tests to verify project structure integrity and file system organization.",
+      "test_cases": [
+        {
+          "id": "ST-001",
+          "name": "Required Directories Validation",
+          "description": "Verify all required directories exist and have correct permissions.",
+          "status": "pending"
+        },
+        {
+          "id": "ST-002",
+          "name": "JSON Schema Compliance",
+          "description": "Validate JSON schema compliance for all metadata files.",
+          "status": "pending"
+        },
+        {
+          "id": "ST-003",
+          "name": "Required Files Check",
+          "description": "Check for missing required files in each directory structure.",
+          "status": "pending"
+        },
+        {
+          "id": "ST-004",
+          "name": "File Naming Convention",
+          "description": "Verify file naming conventions and organizational hierarchy.",
+          "status": "pending"
+        },
+        {
+          "id": "ST-005",
+          "name": "Directory Access Permissions",
+          "description": "Test directory access permissions and error handling for restricted paths.",
+          "status": "pending"
+        }
+      ]
+    },
+    "tool_functionality_tests": {
+      "description": "Tests to verify each tool functions correctly with various inputs.",
+      "test_cases": [
+        {
+          "id": "TF-001",
+          "name": "File Operations Test",
+          "description": "Test file operations with edge cases (empty files, large files, invalid content).",
+          "status": "pending"
+        },
+        {
+          "id": "TF-002",
+          "name": "Search Tools Validation",
+          "description": "Validate search tools with complex queries and boundary conditions.",
+          "status": "pending"
+        },
+        {
+          "id": "TF-003",
+          "name": "Code Generation Test",
+          "description": "Test code generation with various requirements and constraints.",
+          "status": "pending"
+        },
+        {
+          "id": "TF-004",
+          "name": "JSON Handling Validation",
+          "description": "Verify JSON handling with schema validation and error recovery.",
+          "status": "pending"
+        },
+        {
+          "id": "TF-005",
+          "name": "Terminal Command Execution",
+          "description": "Test terminal command execution with security constraints and error handling.",
+          "status": "pending"
+        },
+        {
+          "id": "TF-006",
+          "name": "Pattern Analysis Validation",
+          "description": "Validate pattern analysis with diverse code samples and edge cases.",
+          "status": "pending"
+        }
+      ]
+    },
+    "workflow_step_tests": {
+      "description": "Tests to verify each workflow step executes correctly and handles errors appropriately.",
+      "test_cases": [
+        {
+          "id": "WS-001",
+          "name": "Project Initialization Test",
+          "description": "Test project initialization with various configuration parameters.",
+          "status": "pending"
+        },
+        {
+          "id": "WS-002",
+          "name": "PRD Analysis Test",
+          "description": "Validate PRD analysis with inconsistent or incomplete requirements.",
+          "status": "pending"
+        },
+        {
+          "id": "WS-003",
+          "name": "Architecture Analysis Test",
+          "description": "Test architecture analysis with conflicting design constraints.",
+          "status": "pending"
+        },
+        {
+          "id": "WS-004",
+          "name": "Roadmap Creation Test",
+          "description": "Verify roadmap creation with circular dependencies and conflicting priorities.",
+          "status": "pending"
+        },
+        {
+          "id": "WS-005",
+          "name": "Story Execution Test",
+          "description": "Test story execution with missing dependencies or resources.",
+          "status": "pending"
+        },
+        {
+          "id": "WS-006",
+          "name": "Integration Testing Validation",
+          "description": "Validate integration testing with component incompatibilities.",
+          "status": "pending"
+        },
+        {
+          "id": "WS-007",
+          "name": "Error Handling Test",
+          "description": "Test error handling with cascading errors and recovery scenarios.",
+          "status": "pending"
+        }
+      ]
+    },
+    "error_handling_tests": {
+      "description": "Tests to verify error detection, classification, and recovery mechanisms.",
+      "test_cases": [
+        {
+          "id": "EH-001",
+          "name": "Error Classification Test",
+          "description": "Test error classification accuracy with various error types.",
+          "status": "pending"
+        },
+        {
+          "id": "EH-002",
+          "name": "Root Cause Analysis Test",
+          "description": "Validate root cause analysis with complex error scenarios.",
+          "status": "pending"
+        },
+        {
+          "id": "EH-003",
+          "name": "Recovery Strategy Selection",
+          "description": "Test recovery strategy selection with various context parameters.",
+          "status": "pending"
+        },
+        {
+          "id": "EH-004",
+          "name": "Transaction-based Recovery",
+          "description": "Verify transaction-based recovery with integrity validation.",
+          "status": "pending"
+        },
+        {
+          "id": "EH-005",
+          "name": "Cascading Error Detection",
+          "description": "Test cascading error detection and containment strategies.",
+          "status": "pending"
+        },
+        {
+          "id": "EH-006",
+          "name": "Error Logging and Metrics",
+          "description": "Validate error logging and metrics with audit trail verification.",
+          "status": "pending"
+        },
+        {
+          "id": "EH-007",
+          "name": "Error Notification Test",
+          "description": "Test error notification and escalation protocols.",
+          "status": "pending"
+        }
+      ]
+    },
+    "performance_tests": {
+      "description": "Tests to verify system performance under various conditions.",
+      "test_cases": [
+        {
+          "id": "PT-001",
+          "name": "Workflow Step Execution Time",
+          "description": "Test workflow step execution time with varying project sizes.",
+          "status": "pending"
+        },
+        {
+          "id": "PT-002",
+          "name": "Memory Usage Patterns",
+          "description": "Validate memory usage patterns during complex operations.",
+          "status": "pending"
+        },
+        {
+          "id": "PT-003",
+          "name": "Search Performance Test",
+          "description": "Test search performance with large codebases and complex queries.",
+          "status": "pending"
+        },
+        {
+          "id": "PT-004",
+          "name": "File Operation Performance",
+          "description": "Verify file operation performance with large files and directories.",
+          "status": "pending"
+        },
+        {
+          "id": "PT-005",
+          "name": "Concurrent Operation Test",
+          "description": "Test concurrent operation handling with resource contention.",
+          "status": "pending"
+        },
+        {
+          "id": "PT-006",
+          "name": "Error Recovery Performance",
+          "description": "Validate error recovery performance under high load conditions.",
+          "status": "pending"
+        }
+      ]
+    },
+    "integration_tests": {
+      "description": "Tests to verify integration between workflow steps and external systems.",
+      "test_cases": [
+        {
+          "id": "IT-001",
+          "name": "Data Flow Test",
+          "description": "Test data flow between workflow steps with complex state transitions.",
+          "status": "pending"
+        },
+        {
+          "id": "IT-002",
+          "name": "Tool Interoperability Test",
+          "description": "Validate tool interoperability with shared resources and dependencies.",
+          "status": "pending"
+        },
+        {
+          "id": "IT-003",
+          "name": "Version Control Integration",
+          "description": "Test version control integration with concurrency and conflict resolution.",
+          "status": "pending"
+        },
+        {
+          "id": "IT-004",
+          "name": "External API Integration",
+          "description": "Verify external API integrations with error handling and rate limiting.",
+          "status": "pending"
+        },
+        {
+          "id": "IT-005",
+          "name": "Cross-reference Integrity",
+          "description": "Test cross-reference integrity across the entire project.",
+          "status": "pending"
+        },
+        {
+          "id": "IT-006",
+          "name": "Transaction Integrity",
+          "description": "Validate transaction integrity across multi-step operations.",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  "total_tests": 43,
+  "pending_tests": 43,
+  "passed_tests": 0,
+  "failed_tests": 0,
+  "last_updated": "2025-05-25T10:52:08+03:00"
+}

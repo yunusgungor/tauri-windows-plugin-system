@@ -1,0 +1,33 @@
+{
+  "errors": [],
+  "error_summary": {
+    "total_errors": 0,
+    "open_errors": 0,
+    "resolved_errors": 0,
+    "critical_errors": 0,
+    "high_priority_errors": 0,
+    "medium_priority_errors": 0,
+    "low_priority_errors": 0
+  },
+  "error_categories": {
+    "syntax": 0,
+    "semantic": 0,
+    "runtime": 0,
+    "integration": 0,
+    "architectural": 0,
+    "pattern_related": 0
+  },
+  "workflow_step_distribution": {
+    "initialize_project_structure": 0,
+    "load_context_from_chats": 0,
+    "validate_prd": 0,
+    "analyze_initial_architecture": 0,
+    "define_modular_structure": 0,
+    "create_roadmap_and_stories": 0,
+    "execute_next_story": 0,
+    "integration_phase": 0,
+    "handle_error": 0,
+    "learn_patterns": 0
+  },
+  "last_updated": "2025-05-25T10:59:24+03:00"
+}

@@ -1,7 +1,6 @@
 //! Unit tests for the plugin host functionality
 
-use crate::plugin_host::{PluginHost, PluginContext, PluginError};
-use crate::tests::common::{TestFixtures, helpers};
+use tauri_windows_plugin_system::plugin_host::{PluginHost, PluginContext, PluginError};
 use std::path::Path;
 use std::ptr::null_mut;
 use tempfile::tempdir;

@@ -1,0 +1,111 @@
+{
+  "summary": {
+    "execution_date": "2025-05-25T10:59:24+03:00",
+    "overall_success_rate": 0,
+    "total_execution_time_minutes": 0,
+    "test_categories": {
+      "structural_tests": {
+        "total": 5,
+        "passed": 0,
+        "failed": 0,
+        "pending": 5,
+        "success_rate": 0
+      },
+      "tool_functionality_tests": {
+        "total": 18,
+        "passed": 0,
+        "failed": 0,
+        "pending": 18,
+        "success_rate": 0
+      },
+      "workflow_step_tests": {
+        "total": 26,
+        "passed": 0,
+        "failed": 0,
+        "pending": 26,
+        "success_rate": 0
+      },
+      "error_handling_tests": {
+        "total": 7,
+        "passed": 0,
+        "failed": 0,
+        "pending": 7,
+        "success_rate": 0
+      },
+      "performance_tests": {
+        "total": 6,
+        "passed": 0,
+        "failed": 0,
+        "pending": 6,
+        "success_rate": 0
+      },
+      "integration_tests": {
+        "total": 6,
+        "passed": 0,
+        "failed": 0,
+        "pending": 6,
+        "success_rate": 0
+      }
+    }
+  },
+  "failed_tests": [],
+  "test_coverage": {
+    "overall_coverage": 0,
+    "workflow_step_coverage": {
+      "initialize_project_structure": 0,
+      "load_context_from_chats": 0,
+      "validate_prd": 0,
+      "analyze_initial_architecture": 0,
+      "define_modular_structure": 0,
+      "create_roadmap_and_stories": 0,
+      "execute_next_story": 0,
+      "integration_phase": 0,
+      "handle_error": 0,
+      "learn_patterns": 0
+    },
+    "tool_coverage": {
+      "list_dir": 0,
+      "read_file": 0,
+      "edit_file": 0,
+      "file_search": 0,
+      "codebase_search": 0,
+      "grep_search": 0,
+      "run_terminal_cmd": 0,
+      "delete_file": 0,
+      "reapply": 0,
+      "web_search": 0,
+      "code_generator": 0,
+      "json_handler": 0,
+      "pattern_learner": 0,
+      "pattern_analyzer": 0,
+      "architecture_analyzer": 0,
+      "impact_analyzer": 0,
+      "cross_reference_manager": 0,
+      "dependency_resolver": 0,
+      "cycle_detector": 0,
+      "integration_tester": 0,
+      "error_analyzer": 0,
+      "error_metrics_analyzer": 0,
+      "recovery_orchestrator": 0,
+      "roadmap_manager": 0,
+      "doc_generator": 0,
+      "doc_watcher": 0,
+      "doc_validator": 0,
+      "doc_reference_analyzer": 0,
+      "doc_analytics": 0
+    }
+  },
+  "performance_metrics": {
+    "test_execution_times": {
+      "structural_tests": 0,
+      "tool_functionality_tests": 0,
+      "workflow_step_tests": 0,
+      "error_handling_tests": 0,
+      "performance_tests": 0,
+      "integration_tests": 0
+    },
+    "average_test_execution_time": 0,
+    "slowest_tests": []
+  },
+  "last_updated": "2025-05-25T10:59:24+03:00"
+}

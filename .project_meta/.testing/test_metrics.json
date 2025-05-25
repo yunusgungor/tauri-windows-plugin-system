@@ -1,0 +1,53 @@
+{
+  "metrics": {
+    "test_coverage_percentage": {
+      "description": "Percentage of workflow steps and tool functions covered by tests.",
+      "target": ">95%",
+      "current": "0%",
+      "last_updated": "2025-05-25T10:52:08+03:00"
+    },
+    "test_success_rate": {
+      "description": "Percentage of tests passing successfully.",
+      "target": ">98%",
+      "current": "0%",
+      "last_updated": "2025-05-25T10:52:08+03:00"
+    },
+    "error_detection_rate": {
+      "description": "Percentage of simulated errors successfully detected.",
+      "target": ">99%",
+      "current": "0%",
+      "last_updated": "2025-05-25T10:52:08+03:00"
+    },
+    "recovery_success_rate": {
+      "description": "Percentage of errors successfully recovered without intervention.",
+      "target": ">90%",
+      "current": "0%",
+      "last_updated": "2025-05-25T10:52:08+03:00"
+    },
+    "average_recovery_time": {
+      "description": "Average time to recover from errors in seconds.",
+      "target": "<30s",
+      "current": "N/A",
+      "last_updated": "2025-05-25T10:52:08+03:00"
+    },
+    "test_execution_time": {
+      "description": "Total time to execute all tests in minutes.",
+      "target": "<60min",
+      "current": "N/A",
+      "last_updated": "2025-05-25T10:52:08+03:00"
+    },
+    "regression_detection_rate": {
+      "description": "Percentage of regressions detected by automated tests.",
+      "target": ">95%",
+      "current": "0%",
+      "last_updated": "2025-05-25T10:52:08+03:00"
+    }
+  },
+  "historical_data": [],
+  "metric_trends": {
+    "test_coverage_trend": [],
+    "success_rate_trend": [],
+    "error_detection_trend": [],
+    "recovery_success_trend": []
+  }
+}

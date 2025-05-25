@@ -20,10 +20,19 @@ tauri = { version = "1.2.4", features = ["api-all"] }
 tokio = { version = "1.25.0", features = ["full"] }
 futures = "0.3.26"
 
+[dev-dependencies]
+tempfile = "3.8.0"
+tokio-test = "0.4.2"
+criterion = { version = "0.5", features = ["html_reports"] }
+
 [lib]
 name = "tauri_windows_plugin_system"
 path = "src/lib.rs"
 crate-type = ["staticlib", "cdylib", "rlib"]
+
+[[bench]]
+name = "plugin_benchmarks"
+harness = false
 
 [features]
 default = ["dynamic-loading"]

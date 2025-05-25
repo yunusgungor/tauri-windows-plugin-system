@@ -1,0 +1,130 @@
+{
+  "recovery_validations": {
+    "transaction_integrity": {
+      "description": "Validate transaction integrity during error recovery.",
+      "checks": [
+        {
+          "id": "TI-001",
+          "name": "Consistent State Restoration",
+          "description": "Verify all affected files are restored to consistent state.",
+          "validation_code": "function validateConsistentState() { /* Verify state consistency */ }",
+          "status": "pending"
+        },
+        {
+          "id": "TI-002",
+          "name": "Cross-reference Integrity",
+          "description": "Validate cross-references maintain integrity after recovery.",
+          "validation_code": "function validateCrossRefIntegrity() { /* Verify cross-reference integrity */ }",
+          "status": "pending"
+        },
+        {
+          "id": "TI-003",
+          "name": "Partial Update Handling",
+          "description": "Verify partial updates are properly rolled back or completed.",
+          "validation_code": "function validatePartialUpdates() { /* Verify partial update handling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "TI-004",
+          "name": "Recovery Checkpoint Usage",
+          "description": "Validate recovery checkpoints are properly created and utilized.",
+          "validation_code": "function validateCheckpoints() { /* Verify checkpoint usage */ }",
+          "status": "pending"
+        },
+        {
+          "id": "TI-005",
+          "name": "Error Log Accuracy",
+          "description": "Verify error logs accurately reflect the recovery process.",
+          "validation_code": "function validateErrorLogs() { /* Verify error log accuracy */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "workflow_continuity": {
+      "description": "Validate workflow continuity after error recovery.",
+      "checks": [
+        {
+          "id": "WC-001",
+          "name": "Workflow State Restoration",
+          "description": "Verify workflow state is correctly restored after recovery.",
+          "validation_code": "function validateWorkflowState() { /* Verify workflow state */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WC-002",
+          "name": "Operation Completion",
+          "description": "Validate resumed operations complete successfully after recovery.",
+          "validation_code": "function validateOperationCompletion() { /* Verify operation completion */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WC-003",
+          "name": "Dependent Operation Rescheduling",
+          "description": "Verify dependent operations are properly rescheduled after recovery.",
+          "validation_code": "function validateRescheduling() { /* Verify rescheduling */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WC-004",
+          "name": "Error Context Preservation",
+          "description": "Validate error context is preserved for post-recovery analysis.",
+          "validation_code": "function validateErrorContext() { /* Verify error context */ }",
+          "status": "pending"
+        },
+        {
+          "id": "WC-005",
+          "name": "Workflow Metrics Accuracy",
+          "description": "Verify workflow metrics accurately reflect recovery impact.",
+          "validation_code": "function validateWorkflowMetrics() { /* Verify metrics accuracy */ }",
+          "status": "pending"
+        }
+      ]
+    },
+    "data_consistency": {
+      "description": "Validate data consistency after error recovery.",
+      "checks": [
+        {
+          "id": "DC-001",
+          "name": "Metadata Schema Compliance",
+          "description": "Verify all metadata files maintain schema compliance after recovery.",
+          "validation_code": "function validateSchemaCompliance() { /* Verify schema compliance */ }",
+          "status": "pending"
+        },
+        {
+          "id": "DC-002",
+          "name": "Cross-reference Integrity",
+          "description": "Validate cross-reference integrity across all project artifacts.",
+          "validation_code": "function validateGlobalCrossRefs() { /* Verify global cross-references */ }",
+          "status": "pending"
+        },
+        {
+          "id": "DC-003",
+          "name": "Version Control Consistency",
+          "description": "Verify version control state is consistent with project state.",
+          "validation_code": "function validateVcsConsistency() { /* Verify VCS consistency */ }",
+          "status": "pending"
+        },
+        {
+          "id": "DC-004",
+          "name": "Dependency Graph Integrity",
+          "description": "Validate dependency graphs remain acyclic after recovery.",
+          "validation_code": "function validateDependencyGraphs() { /* Verify dependency graphs */ }",
+          "status": "pending"
+        },
+        {
+          "id": "DC-005",
+          "name": "Metrics and Logs Accuracy",
+          "description": "Verify metrics and logs accurately reflect the recovered state.",
+          "validation_code": "function validateMetricsAndLogs() { /* Verify metrics and logs */ }",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  "total_checks": 15,
+  "pending_checks": 15,
+  "executed_checks": 0,
+  "passed_checks": 0,
+  "failed_checks": 0,
+  "last_updated": "2025-05-25T10:52:08+03:00"
+}

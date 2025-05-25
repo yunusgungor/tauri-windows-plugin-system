@@ -1,0 +1,211 @@
+{
+  "performance": {
+    "execution_times": {
+      "workflow_steps": {
+        "initialize_project_structure": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        },
+        "load_context_from_chats": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        },
+        "validate_prd": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        },
+        "analyze_initial_architecture": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        },
+        "define_modular_structure": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        },
+        "create_roadmap_and_stories": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        },
+        "execute_next_story": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        },
+        "integration_phase": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        },
+        "handle_error": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        },
+        "learn_patterns": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        }
+      },
+      "tools": {
+        "list_dir": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        },
+        "read_file": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        },
+        "edit_file": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        },
+        "file_search": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        },
+        "codebase_search": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        },
+        "grep_search": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        },
+        "run_terminal_cmd": {
+          "average_time_seconds": 0,
+          "min_time_seconds": 0,
+          "max_time_seconds": 0,
+          "standard_deviation": 0
+        }
+      }
+    },
+    "memory_usage": {
+      "workflow_steps": {
+        "initialize_project_structure": {
+          "average_mb": 0,
+          "peak_mb": 0
+        },
+        "load_context_from_chats": {
+          "average_mb": 0,
+          "peak_mb": 0
+        },
+        "validate_prd": {
+          "average_mb": 0,
+          "peak_mb": 0
+        },
+        "analyze_initial_architecture": {
+          "average_mb": 0,
+          "peak_mb": 0
+        },
+        "define_modular_structure": {
+          "average_mb": 0,
+          "peak_mb": 0
+        },
+        "create_roadmap_and_stories": {
+          "average_mb": 0,
+          "peak_mb": 0
+        },
+        "execute_next_story": {
+          "average_mb": 0,
+          "peak_mb": 0
+        },
+        "integration_phase": {
+          "average_mb": 0,
+          "peak_mb": 0
+        },
+        "handle_error": {
+          "average_mb": 0,
+          "peak_mb": 0
+        },
+        "learn_patterns": {
+          "average_mb": 0,
+          "peak_mb": 0
+        }
+      },
+      "overall_system": {
+        "average_mb": 0,
+        "peak_mb": 0,
+        "growth_rate": 0
+      }
+    },
+    "resource_contention": {
+      "concurrent_operations": {
+        "file_operations": {
+          "contention_rate": 0,
+          "average_wait_time_seconds": 0
+        },
+        "search_operations": {
+          "contention_rate": 0,
+          "average_wait_time_seconds": 0
+        },
+        "terminal_commands": {
+          "contention_rate": 0,
+          "average_wait_time_seconds": 0
+        }
+      }
+    },
+    "bottlenecks": {
+      "identified_bottlenecks": [],
+      "potential_bottlenecks": []
+    }
+  },
+  "performance_comparison": {
+    "baseline": {
+      "timestamp": "2025-05-25T10:59:24+03:00",
+      "average_step_time_seconds": 0,
+      "average_tool_time_seconds": 0,
+      "peak_memory_usage_mb": 0
+    },
+    "current": {
+      "timestamp": "2025-05-25T10:59:24+03:00",
+      "average_step_time_seconds": 0,
+      "average_tool_time_seconds": 0,
+      "peak_memory_usage_mb": 0
+    },
+    "change_percentage": {
+      "average_step_time": 0,
+      "average_tool_time": 0,
+      "peak_memory_usage": 0
+    }
+  },
+  "optimization_recommendations": {
+    "high_priority": [],
+    "medium_priority": [],
+    "low_priority": []
+  },
+  "historical_data": {
+    "performance_trend": [],
+    "memory_usage_trend": [],
+    "bottleneck_trend": []
+  },
+  "last_updated": "2025-05-25T10:59:24+03:00"
+}

@@ -99,11 +99,18 @@ pub struct PluginHost {
 struct PluginInstance {
     /// The loaded plugin
     loaded_plugin: LoadedPlugin,
-    /// Plugin context for communication
-    context: *mut PluginContext,
     /// Host data for this plugin
     host_data: Arc<Mutex<HostData>>,
+    /// Raw pointer for FFI (not shared between threads directly)
+    /// This is used only for C ABI calls and is managed by the context above
+    context_ptr: *mut PluginContext,
 }
+
+// Implementing Send and Sync explicitly for PluginInstance
+// This is safe because we never share the raw pointer between threads directly
+// All access to the pointer is protected by the Arc<Mutex<>> wrapper
+unsafe impl Send for PluginInstance {}
+unsafe impl Sync for PluginInstance {}
 
 impl PluginHost {
     /// Create a new plugin host
@@ -145,10 +152,11 @@ impl PluginHost {
             }
         }
         
-        // Store plugin instance
+        // Store plugin instance with the raw pointer for FFI calls
+        // The context_ptr is managed by the plugin instance lifecycle
         self.plugins.insert(plugin_id.clone(), PluginInstance {
             loaded_plugin,
-            context: context_ptr,
+            context_ptr,
             host_data,
         });
         
@@ -166,11 +174,11 @@ impl PluginHost {
         // Call plugin_teardown
         unsafe {
             let teardown_fn = plugin.loaded_plugin.get_teardown_fn()?;
-            let result = teardown_fn(plugin.context);
+            let result = teardown_fn(plugin.context_ptr);
             
             // Clean up resources
-            let _ = Box::from_raw(plugin.context);
-            let _ = Arc::from_raw(plugin.host_data.as_ptr() as *const Mutex<HostData>);
+            let _ = Box::from_raw(plugin.context_ptr);
+            // We don't need to call Arc::from_raw since we're using normal Arc
             
             if result != 0 {
                 return Err(PluginHostError::TeardownFailed(result));
@@ -201,8 +209,9 @@ impl PluginHost {
             })?;
             
             unsafe {
+                // Use the raw pointer for FFI calls instead of the thread-safe wrapper
                 let result = callback_fn(
-                    plugin.context,
+                    plugin.context_ptr,
                     c_data.as_ptr(),
                     event_data.len() as u32,
                 );

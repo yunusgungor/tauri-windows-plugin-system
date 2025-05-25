@@ -1,0 +1,70 @@
+{
+  "metrics": {
+    "overall_effectiveness": {
+      "score": 0,
+      "target": 90,
+      "description": "Overall effectiveness of error detection and recovery system"
+    },
+    "by_error_type": {
+      "syntax": {
+        "detection_rate": 0,
+        "recovery_rate": 0,
+        "average_recovery_time_seconds": 0
+      },
+      "semantic": {
+        "detection_rate": 0,
+        "recovery_rate": 0,
+        "average_recovery_time_seconds": 0
+      },
+      "runtime": {
+        "detection_rate": 0,
+        "recovery_rate": 0,
+        "average_recovery_time_seconds": 0
+      },
+      "integration": {
+        "detection_rate": 0,
+        "recovery_rate": 0,
+        "average_recovery_time_seconds": 0
+      },
+      "architectural": {
+        "detection_rate": 0,
+        "recovery_rate": 0,
+        "average_recovery_time_seconds": 0
+      },
+      "pattern_related": {
+        "detection_rate": 0,
+        "recovery_rate": 0,
+        "average_recovery_time_seconds": 0
+      }
+    },
+    "by_severity": {
+      "critical": {
+        "detection_rate": 0,
+        "recovery_rate": 0,
+        "average_recovery_time_seconds": 0
+      },
+      "high": {
+        "detection_rate": 0,
+        "recovery_rate": 0,
+        "average_recovery_time_seconds": 0
+      },
+      "medium": {
+        "detection_rate": 0,
+        "recovery_rate": 0,
+        "average_recovery_time_seconds": 0
+      },
+      "low": {
+        "detection_rate": 0,
+        "recovery_rate": 0,
+        "average_recovery_time_seconds": 0
+      }
+    }
+  },
+  "historical_data": [],
+  "trend_analysis": {
+    "detection_trend": "stable",
+    "recovery_trend": "stable",
+    "time_trend": "stable"
+  },
+  "last_updated": "2025-05-25T10:52:08+03:00"
+}

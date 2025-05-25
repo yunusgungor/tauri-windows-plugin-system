@@ -1,0 +1,58 @@
+{
+  "metrics": {
+    "overall_efficiency": {
+      "score": 0,
+      "target": 85,
+      "description": "Overall efficiency of error resolution process"
+    },
+    "resolution_times": {
+      "average_time_seconds": 0,
+      "median_time_seconds": 0,
+      "percentile_90_seconds": 0,
+      "standard_deviation": 0
+    },
+    "resolution_attempts": {
+      "average_attempts": 0,
+      "single_attempt_success_rate": 0,
+      "multiple_attempts_distribution": {}
+    },
+    "by_error_type": {
+      "syntax": {
+        "average_resolution_time_seconds": 0,
+        "success_rate": 0
+      },
+      "semantic": {
+        "average_resolution_time_seconds": 0,
+        "success_rate": 0
+      },
+      "runtime": {
+        "average_resolution_time_seconds": 0,
+        "success_rate": 0
+      },
+      "integration": {
+        "average_resolution_time_seconds": 0,
+        "success_rate": 0
+      },
+      "architectural": {
+        "average_resolution_time_seconds": 0,
+        "success_rate": 0
+      },
+      "pattern_related": {
+        "average_resolution_time_seconds": 0,
+        "success_rate": 0
+      }
+    },
+    "resolution_quality": {
+      "permanent_fix_rate": 0,
+      "recurrence_rate": 0,
+      "side_effect_rate": 0
+    }
+  },
+  "historical_data": [],
+  "trend_analysis": {
+    "efficiency_trend": "stable",
+    "time_trend": "stable",
+    "quality_trend": "stable"
+  },
+  "last_updated": "2025-05-25T10:52:08+03:00"
+}
