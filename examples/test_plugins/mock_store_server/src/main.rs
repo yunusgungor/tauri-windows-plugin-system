@@ -13,10 +13,9 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use std::{
     collections::HashMap,
-    fs::{self, File},
-    io::{self, Read},
+    fs,
     net::SocketAddr,
-    path::{Path as FilePath, PathBuf},
+    path::PathBuf,
     sync::{Arc, RwLock},
 };
 use tower_http::{
@@ -26,7 +25,7 @@ use tower_http::{
 use uuid::Uuid;
 
 // Plugin kategorileri
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 enum PluginCategory {
     Security,
     Development,
@@ -157,8 +156,6 @@ struct PluginDownloadInfo {
 struct PluginDownloadRequest {
     plugin_id: String,
     version: String,
-    platform: String,
-    arch: String,
 }
 
 // API hata
@@ -214,7 +211,6 @@ struct AppState {
     plugin_files: Arc<RwLock<HashMap<String, PathBuf>>>,
     tokens: Arc<RwLock<HashMap<String, ApiToken>>>,
     users: Arc<RwLock<HashMap<String, User>>>,
-    data_dir: PathBuf,
 }
 
 // Özel API hata yanıtı
@@ -283,12 +279,13 @@ async fn main() {
     load_plugins_from_dir(&plugins_dir, &plugins, &plugin_files);
     
     // Uygulama durumu
+    let plugins_path = data_dir.join("plugins");
+    
     let app_state = AppState {
         plugins,
         plugin_files,
         tokens,
         users,
-        data_dir,
     };
     
     // CORS yapılandırması
@@ -307,7 +304,7 @@ async fn main() {
     // Ana router
     let app = Router::new()
         .nest("/api/v1", api_routes)
-        .nest_service("/files", ServeDir::new(data_dir.join("plugins")))
+        .nest_service("/files", ServeDir::new(plugins_path))
         .with_state(app_state)
         .layer(cors);
     
@@ -525,7 +522,7 @@ async fn search_plugins(
 async fn get_plugin(
     Path(id): Path<String>,
     State(app_state): State<AppState>,
-) -> impl IntoResponse {
+) -> Response {
     let plugins_map = app_state.plugins.read().unwrap();
     
     if let Some(plugin) = plugins_map.get(&id) {
@@ -534,6 +531,7 @@ async fn get_plugin(
             data: Some(plugin.clone()),
             error: None,
         })
+        .into_response()
     } else {
         ApiError {
             code: "not_found".to_string(),
@@ -545,10 +543,10 @@ async fn get_plugin(
 
 // Plugin indirme
 async fn download_plugin(
-    Json(request): Json<PluginDownloadRequest>,
-    headers: HeaderMap,
     State(app_state): State<AppState>,
-) -> impl IntoResponse {
+    headers: HeaderMap,
+    Json(request): Json<PluginDownloadRequest>,
+) -> Response {
     // API token'ı kontrol et
     let auth_header = headers.get(header::AUTHORIZATION);
     if auth_header.is_none() {
@@ -635,9 +633,9 @@ async fn download_plugin(
 
 // Giriş
 async fn login(
-    Json(request): Json<LoginRequest>,
     State(app_state): State<AppState>,
-) -> impl IntoResponse {
+    Json(request): Json<LoginRequest>,
+) -> Response {
     // Test kullanıcısı kontrolü
     if request.username == "test" && request.password == "test123" {
         let users_map = app_state.users.read().unwrap();

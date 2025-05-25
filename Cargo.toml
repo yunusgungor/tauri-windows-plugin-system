@@ -48,8 +48,8 @@ panic = "abort"
 
 [workspace]
 members = [
-  "examples/demo-app",
-  "examples/sample-plugin",
+  "examples/plugin_system_demo",
+  "examples/test_plugins/mock_store_server",
 ]
 exclude = [
   "target",

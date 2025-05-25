@@ -6,6 +6,10 @@ description = "Tauri Windows Plugin System Entegrasyon Demo Uygulaması"
 authors = ["Tauri Windows Plugin System Team"]
 license = "MIT"
 
+[[bin]]
+name = "tauri-windows-plugin-system-demo"
+path = "src-tauri/main.rs"
+
 [dependencies]
 # Tauri bağımlılıkları
 tauri = { version = "1.4", features = ["api-all", "system-tray", "updater"] }
@@ -18,7 +22,7 @@ tauri-plugin-sandbox = { path = "../../src/sandbox" }
 tauri-plugin-signature = { path = "../../src/signature" }
 tauri-plugin-permissions = { path = "../../src/permissions" }
 tauri-plugin-resource-monitor = { path = "../../src/resource_monitor" }
-tauri-plugin-wasm-integration = { path = "../../src/wasm_integration" }
+tauri-plugin-wasm = { path = "../../src/wasm_integration" }
 tauri-plugin-store = { path = "../../src/plugin_store" }
 
 # UI için gerekli bağımlılıklar
