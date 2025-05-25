@@ -1,0 +1,318 @@
+{
+  "patterns": [
+    {
+      "id": "pattern-001",
+      "name": "Plugin Loader Pattern",
+      "type": "architectural",
+      "category": "structural",
+      "description": "A pattern for dynamically loading external plugin code with validation and lifecycle management.",
+      "intent": "To provide a secure and reliable mechanism for loading external code modules at runtime while maintaining application stability.",
+      "applicability": "Use when the application needs to support extensibility through plugins that are loaded dynamically at runtime.",
+      "structure": {
+        "components": [
+          "Plugin Package: ZIP archive containing plugin files",
+          "Manifest Validator: Validates plugin metadata and permissions",
+          "DLL Loader: Loads the plugin binary into memory",
+          "Plugin Context: Provides controlled access to host resources"
+        ],
+        "relationships": [
+          "Plugin Package → Manifest Validator: Extraction and validation",
+          "Manifest Validator → DLL Loader: Validated plugin is passed for loading",
+          "DLL Loader → Plugin Context: Creates context for loaded plugin"
+        ]
+      },
+      "code_snippet": "```rust\npub async fn load_plugin_package(package_path: &Path) -> Result<PluginMetadata, PluginLoadError> {\n    // Extract ZIP package\n    let extract_dir = extract_plugin_package(package_path)?;\n    \n    // Read and validate manifest\n    let manifest_path = extract_dir.join(\"plugin.json\");\n    let manifest = read_and_validate_manifest(&manifest_path)?;\n    \n    // Check permissions and compatibility\n    validate_plugin_compatibility(&manifest)?;\n    \n    // Create plugin metadata\n    let plugin_metadata = PluginMetadata {\n        manifest,\n        install_path: extract_dir,\n        dll_path: extract_dir.join(manifest.entry),\n        installed_at: Utc::now(),\n    };\n    \n    Ok(plugin_metadata)\n}\n```",
+      "consequences": {
+        "benefits": [
+          "Enables runtime extensibility without application restarts",
+          "Provides security through validation and permission checking",
+          "Isolates plugin failures from affecting the host application",
+          "Standardizes plugin packaging and discovery"
+        ],
+        "liabilities": [
+          "Introduces potential security risks if validation is insufficient",
+          "Can add complexity to the application architecture",
+          "Requires careful resource management to avoid memory leaks"
+        ]
+      },
+      "implementation": {
+        "considerations": [
+          "Ensure thorough validation of plugin packages and manifests",
+          "Implement proper error handling for all loading stages",
+          "Use proper resource cleanup for failed loading attempts",
+          "Consider sandboxing plugins for additional security"
+        ],
+        "examples": [
+          "The libloading crate in Rust for dynamic library loading",
+          "The VSCode extension loading system",
+          "The plugin systems in JetBrains IDEs"
+        ]
+      },
+      "related_patterns": [
+        "Plugin Host Pattern",
+        "Permission System Pattern",
+        "Plugin Manager Pattern"
+      ],
+      "known_uses": [
+        "Browser extensions",
+        "IDE plugins",
+        "Game mod systems"
+      ],
+      "tags": ["plugin", "dynamic loading", "extensibility", "security"]
+    },
+    {
+      "id": "pattern-002",
+      "name": "C ABI Interface Pattern",
+      "type": "architectural",
+      "category": "interface",
+      "description": "A pattern for defining stable interfaces between components using the C Application Binary Interface.",
+      "intent": "To create a stable, language-agnostic boundary between the host application and dynamically loaded plugins.",
+      "applicability": "Use when components need to communicate across module boundaries, especially when they may be compiled with different compilers or languages.",
+      "structure": {
+        "components": [
+          "C-compatible Function Exports: Functions with C linkage exported by plugins",
+          "C-compatible Data Structures: Data types that can be safely passed across the boundary",
+          "Function Pointers: For callback mechanisms",
+          "Context Structures: For maintaining state across calls"
+        ],
+        "relationships": [
+          "Host → Plugin: Calls exported plugin functions",
+          "Plugin → Host: Uses function pointers provided by the host",
+          "Both: Share C-compatible data structures"
+        ]
+      },
+      "code_snippet": "```rust\n// Plugin side (Rust with C exports)\n#[no_mangle]\nextern \"C\" fn plugin_init(context: *mut PluginContext) -> i32 {\n    // Safety checks\n    if context.is_null() {\n        return -1;\n    }\n    \n    // Safe access to context\n    let context = unsafe { &mut *context };\n    \n    // Initialize plugin\n    // ...\n    \n    0 // Success\n}\n\n// Host side (Rust loading C functions)\nlet lib = unsafe { Library::new(dll_path)? };\nlet init_fn: Symbol<extern \"C\" fn(*mut PluginContext) -> i32> = unsafe {\n    lib.get(b\"plugin_init\")?\n};\n\n// Create context and call init\nlet mut context = Box::new(PluginContext::new());\nlet result = init_fn(Box::into_raw(context));\n```",
+      "consequences": {
+        "benefits": [
+          "Provides stable ABI that is resilient to compiler changes",
+          "Enables cross-language compatibility",
+          "Simple and well-understood interface mechanism",
+          "Low overhead for function calls"
+        ],
+        "liabilities": [
+          "Limited to simple data types or careful manual memory management",
+          "Requires explicit safety checks for pointers",
+          "More verbose than language-native interfaces",
+          "Error handling is more complex"
+        ]
+      },
+      "implementation": {
+        "considerations": [
+          "Use explicit C representation for all shared structures",
+          "Implement thorough null pointer and validity checks",
+          "Consider ownership carefully when passing data across the boundary",
+          "Document memory management responsibilities clearly"
+        ],
+        "examples": [
+          "Foreign Function Interface (FFI) in many languages",
+          "Windows COM interfaces",
+          "POSIX C APIs"
+        ]
+      },
+      "related_patterns": [
+        "Plugin Loader Pattern",
+        "Adapter Pattern (for wrapping C interfaces in language-native ones)",
+        "Bridge Pattern"
+      ],
+      "known_uses": [
+        "Operating system APIs",
+        "Language interoperability libraries",
+        "Plugin systems across many applications"
+      ],
+      "tags": ["c abi", "ffi", "interface", "interoperability"]
+    },
+    {
+      "id": "pattern-003",
+      "name": "Permission System Pattern",
+      "type": "security",
+      "category": "behavioral",
+      "description": "A pattern for managing and enforcing access control through explicit permission declarations and checks.",
+      "intent": "To provide fine-grained control over what resources and operations plugins can access, enhancing security and user trust.",
+      "applicability": "Use when untrusted code needs controlled access to sensitive resources or operations.",
+      "structure": {
+        "components": [
+          "Permission Declaration: How plugins declare needed permissions",
+          "Permission Validator: Validates requested permissions against policy",
+          "Permission Prompt: Requests user approval for permissions",
+          "Permission Enforcer: Checks permissions before resource access",
+          "Permission Storage: Persists user decisions about permissions"
+        ],
+        "relationships": [
+          "Plugin → Permission Declaration: Declares needed permissions",
+          "Permission Declaration → Permission Validator: Validates permissions",
+          "Permission Validator → Permission Prompt: Requests approval if needed",
+          "All Components → Permission Enforcer: Checks before access",
+          "Permission Prompt → Permission Storage: Stores decisions"
+        ]
+      },
+      "code_snippet": "```rust\n// Permission declaration in manifest\n{\n  \"permissions\": [\n    {\n      \"type\": \"file_system\",\n      \"read\": true,\n      \"write\": false,\n      \"paths\": [\"data/\"]\n    },\n    {\n      \"type\": \"network\",\n      \"hosts\": [\"api.example.com\"]\n    }\n  ]\n}\n\n// Permission check in code\npub fn access_file(&self, plugin_name: &str, path: &Path, write: bool) -> Result<File, PermissionError> {\n    // Get plugin's permissions\n    let permissions = self.get_plugin_permissions(plugin_name);\n    \n    // Check if file access is allowed\n    if !self.has_file_permission(permissions, path, write) {\n        return Err(PermissionError::AccessDenied {\n            resource: path.display().to_string(),\n            operation: if write { \"write\" } else { \"read\" }.to_string(),\n        });\n    }\n    \n    // Access is allowed, open the file\n    // ...\n}\n```",
+      "consequences": {
+        "benefits": [
+          "Enhances security by limiting plugin capabilities",
+          "Provides transparency to users about plugin access",
+          "Allows fine-grained control over resource access",
+          "Creates a trust framework for plugin ecosystem"
+        ],
+        "liabilities": [
+          "Can create friction in user experience due to permission prompts",
+          "Increases complexity of the plugin system",
+          "May create permission fatigue if not designed carefully",
+          "Requires comprehensive coverage to be effective"
+        ]
+      },
+      "implementation": {
+        "considerations": [
+          "Balance security with user experience",
+          "Group related permissions to reduce prompt fatigue",
+          "Provide clear explanations for why permissions are needed",
+          "Consider implementing different permission levels (e.g., always allow, ask every time)",
+          "Implement secure storage for permission decisions"
+        ],
+        "examples": [
+          "Android and iOS app permissions",
+          "Browser extension permissions",
+          "Operating system security models"
+        ]
+      },
+      "related_patterns": [
+        "Plugin Loader Pattern",
+        "Least Privilege Principle",
+        "Security Gateway Pattern"
+      ],
+      "known_uses": [
+        "Mobile application platforms",
+        "Browser extensions",
+        "Operating system security models"
+      ],
+      "tags": ["security", "permissions", "access control", "trust"]
+    },
+    {
+      "id": "pattern-004",
+      "name": "Plugin Manager Pattern",
+      "type": "architectural",
+      "category": "behavioral",
+      "description": "A pattern for centralized management of plugin lifecycle operations including installation, uninstallation, enabling, disabling, and updates.",
+      "intent": "To provide a unified interface for managing the full lifecycle of plugins with proper coordination between components.",
+      "applicability": "Use when an application needs to support user-managed plugins with various lifecycle states and operations.",
+      "structure": {
+        "components": [
+          "Plugin Registry: Maintains list of installed plugins and their states",
+          "Lifecycle Coordinator: Coordinates operations across components",
+          "Metadata Manager: Handles plugin metadata persistence",
+          "Operation Executor: Executes specific lifecycle operations",
+          "Event Dispatcher: Notifies system of plugin state changes"
+        ],
+        "relationships": [
+          "User Interface → Plugin Manager: Requests operations",
+          "Plugin Manager → Plugin Loader: Delegates loading/unloading",
+          "Plugin Manager → Permission System: Checks permissions",
+          "Plugin Manager → Plugin Host: Manages plugin instances",
+          "Plugin Manager → Event Dispatcher: Emits lifecycle events"
+        ]
+      },
+      "code_snippet": "```rust\npub async fn install_plugin(&mut self, source: PluginSource) -> Result<PluginInfo, PluginInstallError> {\n    // Resolve source to package path\n    let package_path = self.resolve_plugin_source(source).await?;\n    \n    // Load and validate package\n    let metadata = self.plugin_loader.load_plugin_package(&package_path).await?;\n    \n    // Check permissions\n    self.permission_system.validate_permissions(&metadata.manifest.permissions)?;\n    \n    // Install to plugins directory\n    let install_path = self.install_plugin_files(&metadata).await?;\n    \n    // Update registry\n    let plugin_info = self.add_to_registry(&metadata, &install_path).await?;\n    \n    // Save metadata\n    self.save_metadata()?;\n    \n    // Emit event\n    self.event_dispatcher.emit_plugin_installed(&plugin_info);\n    \n    Ok(plugin_info)\n}\n```",
+      "consequences": {
+        "benefits": [
+          "Provides centralized coordination of plugin operations",
+          "Ensures consistent plugin state across the application",
+          "Simplifies plugin management for users",
+          "Enables proper cleanup and resource management"
+        ],
+        "liabilities": [
+          "Can become a complex component with many responsibilities",
+          "May create a bottleneck if not designed carefully",
+          "Requires careful error handling across multiple operations"
+        ]
+      },
+      "implementation": {
+        "considerations": [
+          "Implement transactional operations where possible",
+          "Provide rollback capabilities for failed operations",
+          "Use asynchronous operations for long-running tasks",
+          "Implement proper event notifications for UI updates",
+          "Consider caching plugin metadata for performance"
+        ],
+        "examples": [
+          "Package managers in operating systems",
+          "Extension managers in browsers and IDEs",
+          "Add-on managers in applications"
+        ]
+      },
+      "related_patterns": [
+        "Plugin Loader Pattern",
+        "Permission System Pattern",
+        "Observer Pattern (for event notifications)",
+        "Command Pattern (for operations)"
+      ],
+      "known_uses": [
+        "Browser extension managers",
+        "IDE plugin managers",
+        "Application add-on managers"
+      ],
+      "tags": ["plugin", "lifecycle", "management", "coordination"]
+    },
+    {
+      "id": "pattern-005",
+      "name": "Plugin UI Integration Pattern",
+      "type": "ui_ux",
+      "category": "structural",
+      "description": "A pattern for integrating plugin functionality into the application user interface using commands, events, and UI components.",
+      "intent": "To provide a seamless user experience for managing plugins and accessing plugin functionality through the application UI.",
+      "applicability": "Use when plugins need to be managed through a user interface and may provide their own UI components.",
+      "structure": {
+        "components": [
+          "Command Registry: Registers plugin-related commands with the UI framework",
+          "Event System: Propagates plugin state changes to the UI",
+          "UI Component Manager: Manages plugin-provided UI components",
+          "Plugin Management Interface: UI for plugin lifecycle operations"
+        ],
+        "relationships": [
+          "UI → Command Registry: Invokes plugin commands",
+          "Plugin Manager → Event System: Emits plugin lifecycle events",
+          "Event System → UI: Updates UI based on plugin state",
+          "Plugins → UI Component Manager: Registers UI components"
+        ]
+      },
+      "code_snippet": "```typescript\n// Tauri command for the UI to install a plugin\n#[tauri::command]\nasync fn install_plugin_from_file(path: String) -> Result<PluginInfoJson, String> {\n    let plugin_manager = PLUGIN_MANAGER.get().expect(\"Plugin manager not initialized\");\n    \n    match plugin_manager.install_plugin(PluginSource::File(path.into())).await {\n        Ok(info) => Ok(info.into_json()),\n        Err(e) => Err(format!(\"Failed to install plugin: {}\", e))\n    }\n}\n\n// React component for plugin management\nfunction PluginManager() {\n  const [plugins, setPlugins] = useState([]);\n  const [loading, setLoading] = useState(true);\n  \n  useEffect(() => {\n    // Load plugins on mount\n    loadPlugins();\n    \n    // Listen for plugin events\n    const unlistenInstall = listen('plugin-installed', (event) => {\n      setPlugins(prev => [...prev, event.payload]);\n    });\n    \n    const unlistenUninstall = listen('plugin-uninstalled', (event) => {\n      setPlugins(prev => prev.filter(p => p.name !== event.payload.pluginName));\n    });\n    \n    return () => {\n      unlistenInstall();\n      unlistenUninstall();\n    };\n  }, []);\n  \n  async function loadPlugins() {\n    setLoading(true);\n    try {\n      const result = await invoke('list_plugins');\n      setPlugins(result);\n    } catch (error) {\n      console.error('Failed to load plugins:', error);\n    } finally {\n      setLoading(false);\n    }\n  }\n  \n  async function handleInstall() {\n    const filePath = await open({\n      directory: false,\n      filters: [{ name: 'Plugin Packages', extensions: ['zip'] }]\n    });\n    \n    if (filePath) {\n      try {\n        await invoke('install_plugin_from_file', { path: filePath });\n      } catch (error) {\n        console.error('Failed to install plugin:', error);\n      }\n    }\n  }\n  \n  // Render UI...\n}\n```",
+      "consequences": {
+        "benefits": [
+          "Provides a seamless user experience for plugin management",
+          "Enables plugins to extend the application UI",
+          "Creates a consistent pattern for UI-plugin interaction",
+          "Simplifies plugin state visualization"
+        ],
+        "liabilities": [
+          "Increases complexity of the UI architecture",
+          "Requires careful coordination between frontend and backend",
+          "May lead to inconsistent UI if plugin components aren't well-designed"
+        ]
+      },
+      "implementation": {
+        "considerations": [
+          "Use asynchronous communication for UI operations",
+          "Implement proper loading states and error handling in UI",
+          "Create a consistent design system for plugin UI components",
+          "Consider accessibility requirements for all UI components",
+          "Implement proper event handling for real-time UI updates"
+        ],
+        "examples": [
+          "VSCode extension UI integration",
+          "Browser extension management interfaces",
+          "WordPress plugin admin interfaces"
+        ]
+      },
+      "related_patterns": [
+        "Plugin Manager Pattern",
+        "Command Pattern (for UI operations)",
+        "Observer Pattern (for UI updates)",
+        "Composite Pattern (for UI component hierarchies)"
+      ],
+      "known_uses": [
+        "IDE plugin management interfaces",
+        "Browser extension management pages",
+        "CMS plugin administration"
+      ],
+      "tags": ["ui", "integration", "user experience", "frontend"]
+    }
+  ]
+}

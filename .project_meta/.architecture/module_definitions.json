@@ -1,0 +1,34 @@
+{
+  "modules": [
+    {
+      "name": "plugin_loader",
+      "description": "Handles loading plugin packages, validating manifests, and dynamic loading of DLLs",
+      "responsibilities": ["Package extraction", "Manifest validation", "DLL loading"],
+      "dependencies": []
+    },
+    {
+      "name": "plugin_host",
+      "description": "Defines interfaces for plugin execution and lifecycle management",
+      "responsibilities": ["Plugin API definition", "Plugin lifecycle management"],
+      "dependencies": ["plugin_loader"]
+    },
+    {
+      "name": "permission_system",
+      "description": "Manages plugin permissions with validation and user prompting",
+      "responsibilities": ["Permission validation", "User permission prompts", "Permission enforcement"],
+      "dependencies": []
+    },
+    {
+      "name": "plugin_manager",
+      "description": "Coordinates plugin lifecycle and operations",
+      "responsibilities": ["Plugin installation", "Plugin uninstallation", "Plugin enabling/disabling", "Plugin updates"],
+      "dependencies": ["plugin_loader", "plugin_host", "permission_system"]
+    },
+    {
+      "name": "ui_integration",
+      "description": "Integrates with Tauri UI via commands and events",
+      "responsibilities": ["Tauri command registration", "UI event handling", "Plugin UI components"],
+      "dependencies": ["plugin_manager"]
+    }
+  ]
+}

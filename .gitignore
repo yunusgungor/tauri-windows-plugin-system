@@ -1,0 +1,33 @@
+# Compiled plugin binaries
+*.dll
+*.so
+*.dylib
+
+# Plugin package files
+*.zip
+
+# Test fixtures and generated files
+tests/fixtures/output/
+tests/e2e/temp/
+
+# Build artifacts
+target/
+dist/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local
+
+# OS specific files
+.DS_Store
+Thumbs.db

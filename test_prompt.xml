@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test_integration_request id="TIR-001" timestamp="2025-05-25T05:20:00+03:00">
+  <metadata>
+    <title>Comprehensive Test Implementation for Tauri Windows Plugin System</title>
+    <purpose>
+      Implement a robust, multi-level testing strategy for the Tauri Windows Plugin System.
+      Integrate unit, integration, fuzzing, and end-to-end tests within the codeflow development workflow.
+      Ensure all components of the plugin system are thoroughly tested with proper metrics collection.
+      Incorporate continuous testing within the CI/CD pipeline for ongoing verification.
+      Generate comprehensive test documentation and reports for quality assurance.
+    </purpose>
+    <target_workflow_steps>
+      <step_emphasis ref="execute_next_story">Prioritize test-driven development with test cases written before implementation.</step_emphasis>
+      <step_emphasis ref="integration_phase">Implement comprehensive multi-level testing including unit, integration, and fuzzing tests.</step_emphasis>
+      <step_emphasis ref="learn_patterns">Document test patterns and anti-patterns to improve future test coverage.</step_emphasis>
+    </target_workflow_steps>
+    <required_verification>true</required_verification>
+    <error_handling_priority>critical</error_handling_priority>
+  </metadata>
+
+  <context>
+    <project_state>
+      <code_status>implemented</code_status>
+      <test_status>to_be_implemented</test_status>
+      <integration_status>to_be_verified</integration_status>
+      <project_testing_status>ready_to_start</project_testing_status>
+    </project_state>
+
+    <dependencies>
+      <dependency>src/plugin_loader/mod.rs</dependency>
+      <dependency>src/plugin_host/mod.rs</dependency>
+      <dependency>src/permission_system/mod.rs</dependency>
+      <dependency>src/plugin_manager/mod.rs</dependency>
+      <dependency>src/ui_integration/mod.rs</dependency>
+      <dependency>src/lib.rs</dependency>
+      <dependency>Cargo.toml</dependency>
+      <dependency>.project_meta/.patterns/pattern_catalog.json</dependency>
+      <dependency>.project_meta/.patterns/anti_patterns.json</dependency>
+      <dependency>.project_meta/.integration/integration_status.json</dependency>
+      <dependency>.project_meta/.integration/metrics/coverage_report.json</dependency>
+      <dependency>.project_meta/.integration/reports/compatibility_matrix.json</dependency>
+      <dependency>.project_meta/.docs/guides/developer_guide.md</dependency>
+      <dependency>.project_meta/.docs/guides/user_guide.md</dependency>
+      <dependency>.project_meta/.docs/api/api_reference.md</dependency>
+    </dependencies>
+  </context>
+
+  <test_framework_settings>
+    <core_directives>
+      <directive>Implement comprehensive test suite following the testing pyramid: unit tests at the base, integration tests in the middle, and end-to-end tests at the top.</directive>
+      <directive>Create a dedicated test directory structure with separate modules for each component of the plugin system.</directive>
+      <directive>Implement mock objects and test fixtures for components with external dependencies.</directive>
+      <directive>Set up fuzzing tests to ensure the system handles invalid inputs gracefully.</directive>
+      <directive>Implement CI/CD integration with GitHub Actions for automated test execution.</directive>
+      <directive>Generate test coverage reports and ensure coverage meets predefined thresholds.</directive>
+      <directive>Document all test cases and link them to the requirements they verify.</directive>
+      <directive>Include performance and security testing for critical components.</directive>
+    </core_directives>
+
+    <quality_standards>
+      <standard>Unit test coverage exceeding 80% for all core modules.</standard>
+      <standard>Integration test coverage of all public interfaces and component boundaries.</standard>
+      <standard>Fuzzing tests for all input validation and parsing components.</standard>
+      <standard>End-to-end tests covering all critical user workflows.</standard>
+      <standard>All tests must be deterministic and not depend on external resources unless explicitly designed as integration tests.</standard>
+      <standard>Test cases must include both positive and negative scenarios.</standard>
+      <standard>Ensure clear test naming that describes the behavior being tested.</standard>
+      <standard>Implement test parameterization for testing multiple similar scenarios.</standard>
+      <standard>Include performance benchmarks for critical operations.</standard>
+      <standard>Security tests for permission system and plugin isolation.</standard>
+    </quality_standards>
+
+    <test_structure>
+      <unit_tests>
+        <module name="plugin_loader">
+          <test_case>Test manifest validation with valid input</test_case>
+          <test_case>Test manifest validation with missing fields</test_case>
+          <test_case>Test manifest validation with invalid version format</test_case>
+          <test_case>Test ZIP extraction with valid package</test_case>
+          <test_case>Test ZIP extraction with corrupted package</test_case>
+          <test_case>Test DLL loading with valid library</test_case>
+          <test_case>Test DLL loading with missing exports</test_case>
+          <test_case>Test plugin compatibility validation</test_case>
+        </module>
+        
+        <module name="plugin_host">
+          <test_case>Test plugin initialization with valid context</test_case>
+          <test_case>Test plugin initialization with null context</test_case>
+          <test_case>Test plugin teardown</test_case>
+          <test_case>Test callback registration</test_case>
+          <test_case>Test event triggering</test_case>
+          <test_case>Test logging functionality</test_case>
+          <test_case>Test error handling during initialization</test_case>
+        </module>
+        
+        <module name="permission_system">
+          <test_case>Test permission validation with valid permissions</test_case>
+          <test_case>Test permission validation with overly broad permissions</test_case>
+          <test_case>Test permission prompting mechanism</test_case>
+          <test_case>Test permission granting and checking</test_case>
+          <test_case>Test permission serialization and deserialization</test_case>
+          <test_case>Test permission revocation</test_case>
+        </module>
+        
+        <module name="plugin_manager">
+          <test_case>Test plugin installation from file</test_case>
+          <test_case>Test plugin enabling and disabling</test_case>
+          <test_case>Test plugin uninstallation</test_case>
+          <test_case>Test plugin updating</test_case>
+          <test_case>Test plugin registry persistence</test_case>
+          <test_case>Test error handling during installation</test_case>
+          <test_case>Test plugin querying functions</test_case>
+        </module>
+        
+        <module name="ui_integration">
+          <test_case>Test Tauri command registration</test_case>
+          <test_case>Test event emission</test_case>
+          <test_case>Test permission prompt handling</test_case>
+          <test_case>Test command execution with valid inputs</test_case>
+          <test_case>Test command execution with invalid inputs</test_case>
+          <test_case>Test error handling and reporting</test_case>
+        </module>
+      </unit_tests>
+      
+      <integration_tests>
+        <test_suite name="plugin_lifecycle">
+          <test_case>Test complete plugin lifecycle: install, enable, disable, uninstall</test_case>
+          <test_case>Test plugin installation with permission prompting</test_case>
+          <test_case>Test plugin update with version change</test_case>
+          <test_case>Test plugin persistence across application restarts</test_case>
+        </test_suite>
+        
+        <test_suite name="component_interaction">
+          <test_case>Test interaction between plugin_loader and plugin_host</test_case>
+          <test_case>Test interaction between permission_system and plugin_manager</test_case>
+          <test_case>Test interaction between plugin_manager and ui_integration</test_case>
+          <test_case>Test end-to-end flow from UI command to plugin execution</test_case>
+        </test_suite>
+      </integration_tests>
+      
+      <fuzzing_tests>
+        <test_suite name="input_validation">
+          <test_case>Fuzz plugin manifest with random data</test_case>
+          <test_case>Fuzz ZIP package structure</test_case>
+          <test_case>Fuzz DLL with invalid exports</test_case>
+          <test_case>Fuzz permission definitions</test_case>
+          <test_case>Fuzz UI command parameters</test_case>
+        </test_suite>
+      </fuzzing_tests>
+      
+      <end_to_end_tests>
+        <test_suite name="sample_application">
+          <test_case>Test plugin installation through UI</test_case>
+          <test_case>Test plugin functionality execution</test_case>
+          <test_case>Test permission prompting through UI</test_case>
+          <test_case>Test plugin management workflows</test_case>
+        </test_suite>
+      </end_to_end_tests>
+      
+      <performance_tests>
+        <test_suite name="performance_benchmarks">
+          <test_case>Benchmark plugin loading time</test_case>
+          <test_case>Benchmark plugin initialization time</test_case>
+          <test_case>Benchmark event triggering latency</test_case>
+          <test_case>Benchmark system performance with multiple plugins</test_case>
+        </test_suite>
+      </performance_tests>
+    </test_structure>
+    
+    <mock_implementation>
+      <mock name="PluginLoader">
+        <method>load_plugin_package</method>
+        <method>load_plugin_dll</method>
+        <method>extract_plugin_package</method>
+        <method>read_and_validate_manifest</method>
+        <method>validate_plugin_compatibility</method>
+      </mock>
+      
+      <mock name="PermissionSystem">
+        <method>validate_permissions</method>
+        <method>prompt_for_permissions</method>
+        <method>is_permission_granted</method>
+        <method>grant_permissions</method>
+        <method>revoke_permissions</method>
+      </mock>
+      
+      <mock name="PluginHost">
+        <method>init_plugin</method>
+        <method>teardown_plugin</method>
+        <method>trigger_event</method>
+        <method>has_plugin</method>
+      </mock>
+    </mock_implementation>
+    
+    <test_fixtures>
+      <fixture name="ValidPluginPackage">
+        <description>A valid plugin package with correct manifest and DLL</description>
+        <components>
+          <component>plugin.json with valid fields</component>
+          <component>plugin.dll with required exports</component>
+          <component>resources directory with sample files</component>
+        </components>
+      </fixture>
+      
+      <fixture name="InvalidPluginPackage">
+        <description>An invalid plugin package with various issues</description>
+        <variants>
+          <variant>Missing manifest</variant>
+          <variant>Invalid manifest JSON</variant>
+          <variant>Missing DLL</variant>
+          <variant>DLL without required exports</variant>
+          <variant>Incompatible API version</variant>
+        </variants>
+      </fixture>
+      
+      <fixture name="TestPermissionHandler">
+        <description>A test implementation of PermissionPromptHandler</description>
+        <behavior>
+          <response type="always_allow">Returns all permissions as allowed</response>
+          <response type="always_deny">Returns all permissions as denied</response>
+          <response type="selective">Allows only specific permissions</response>
+        </behavior>
+      </fixture>
+    </test_fixtures>
+    
+    <ci_cd_integration>
+      <github_actions>
+        <workflow name="tests">
+          <trigger>
+            <event>push</event>
+            <branch>main</branch>
+          </trigger>
+          <trigger>
+            <event>pull_request</event>
+            <branch>main</branch>
+          </trigger>
+          <jobs>
+            <job name="unit_tests">
+              <runs_on>windows-latest</runs_on>
+              <steps>
+                <step>Checkout code</step>
+                <step>Setup Rust</step>
+                <step>Build project</step>
+                <step>Run unit tests</step>
+                <step>Generate coverage report</step>
+              </steps>
+            </job>
+            <job name="integration_tests">
+              <runs_on>windows-latest</runs_on>
+              <steps>
+                <step>Checkout code</step>
+                <step>Setup Rust</step>
+                <step>Build project</step>
+                <step>Run integration tests</step>
+                <step>Generate integration report</step>
+              </steps>
+            </job>
+            <job name="fuzzing_tests">
+              <runs_on>windows-latest</runs_on>
+              <steps>
+                <step>Checkout code</step>
+                <step>Setup Rust with nightly</step>
+                <step>Install cargo-fuzz</step>
+                <step>Run fuzzing for limited iterations</step>
+                <step>Report findings</step>
+              </steps>
+            </job>
+          </jobs>
+        </workflow>
+      </github_actions>
+    </ci_cd_integration>
+    
+    <documentation_integration>
+      <test_documentation>
+        <document name="test_plan.md">
+          <section>Overview of testing strategy</section>
+          <section>Test coverage goals</section>
+          <section>Test organization and structure</section>
+          <section>Test execution process</section>
+          <section>Continuous integration setup</section>
+        </document>
+        
+        <document name="test_cases.md">
+          <section>Detailed test cases for each module</section>
+          <section>Test fixtures and setup</section>
+          <section>Expected results and verification criteria</section>
+        </document>
+        
+        <document name="test_reports_template.md">
+          <section>Test execution summary</section>
+          <section>Test coverage metrics</section>
+          <section>Failed tests and issues</section>
+          <section>Performance metrics</section>
+          <section>Recommendations for improvement</section>
+        </document>
+      </test_documentation>
+      
+      <metrics_tracking>
+        <metric name="test_coverage_percentage">
+          <description>Percentage of code covered by tests</description>
+          <target>80% overall, 90% for critical components</target>
+          <tool>cargo-tarpaulin</tool>
+        </metric>
+        
+        <metric name="test_execution_time">
+          <description>Time taken to execute the full test suite</description>
+          <target>Less than 5 minutes for unit tests</target>
+        </metric>
+        
+        <metric name="test_pass_rate">
+          <description>Percentage of tests that pass on first execution</description>
+          <target>99% or higher</target>
+        </metric>
+        
+        <metric name="performance_benchmark_results">
+          <description>Results from performance benchmark tests</description>
+          <tracking>Track trends over time</tracking>
+        </metric>
+      </metrics_tracking>
+    </documentation_integration>
+  </test_framework_settings>
+
+  <implementation_steps>
+    <step id="setup_test_infrastructure">
+      <description>Set up the basic test infrastructure including directory structure, test helpers, and fixtures.</description>
+      <action>
+        <!-- Create test directory structure -->
+        Create tests/ directory with subdirectories for each component:
+        - tests/plugin_loader/
+        - tests/plugin_host/
+        - tests/permission_system/
+        - tests/plugin_manager/
+        - tests/ui_integration/
+        - tests/integration/
+        - tests/fuzz/
+        - tests/e2e/
+        
+        <!-- Create test helper modules -->
+        Create tests/common/mod.rs with shared test utilities:
+        - Test fixtures generation
+        - Mock implementations
+        - Test constants and configuration
+        
+        <!-- Update Cargo.toml -->
+        Update Cargo.toml to include test dependencies:
+        - Add mockall for mocking
+        - Add tempfile for temporary test directories
+        - Add cargo-tarpaulin for coverage
+        - Add arbitrary and libfuzzer-sys for fuzzing
+        
+        <!-- Create basic test configuration -->
+        Create .github/workflows/test.yml for CI setup
+      </action>
+    </step>
+    
+    <step id="implement_unit_tests">
+      <description>Implement comprehensive unit tests for each component.</description>
+      <action>
+        <!-- Plugin Loader Tests -->
+        Create tests/plugin_loader/mod.rs with unit tests:
+        - Test manifest validation
+        - Test ZIP extraction
+        - Test DLL loading
+        - Test compatibility checking
+        
+        <!-- Plugin Host Tests -->
+        Create tests/plugin_host/mod.rs with unit tests:
+        - Test plugin initialization
+        - Test plugin teardown
+        - Test callback registration
+        - Test event triggering
+        
+        <!-- Permission System Tests -->
+        Create tests/permission_system/mod.rs with unit tests:
+        - Test permission validation
+        - Test permission prompting
+        - Test permission checking
+        - Test permission serialization
+        
+        <!-- Plugin Manager Tests -->
+        Create tests/plugin_manager/mod.rs with unit tests:
+        - Test plugin installation
+        - Test plugin enabling/disabling
+        - Test plugin uninstallation
+        - Test plugin updating
+        
+        <!-- UI Integration Tests -->
+        Create tests/ui_integration/mod.rs with unit tests:
+        - Test command registration
+        - Test event emission
+        - Test permission handler
+      </action>
+    </step>
+    
+    <step id="implement_integration_tests">
+      <description>Implement integration tests to verify component interactions.</description>
+      <action>
+        <!-- Create integration test modules -->
+        Create tests/integration/plugin_lifecycle_tests.rs:
+        - Test complete plugin lifecycle
+        - Test persistence across restarts
+        
+        Create tests/integration/component_interaction_tests.rs:
+        - Test loader and host interaction
+        - Test permission system and manager interaction
+        - Test manager and UI integration
+        
+        <!-- Create test fixtures -->
+        Create tests/fixtures/ directory with:
+        - Sample plugin packages
+        - Mock DLLs with test exports
+        - Test manifests
+      </action>
+    </step>
+    
+    <step id="implement_fuzzing_tests">
+      <description>Implement fuzzing tests for input validation and error handling.</description>
+      <action>
+        <!-- Set up fuzzing infrastructure -->
+        Create tests/fuzz/fuzz_targets/ directory
+        
+        <!-- Create fuzz targets -->
+        Create fuzz targets for:
+        - Plugin manifest validation
+        - ZIP package extraction
+        - Permission validation
+        - UI command parameters
+        
+        <!-- Configure fuzzing -->
+        Create fuzz/Cargo.toml with fuzzing configuration
+      </action>
+    </step>
+    
+    <step id="implement_e2e_tests">
+      <description>Implement end-to-end tests with a sample application.</description>
+      <action>
+        <!-- Create sample application -->
+        Create examples/test-app/ with:
+        - Minimal Tauri application
+        - Plugin system integration
+        - UI for plugin management
+        
+        <!-- Create end-to-end tests -->
+        Create tests/e2e/app_tests.rs with:
+        - Test for plugin installation via UI
+        - Test for plugin functionality
+        - Test for permission prompting
+      </action>
+    </step>
+    
+    <step id="implement_performance_tests">
+      <description>Implement performance benchmarks for critical operations.</description>
+      <action>
+        <!-- Create benchmark module -->
+        Create benches/ directory with benchmark tests:
+        - Plugin loading benchmarks
+        - Plugin initialization benchmarks
+        - Event triggering benchmarks
+        - System performance with multiple plugins
+        
+        <!-- Configure benchmark framework -->
+        Update Cargo.toml with benchmark configuration
+      </action>
+    </step>
+    
+    <step id="setup_ci_cd_pipeline">
+      <description>Set up continuous integration and delivery pipeline.</description>
+      <action>
+        <!-- Create GitHub Actions workflow -->
+        Implement .github/workflows/test.yml with:
+        - Unit test job
+        - Integration test job
+        - Fuzzing test job
+        - Coverage reporting
+        - Artifact publishing
+        
+        <!-- Create additional workflows -->
+        Implement .github/workflows/release.yml for release automation
+      </action>
+    </step>
+    
+    <step id="create_test_documentation">
+      <description>Create comprehensive test documentation.</description>
+      <action>
+        <!-- Create test plan -->
+        Create docs/testing/test_plan.md with:
+        - Testing strategy overview
+        - Test coverage goals
+        - Test structure and organization
+        
+        <!-- Create test case documentation -->
+        Create docs/testing/test_cases.md with detailed test cases
+        
+        <!-- Create test report templates -->
+        Create docs/testing/test_report_template.md for reporting
+        
+        <!-- Update developer guide -->
+        Update .project_meta/.docs/guides/developer_guide.md with testing section
+      </action>
+    </step>
+    
+    <step id="integrate_with_project_workflow">
+      <description>Integrate testing with the overall project workflow.</description>
+      <action>
+        <!-- Update integration status -->
+        Update .project_meta/.integration/integration_status.json with test results
+        
+        <!-- Update coverage reports -->
+        Update .project_meta/.integration/metrics/coverage_report.json with coverage data
+        
+        <!-- Update compatibility matrix -->
+        Update .project_meta/.integration/reports/compatibility_matrix.json with compatibility data
+        
+        <!-- Create test pattern documentation -->
+        Document testing patterns in .project_meta/.patterns/pattern_catalog.json
+        Document testing anti-patterns in .project_meta/.patterns/anti_patterns.json
+      </action>
+    </step>
+  </implementation_steps>
+  
+  <outputs>
+    <expected_deliverables>
+      <deliverable>Comprehensive test suite covering all components</deliverable>
+      <deliverable>CI/CD pipeline configuration for automated testing</deliverable>
+      <deliverable>Test documentation including test plan and test cases</deliverable>
+      <deliverable>Test coverage reports and metrics</deliverable>
+      <deliverable>Sample application for end-to-end testing</deliverable>
+      <deliverable>Performance benchmark results</deliverable>
+      <deliverable>Fuzzing test infrastructure and results</deliverable>
+    </expected_deliverables>
+    
+    <quality_metrics>
+      <metric>Test coverage exceeding 80% overall</metric>
+      <metric>All critical components with 90%+ coverage</metric>
+      <metric>100% of public interfaces tested</metric>
+      <metric>All error handling paths verified</metric>
+      <metric>Performance benchmarks established for critical operations</metric>
+      <metric>All security-critical code paths tested</metric>
+    </quality_metrics>
+  </outputs>
+</test_integration_request>

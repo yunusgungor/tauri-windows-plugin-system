@@ -1,0 +1,88 @@
+{
+  "mappings": [
+    {
+      "story_id": "story-002",
+      "depends_on": ["story-001"],
+      "dependency_type": "hard",
+      "description": "Manifest schema depends on the package format definition"
+    },
+    {
+      "story_id": "story-003",
+      "depends_on": ["story-001", "story-002"],
+      "dependency_type": "hard",
+      "description": "Plugin loader implementation depends on package format and manifest schema"
+    },
+    {
+      "story_id": "story-004",
+      "depends_on": ["story-003"],
+      "dependency_type": "hard",
+      "description": "DLL loading depends on the plugin loader implementation"
+    },
+    {
+      "story_id": "story-005",
+      "depends_on": ["story-004"],
+      "dependency_type": "hard",
+      "description": "Plugin host interface depends on DLL loading functionality"
+    },
+    {
+      "story_id": "story-006",
+      "depends_on": ["story-005"],
+      "dependency_type": "hard",
+      "description": "Plugin host implementation depends on the host interface definition"
+    },
+    {
+      "story_id": "story-007",
+      "depends_on": ["story-002"],
+      "dependency_type": "hard",
+      "description": "Permission system depends on manifest schema for permission declarations"
+    },
+    {
+      "story_id": "story-008",
+      "depends_on": ["story-003", "story-006", "story-007"],
+      "dependency_type": "hard",
+      "description": "Plugin manager depends on loader, host, and permission system"
+    },
+    {
+      "story_id": "story-009",
+      "depends_on": ["story-008"],
+      "dependency_type": "hard",
+      "description": "Tauri commands depend on plugin manager functionality"
+    },
+    {
+      "story_id": "story-010",
+      "depends_on": ["story-009"],
+      "dependency_type": "hard",
+      "description": "UI components depend on Tauri commands for backend communication"
+    },
+    {
+      "story_id": "story-011",
+      "depends_on": ["story-007", "story-008"],
+      "dependency_type": "hard",
+      "description": "Security features depend on permission system and plugin manager"
+    },
+    {
+      "story_id": "story-012",
+      "depends_on": ["story-006", "story-008", "story-010", "story-011"],
+      "dependency_type": "hard",
+      "description": "Test suite depends on all core functionality being implemented"
+    },
+    {
+      "story_id": "story-013",
+      "depends_on": ["story-012"],
+      "dependency_type": "hard",
+      "description": "CI/CD pipeline depends on test suite for automated testing"
+    },
+    {
+      "story_id": "story-014",
+      "depends_on": ["story-006", "story-008"],
+      "dependency_type": "hard",
+      "description": "Sample plugins depend on plugin host and manager implementation"
+    },
+    {
+      "story_id": "story-015",
+      "depends_on": ["story-005", "story-006", "story-007", "story-008", "story-014"],
+      "dependency_type": "hard",
+      "description": "Developer documentation depends on all core components and sample plugins"
+    }
+  ]
+}

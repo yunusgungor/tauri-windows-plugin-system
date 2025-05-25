@@ -1,0 +1,109 @@
+{
+  "mappings": [
+    {
+      "story_id": "story-001",
+      "architectural_elements": ["package_format", "plugin_structure"],
+      "impact_type": "foundation",
+      "impact_severity": "high",
+      "description": "Defines the foundational package format that impacts the entire plugin system"
+    },
+    {
+      "story_id": "story-002",
+      "architectural_elements": ["manifest_schema", "plugin_metadata"],
+      "impact_type": "foundation",
+      "impact_severity": "high",
+      "description": "Defines the manifest schema that impacts plugin metadata handling throughout the system"
+    },
+    {
+      "story_id": "story-003",
+      "architectural_elements": ["plugin_loader", "package_handling"],
+      "impact_type": "component",
+      "impact_severity": "high",
+      "description": "Implements core plugin loader component that extracts and validates plugins"
+    },
+    {
+      "story_id": "story-004",
+      "architectural_elements": ["plugin_loader", "dll_loading"],
+      "impact_type": "component",
+      "impact_severity": "high",
+      "description": "Implements DLL loading mechanism that is critical for plugin execution"
+    },
+    {
+      "story_id": "story-005",
+      "architectural_elements": ["plugin_host", "c_abi_interface"],
+      "impact_type": "interface",
+      "impact_severity": "high",
+      "description": "Defines the C ABI interface that is the contract between host and plugins"
+    },
+    {
+      "story_id": "story-006",
+      "architectural_elements": ["plugin_host", "lifecycle_management"],
+      "impact_type": "component",
+      "impact_severity": "high",
+      "description": "Implements plugin host component that manages plugin lifecycle"
+    },
+    {
+      "story_id": "story-007",
+      "architectural_elements": ["permission_system", "security_model"],
+      "impact_type": "component",
+      "impact_severity": "high",
+      "description": "Implements permission system that is fundamental to the security architecture"
+    },
+    {
+      "story_id": "story-008",
+      "architectural_elements": ["plugin_manager", "lifecycle_operations"],
+      "impact_type": "component",
+      "impact_severity": "high",
+      "description": "Implements plugin manager that coordinates plugin operations across the system"
+    },
+    {
+      "story_id": "story-009",
+      "architectural_elements": ["ui_integration", "tauri_commands"],
+      "impact_type": "interface",
+      "impact_severity": "medium",
+      "description": "Implements Tauri commands that connect the UI to the plugin system"
+    },
+    {
+      "story_id": "story-010",
+      "architectural_elements": ["ui_integration", "react_components"],
+      "impact_type": "ui",
+      "impact_severity": "medium",
+      "description": "Implements UI components for plugin management"
+    },
+    {
+      "story_id": "story-011",
+      "architectural_elements": ["security_model", "signature_verification"],
+      "impact_type": "enhancement",
+      "impact_severity": "high",
+      "description": "Enhances security model with signature verification and isolation"
+    },
+    {
+      "story_id": "story-012",
+      "architectural_elements": ["test_infrastructure", "quality_assurance"],
+      "impact_type": "verification",
+      "impact_severity": "medium",
+      "description": "Creates test suite for verifying architectural integrity"
+    },
+    {
+      "story_id": "story-013",
+      "architectural_elements": ["ci_cd", "automation"],
+      "impact_type": "infrastructure",
+      "impact_severity": "low",
+      "description": "Sets up CI/CD pipeline for automated testing and deployment"
+    },
+    {
+      "story_id": "story-014",
+      "architectural_elements": ["sample_plugins", "examples"],
+      "impact_type": "example",
+      "impact_severity": "low",
+      "description": "Creates sample plugins that demonstrate architectural patterns"
+    },
+    {
+      "story_id": "story-015",
+      "architectural_elements": ["documentation", "developer_guides"],
+      "impact_type": "documentation",
+      "impact_severity": "medium",
+      "description": "Creates documentation that explains the architecture"
+    }
+  ]
+}

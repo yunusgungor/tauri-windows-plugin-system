@@ -1,0 +1,125 @@
+{
+  "pattern_adoption_rate": 0.85,
+  "pattern_effectiveness_score": 0.78,
+  "pattern_consistency_score": 0.92,
+  "anti_pattern_density": 0.05,
+  "patterns": [
+    {
+      "id": "pattern-001",
+      "name": "Plugin Loader Pattern",
+      "adoption_rate": 1.0,
+      "effectiveness_score": 0.85,
+      "consistency_score": 0.95,
+      "impact_metrics": {
+        "complexity_reduction": 0.75,
+        "maintainability_improvement": 0.80,
+        "performance_impact": 0.70,
+        "security_enhancement": 0.85
+      },
+      "usage_count": 1,
+      "defect_rate": 0.05,
+      "refactoring_frequency": 0.1
+    },
+    {
+      "id": "pattern-002",
+      "name": "C ABI Interface Pattern",
+      "adoption_rate": 1.0,
+      "effectiveness_score": 0.80,
+      "consistency_score": 0.90,
+      "impact_metrics": {
+        "complexity_reduction": 0.60,
+        "maintainability_improvement": 0.65,
+        "performance_impact": 0.85,
+        "security_enhancement": 0.70
+      },
+      "usage_count": 1,
+      "defect_rate": 0.08,
+      "refactoring_frequency": 0.15
+    },
+    {
+      "id": "pattern-003",
+      "name": "Permission System Pattern",
+      "adoption_rate": 1.0,
+      "effectiveness_score": 0.90,
+      "consistency_score": 0.95,
+      "impact_metrics": {
+        "complexity_reduction": 0.70,
+        "maintainability_improvement": 0.75,
+        "performance_impact": 0.65,
+        "security_enhancement": 0.95
+      },
+      "usage_count": 1,
+      "defect_rate": 0.03,
+      "refactoring_frequency": 0.05
+    },
+    {
+      "id": "pattern-004",
+      "name": "Plugin Manager Pattern",
+      "adoption_rate": 1.0,
+      "effectiveness_score": 0.85,
+      "consistency_score": 0.90,
+      "impact_metrics": {
+        "complexity_reduction": 0.80,
+        "maintainability_improvement": 0.85,
+        "performance_impact": 0.75,
+        "security_enhancement": 0.80
+      },
+      "usage_count": 1,
+      "defect_rate": 0.04,
+      "refactoring_frequency": 0.08
+    },
+    {
+      "id": "pattern-005",
+      "name": "Plugin UI Integration Pattern",
+      "adoption_rate": 1.0,
+      "effectiveness_score": 0.75,
+      "consistency_score": 0.85,
+      "impact_metrics": {
+        "complexity_reduction": 0.65,
+        "maintainability_improvement": 0.70,
+        "performance_impact": 0.60,
+        "security_enhancement": 0.65
+      },
+      "usage_count": 1,
+      "defect_rate": 0.07,
+      "refactoring_frequency": 0.12
+    }
+  ],
+  "anti_patterns": [
+    {
+      "id": "anti-pattern-001",
+      "name": "Global Plugin State",
+      "detection_count": 0,
+      "remediation_rate": 1.0,
+      "impact_severity": 0.9
+    },
+    {
+      "id": "anti-pattern-002",
+      "name": "Unchecked Plugin Permissions",
+      "detection_count": 0,
+      "remediation_rate": 1.0,
+      "impact_severity": 0.95
+    },
+    {
+      "id": "anti-pattern-003",
+      "name": "Synchronous Long-Running Operations",
+      "detection_count": 1,
+      "remediation_rate": 1.0,
+      "impact_severity": 0.75
+    },
+    {
+      "id": "anti-pattern-004",
+      "name": "Memory Unsafe Plugin Interface",
+      "detection_count": 0,
+      "remediation_rate": 1.0,
+      "impact_severity": 0.9
+    },
+    {
+      "id": "anti-pattern-005",
+      "name": "Monolithic Plugin Design",
+      "detection_count": 0,
+      "remediation_rate": 1.0,
+      "impact_severity": 0.8
+    }
+  ]
+}

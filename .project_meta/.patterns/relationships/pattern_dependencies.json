@@ -1,0 +1,101 @@
+{
+  "dependencies": [
+    {
+      "source_pattern_id": "pattern-004",
+      "target_pattern_id": "pattern-001",
+      "dependency_type": "uses",
+      "description": "Plugin Manager Pattern uses Plugin Loader Pattern for loading and unloading plugins"
+    },
+    {
+      "source_pattern_id": "pattern-004",
+      "target_pattern_id": "pattern-003",
+      "dependency_type": "uses",
+      "description": "Plugin Manager Pattern uses Permission System Pattern for validating plugin permissions"
+    },
+    {
+      "source_pattern_id": "pattern-004",
+      "target_pattern_id": "pattern-002",
+      "dependency_type": "uses",
+      "description": "Plugin Manager Pattern uses C ABI Interface Pattern indirectly through the plugin host"
+    },
+    {
+      "source_pattern_id": "pattern-005",
+      "target_pattern_id": "pattern-004",
+      "dependency_type": "uses",
+      "description": "Plugin UI Integration Pattern uses Plugin Manager Pattern for plugin operations"
+    },
+    {
+      "source_pattern_id": "pattern-001",
+      "target_pattern_id": "pattern-002",
+      "dependency_type": "implements",
+      "description": "Plugin Loader Pattern implements C ABI Interface Pattern for plugin loading"
+    },
+    {
+      "source_pattern_id": "pattern-003",
+      "target_pattern_id": "pattern-002",
+      "dependency_type": "relates_to",
+      "description": "Permission System Pattern relates to C ABI Interface Pattern for secure plugin interfaces"
+    }
+  ],
+  "conflicts": [],
+  "complements": [
+    {
+      "pattern_id_1": "pattern-003",
+      "pattern_id_2": "pattern-001",
+      "description": "Permission System Pattern complements Plugin Loader Pattern by adding security controls"
+    },
+    {
+      "pattern_id_1": "pattern-005",
+      "pattern_id_2": "pattern-003",
+      "description": "Plugin UI Integration Pattern complements Permission System Pattern by providing UI for permission requests"
+    }
+  ],
+  "variants": [],
+  "pattern_groups": [
+    {
+      "group_id": "group-001",
+      "name": "Core Plugin System",
+      "patterns": ["pattern-001", "pattern-002", "pattern-004"],
+      "description": "Core patterns for plugin loading, interfacing, and management"
+    },
+    {
+      "group_id": "group-002",
+      "name": "Plugin Security",
+      "patterns": ["pattern-003"],
+      "description": "Patterns related to plugin security and permission management"
+    },
+    {
+      "group_id": "group-003",
+      "name": "Plugin User Experience",
+      "patterns": ["pattern-005"],
+      "description": "Patterns related to plugin user interface and experience"
+    }
+  ],
+  "anti_pattern_relationships": [
+    {
+      "anti_pattern_id": "anti-pattern-001",
+      "mitigated_by_patterns": ["pattern-002"],
+      "description": "Global Plugin State anti-pattern is mitigated by proper use of C ABI Interface Pattern with explicit context passing"
+    },
+    {
+      "anti_pattern_id": "anti-pattern-002",
+      "mitigated_by_patterns": ["pattern-003"],
+      "description": "Unchecked Plugin Permissions anti-pattern is mitigated by Permission System Pattern"
+    },
+    {
+      "anti_pattern_id": "anti-pattern-003",
+      "mitigated_by_patterns": ["pattern-005"],
+      "description": "Synchronous Long-Running Operations anti-pattern is mitigated by asynchronous operations in Plugin UI Integration Pattern"
+    },
+    {
+      "anti_pattern_id": "anti-pattern-004",
+      "mitigated_by_patterns": ["pattern-002"],
+      "description": "Memory Unsafe Plugin Interface anti-pattern is mitigated by safe implementation of C ABI Interface Pattern"
+    },
+    {
+      "anti_pattern_id": "anti-pattern-005",
+      "mitigated_by_patterns": ["pattern-001", "pattern-004"],
+      "description": "Monolithic Plugin Design anti-pattern is mitigated by modular approach in Plugin Loader Pattern and Plugin Manager Pattern"
+    }
+  ]
+}

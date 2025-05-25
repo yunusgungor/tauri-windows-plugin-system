@@ -1,0 +1,194 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Pattern Definition Schema",
+  "description": "Schema for defining design patterns in the pattern catalog",
+  "type": "object",
+  "required": ["id", "name", "type", "category", "description", "intent", "applicability", "structure", "consequences"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the pattern",
+      "pattern": "^pattern-[0-9]{3}$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the pattern"
+    },
+    "type": {
+      "type": "string",
+      "description": "Primary classification of the pattern",
+      "enum": ["architectural", "performance", "security", "maintainability", "testing", "ui_ux"]
+    },
+    "category": {
+      "type": "string",
+      "description": "Secondary classification of the pattern",
+      "enum": ["creational", "structural", "behavioral", "interface", "concurrency", "data"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the pattern"
+    },
+    "intent": {
+      "type": "string",
+      "description": "What problem the pattern solves and its purpose"
+    },
+    "applicability": {
+      "type": "string",
+      "description": "When and where the pattern should be used"
+    },
+    "structure": {
+      "type": "object",
+      "description": "Structural elements of the pattern",
+      "required": ["components", "relationships"],
+      "properties": {
+        "components": {
+          "type": "array",
+          "description": "Key components that make up the pattern",
+          "items": {
+            "type": "string"
+          }
+        },
+        "relationships": {
+          "type": "array",
+          "description": "Relationships between components",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "code_snippet": {
+      "type": "string",
+      "description": "Example code demonstrating the pattern"
+    },
+    "consequences": {
+      "type": "object",
+      "description": "Consequences of applying the pattern",
+      "required": ["benefits", "liabilities"],
+      "properties": {
+        "benefits": {
+          "type": "array",
+          "description": "Benefits of using the pattern",
+          "items": {
+            "type": "string"
+          }
+        },
+        "liabilities": {
+          "type": "array",
+          "description": "Potential drawbacks or costs of using the pattern",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "implementation": {
+      "type": "object",
+      "description": "Implementation details and considerations",
+      "properties": {
+        "considerations": {
+          "type": "array",
+          "description": "Important considerations when implementing the pattern",
+          "items": {
+            "type": "string"
+          }
+        },
+        "examples": {
+          "type": "array",
+          "description": "Real-world examples of the pattern",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "related_patterns": {
+      "type": "array",
+      "description": "Patterns that are related to this one",
+      "items": {
+        "type": "string"
+      }
+    },
+    "known_uses": {
+      "type": "array",
+      "description": "Known uses of this pattern in existing systems",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags for easier searching and categorization",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cross_project_candidate": {
+      "type": "boolean",
+      "description": "Flag indicating if this pattern is a candidate for extraction into a shared library",
+      "default": false
+    },
+    "evolution": {
+      "type": "object",
+      "description": "Information about how the pattern has evolved over time",
+      "properties": {
+        "versions": {
+          "type": "array",
+          "description": "History of pattern versions",
+          "items": {
+            "type": "object",
+            "properties": {
+              "version": {
+                "type": "string",
+                "description": "Version identifier"
+              },
+              "date": {
+                "type": "string",
+                "description": "Date of this version",
+                "format": "date"
+              },
+              "changes": {
+                "type": "array",
+                "description": "List of changes in this version",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "maturity": {
+          "type": "string",
+          "description": "Current maturity level of the pattern",
+          "enum": ["experimental", "emerging", "stable", "mature", "deprecated"]
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Metrics for evaluating the pattern's effectiveness",
+      "properties": {
+        "performance_impact": {
+          "type": "string",
+          "description": "Impact on performance (positive or negative)",
+          "enum": ["very_positive", "positive", "neutral", "negative", "very_negative", "context_dependent"]
+        },
+        "complexity_reduction": {
+          "type": "string",
+          "description": "Impact on code complexity",
+          "enum": ["very_high", "high", "medium", "low", "very_low", "context_dependent"]
+        },
+        "maintainability_improvement": {
+          "type": "string",
+          "description": "Impact on code maintainability",
+          "enum": ["very_high", "high", "medium", "low", "very_low", "context_dependent"]
+        },
+        "security_enhancement": {
+          "type": "string",
+          "description": "Impact on security",
+          "enum": ["very_high", "high", "medium", "low", "very_low", "context_dependent", "not_applicable"]
+        }
+      }
+    }
+  }
+}

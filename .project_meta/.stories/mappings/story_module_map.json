@@ -1,0 +1,172 @@
+{
+  "mappings": [
+    {
+      "story_id": "story-001",
+      "module_name": "plugin_loader",
+      "type": "design",
+      "description": "Design of plugin package format affects the plugin loader implementation"
+    },
+    {
+      "story_id": "story-002",
+      "module_name": "plugin_loader",
+      "type": "design",
+      "description": "Manifest schema is validated by the plugin loader"
+    },
+    {
+      "story_id": "story-003",
+      "module_name": "plugin_loader",
+      "type": "implementation",
+      "description": "Direct implementation of the plugin loader module"
+    },
+    {
+      "story_id": "story-004",
+      "module_name": "plugin_loader",
+      "type": "implementation",
+      "description": "DLL loading functionality within the plugin loader"
+    },
+    {
+      "story_id": "story-005",
+      "module_name": "plugin_host",
+      "type": "design",
+      "description": "Design of the plugin host interface"
+    },
+    {
+      "story_id": "story-006",
+      "module_name": "plugin_host",
+      "type": "implementation",
+      "description": "Implementation of the plugin host module"
+    },
+    {
+      "story_id": "story-007",
+      "module_name": "permission_system",
+      "type": "implementation",
+      "description": "Implementation of the permission system module"
+    },
+    {
+      "story_id": "story-008",
+      "module_name": "plugin_manager",
+      "type": "implementation",
+      "description": "Implementation of the plugin manager module"
+    },
+    {
+      "story_id": "story-009",
+      "module_name": "ui_integration",
+      "type": "implementation",
+      "description": "Implementation of Tauri commands for UI integration"
+    },
+    {
+      "story_id": "story-010",
+      "module_name": "ui_integration",
+      "type": "implementation",
+      "description": "Implementation of React components for plugin management UI"
+    },
+    {
+      "story_id": "story-011",
+      "module_name": "permission_system",
+      "type": "enhancement",
+      "description": "Security enhancements to the permission system"
+    },
+    {
+      "story_id": "story-011",
+      "module_name": "plugin_loader",
+      "type": "enhancement",
+      "description": "Security enhancements to the plugin loader for signature verification"
+    },
+    {
+      "story_id": "story-012",
+      "module_name": "plugin_loader",
+      "type": "testing",
+      "description": "Test suite for plugin loader"
+    },
+    {
+      "story_id": "story-012",
+      "module_name": "plugin_host",
+      "type": "testing",
+      "description": "Test suite for plugin host"
+    },
+    {
+      "story_id": "story-012",
+      "module_name": "permission_system",
+      "type": "testing",
+      "description": "Test suite for permission system"
+    },
+    {
+      "story_id": "story-012",
+      "module_name": "plugin_manager",
+      "type": "testing",
+      "description": "Test suite for plugin manager"
+    },
+    {
+      "story_id": "story-012",
+      "module_name": "ui_integration",
+      "type": "testing",
+      "description": "Test suite for UI integration"
+    },
+    {
+      "story_id": "story-013",
+      "module_name": "plugin_loader",
+      "type": "ci_cd",
+      "description": "CI/CD pipeline for plugin loader"
+    },
+    {
+      "story_id": "story-013",
+      "module_name": "plugin_host",
+      "type": "ci_cd",
+      "description": "CI/CD pipeline for plugin host"
+    },
+    {
+      "story_id": "story-013",
+      "module_name": "permission_system",
+      "type": "ci_cd",
+      "description": "CI/CD pipeline for permission system"
+    },
+    {
+      "story_id": "story-013",
+      "module_name": "plugin_manager",
+      "type": "ci_cd",
+      "description": "CI/CD pipeline for plugin manager"
+    },
+    {
+      "story_id": "story-013",
+      "module_name": "ui_integration",
+      "type": "ci_cd",
+      "description": "CI/CD pipeline for UI integration"
+    },
+    {
+      "story_id": "story-014",
+      "module_name": "plugin_host",
+      "type": "sample",
+      "description": "Sample plugins demonstrating plugin host interface"
+    },
+    {
+      "story_id": "story-015",
+      "module_name": "plugin_loader",
+      "type": "documentation",
+      "description": "Documentation for plugin loader"
+    },
+    {
+      "story_id": "story-015",
+      "module_name": "plugin_host",
+      "type": "documentation",
+      "description": "Documentation for plugin host"
+    },
+    {
+      "story_id": "story-015",
+      "module_name": "permission_system",
+      "type": "documentation",
+      "description": "Documentation for permission system"
+    },
+    {
+      "story_id": "story-015",
+      "module_name": "plugin_manager",
+      "type": "documentation",
+      "description": "Documentation for plugin manager"
+    },
+    {
+      "story_id": "story-015",
+      "module_name": "ui_integration",
+      "type": "documentation",
+      "description": "Documentation for UI integration"
+    }
+  ]
+}

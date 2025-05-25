@@ -1,0 +1,217 @@
+{
+  "anti_patterns": [
+    {
+      "id": "anti-pattern-001",
+      "name": "Global Plugin State",
+      "type": "architectural",
+      "description": "Using global state for plugin data, which can lead to cross-plugin interference and difficult-to-debug issues.",
+      "symptoms": [
+        "Unexplained plugin behavior changes after loading/unloading other plugins",
+        "Crashes when multiple plugins access shared resources",
+        "Memory leaks after plugin unloading",
+        "Inconsistent plugin state after application restarts"
+      ],
+      "causes": [
+        "Using static or global variables in plugins",
+        "Improper isolation between plugin instances",
+        "Not cleaning up resources during plugin unloading",
+        "Sharing memory without proper synchronization"
+      ],
+      "consequences": [
+        "Unstable application behavior",
+        "Hard-to-diagnose bugs",
+        "Memory leaks and resource exhaustion",
+        "Security vulnerabilities through data exposure"
+      ],
+      "refactoring_solution": "Use plugin-specific contexts that are explicitly passed between the host and plugin. Ensure all plugin state is contained within this context and properly cleaned up during unloading. Implement proper resource tracking for each plugin instance.",
+      "code_example": {
+        "problematic": "```rust\n// In plugin code\nstatic mut PLUGIN_DATA: Option<Vec<String>> = None;\n\n#[no_mangle]\nextern \"C\" fn plugin_init(_context: *mut PluginContext) -> i32 {\n    unsafe {\n        PLUGIN_DATA = Some(Vec::new());\n    }\n    0\n}\n\n#[no_mangle]\nextern \"C\" fn plugin_function() -> i32 {\n    unsafe {\n        if let Some(data) = &mut PLUGIN_DATA {\n            data.push(\"New data\".to_string());\n        }\n    }\n    0\n}\n\n// Teardown doesn't properly clean up static data\n#[no_mangle]\nextern \"C\" fn plugin_teardown(_context: *mut PluginContext) -> i32 {\n    0 // Static data remains allocated!\n}\n```",
+        "improved": "```rust\n// In plugin code\n#[no_mangle]\nextern \"C\" fn plugin_init(context: *mut PluginContext) -> i32 {\n    if context.is_null() {\n        return -1;\n    }\n    \n    let context = unsafe { &mut *context };\n    \n    // Allocate plugin data in the context\n    let plugin_data = Box::new(Vec::<String>::new());\n    context.plugin_data = Box::into_raw(plugin_data) as *mut c_void;\n    \n    0\n}\n\n#[no_mangle]\nextern \"C\" fn plugin_function(context: *mut PluginContext) -> i32 {\n    if context.is_null() {\n        return -1;\n    }\n    \n    let context = unsafe { &mut *context };\n    \n    // Access plugin data through the context\n    let plugin_data = unsafe { &mut *(context.plugin_data as *mut Vec<String>) };\n    plugin_data.push(\"New data\".to_string());\n    \n    0\n}\n\n#[no_mangle]\nextern \"C\" fn plugin_teardown(context: *mut PluginContext) -> i32 {\n    if context.is_null() {\n        return -1;\n    }\n    \n    let context = unsafe { &mut *context };\n    \n    // Properly clean up plugin data\n    if !context.plugin_data.is_null() {\n        unsafe {\n            // Convert back to Box and drop\n            let _ = Box::from_raw(context.plugin_data as *mut Vec<String>);\n        }\n        context.plugin_data = std::ptr::null_mut();\n    }\n    \n    0\n}\n```"
+      },
+      "prevention_strategies": [
+        "Always use context structures for plugin state",
+        "Implement thorough cleanup in plugin_teardown functions",
+        "Use memory safety tools and static analysis",
+        "Implement resource tracking for each plugin"
+      ],
+      "related_patterns": ["Plugin Host Pattern", "C ABI Interface Pattern"],
+      "detection_methods": [
+        "Static analysis for global/static variables",
+        "Memory profiling during plugin loading/unloading",
+        "Integration tests that load/unload plugins repeatedly"
+      ]
+    },
+    {
+      "id": "anti-pattern-002",
+      "name": "Unchecked Plugin Permissions",
+      "type": "security",
+      "description": "Allowing plugins to access sensitive resources or perform privileged operations without proper permission checks.",
+      "symptoms": [
+        "Plugins accessing resources they shouldn't have access to",
+        "Security vulnerabilities through privilege escalation",
+        "User data exposure or system compromise",
+        "Unexpected system modifications by plugins"
+      ],
+      "causes": [
+        "Lack of a permission system",
+        "Incomplete permission checks before resource access",
+        "Overly broad permission grants",
+        "Failure to validate plugin manifests"
+      ],
+      "consequences": [
+        "Security breaches and data leaks",
+        "Loss of user trust",
+        "Potential legal and compliance issues",
+        "System instability due to unauthorized modifications"
+      ],
+      "refactoring_solution": "Implement a comprehensive permission system that requires explicit declaration and approval of all permissions. Ensure all resource access goes through permission checks, and implement least-privilege principles for all plugins.",
+      "code_example": {
+        "problematic": "```rust\n// Direct file system access without permission checks\n#[tauri::command]\nfn plugin_read_file(path: String) -> Result<String, String> {\n    match std::fs::read_to_string(path) {\n        Ok(content) => Ok(content),\n        Err(e) => Err(e.to_string())\n    }\n}\n\n// Exposing this command to all plugins without permission checks\nfn main() {\n    tauri::Builder::default()\n        .invoke_handler(tauri::generate_handler![plugin_read_file])\n        .run(tauri::generate_context!())\n        .expect(\"error while running tauri application\");\n}\n```",
+        "improved": "```rust\n// File access with permission checks\n#[tauri::command]\nfn plugin_read_file(plugin_name: String, path: String) -> Result<String, String> {\n    // Get plugin manager instance\n    let plugin_manager = PLUGIN_MANAGER.get().expect(\"Plugin manager not initialized\");\n    \n    // Check if plugin has permission to read this file\n    if !plugin_manager.has_permission(&plugin_name, &Permission::FileSystem { \n        read: true, \n        write: false, \n        allowed_paths: vec![PathBuf::from(path.clone())] \n    }) {\n        return Err(\"Permission denied: This plugin does not have permission to read this file\".to_string());\n    }\n    \n    // Permission granted, perform the operation\n    match std::fs::read_to_string(path) {\n        Ok(content) => Ok(content),\n        Err(e) => Err(e.to_string())\n    }\n}\n\n// Register command with proper context\nfn main() {\n    // Initialize plugin manager with permission system\n    let plugin_manager = PluginManager::new(/* ... */);\n    PLUGIN_MANAGER.set(plugin_manager).expect(\"Failed to set plugin manager\");\n    \n    tauri::Builder::default()\n        .invoke_handler(tauri::generate_handler![plugin_read_file])\n        .run(tauri::generate_context!())\n        .expect(\"error while running tauri application\");\n}\n```"
+      },
+      "prevention_strategies": [
+        "Implement a mandatory permission system",
+        "Use the principle of least privilege for all plugins",
+        "Require explicit user consent for sensitive permissions",
+        "Validate permission requests against allowed permissions",
+        "Audit all resource access points for permission checks"
+      ],
+      "related_patterns": ["Permission System Pattern", "Security Gateway Pattern"],
+      "detection_methods": [
+        "Security audits of API endpoints",
+        "Static analysis for permission check bypass",
+        "Penetration testing with malicious plugins",
+        "Code reviews focused on permission enforcement"
+      ]
+    },
+    {
+      "id": "anti-pattern-003",
+      "name": "Synchronous Long-Running Operations",
+      "type": "performance",
+      "description": "Performing long-running operations synchronously in the UI thread, causing freezes and poor user experience.",
+      "symptoms": [
+        "UI freezes during plugin operations",
+        "Unresponsive application during loading or unloading",
+        "Poor user experience with plugin management",
+        "Timeouts or crashes for complex operations"
+      ],
+      "causes": [
+        "Synchronous file operations in the UI thread",
+        "Blocking calls for network operations",
+        "Lack of asynchronous APIs for plugin operations",
+        "Insufficient threading for plugin management"
+      ],
+      "consequences": [
+        "Poor user experience",
+        "Perceived application instability",
+        "Frustrated users who may avoid using plugins",
+        "Higher support burden from users reporting 'hangs'"
+      ],
+      "refactoring_solution": "Implement asynchronous APIs for all potentially long-running plugin operations. Use background threads or asynchronous programming patterns to keep the UI responsive during plugin operations. Provide progress feedback for operations that take time.",
+      "code_example": {
+        "problematic": "```typescript\n// Synchronous plugin installation in UI code\nfunction installPlugin(path) {\n  try {\n    // Synchronous call that blocks the UI thread\n    const result = window.__TAURI__.invoke('install_plugin_from_file', { path });\n    updatePluginList();\n    showSuccess('Plugin installed successfully');\n  } catch (error) {\n    showError(`Failed to install plugin: ${error}`);\n  }\n}\n\n// Button click handler\ninstallButton.addEventListener('click', () => {\n  const path = fileInput.value;\n  installPlugin(path); // UI freezes during installation\n});\n```",
+        "improved": "```typescript\n// Asynchronous plugin installation with progress updates\nasync function installPlugin(path) {\n  try {\n    // Show progress indicator\n    showProgress('Installing plugin...');\n    \n    // Asynchronous call that doesn't block the UI thread\n    const result = await window.__TAURI__.invoke('install_plugin_from_file', { path });\n    \n    // Update UI after completion\n    updatePluginList();\n    hideProgress();\n    showSuccess('Plugin installed successfully');\n  } catch (error) {\n    hideProgress();\n    showError(`Failed to install plugin: ${error}`);\n  }\n}\n\n// Button click handler with async/await\ninstallButton.addEventListener('click', async () => {\n  const path = fileInput.value;\n  \n  // Disable button during operation\n  installButton.disabled = true;\n  \n  await installPlugin(path); // UI remains responsive\n  \n  // Re-enable button after operation\n  installButton.disabled = false;\n});\n\n// On the Rust side, make the command async\n#[tauri::command]\nasync fn install_plugin_from_file(path: String) -> Result<PluginInfoJson, String> {\n    // Async implementation\n    // ...\n}\n```"
+      },
+      "prevention_strategies": [
+        "Use async/await for all potentially long-running operations",
+        "Implement progress reporting for lengthy operations",
+        "Use background threads for CPU-intensive tasks",
+        "Design APIs to be asynchronous from the start",
+        "Add timeouts and cancellation support for operations"
+      ],
+      "related_patterns": ["Asynchronous Processing Pattern", "Progress Indicator Pattern"],
+      "detection_methods": [
+        "UI responsiveness testing",
+        "Performance profiling",
+        "Code reviews focused on blocking operations",
+        "Static analysis for blocking calls in UI code"
+      ]
+    },
+    {
+      "id": "anti-pattern-004",
+      "name": "Memory Unsafe Plugin Interface",
+      "type": "reliability",
+      "description": "Using memory unsafe practices in the plugin interface, leading to crashes, memory leaks, and security vulnerabilities.",
+      "symptoms": [
+        "Application crashes when loading or using plugins",
+        "Memory leaks after plugin operations",
+        "Undefined behavior with certain plugins",
+        "Security vulnerabilities in plugin handling"
+      ],
+      "causes": [
+        "Incorrect pointer handling across FFI boundaries",
+        "Missing null checks for pointers",
+        "Improper ownership management for resources",
+        "Undefined behavior due to ABI incompatibilities"
+      ],
+      "consequences": [
+        "Unstable application behavior",
+        "Security vulnerabilities through memory corruption",
+        "Resource leaks and performance degradation",
+        "Poor developer experience due to hard-to-diagnose bugs"
+      ],
+      "refactoring_solution": "Implement strict safety checks for all FFI operations. Use safe wrappers around unsafe code, validate all inputs, and implement proper resource management with clear ownership rules. Follow Rust's safety patterns for FFI code.",
+      "code_example": {
+        "problematic": "```rust\n// Unsafe plugin interface with multiple issues\n#[no_mangle]\nextern \"C\" fn plugin_init(context: *mut PluginContext) -> i32 {\n    // No null check before dereferencing\n    let context = unsafe { &mut *context };\n    \n    // Setting arbitrary callback without validation\n    context.callback = some_callback_function;\n    \n    // Returning raw pointer without ownership transfer documentation\n    let data = Box::new(PluginData::new());\n    context.plugin_data = Box::into_raw(data) as *mut c_void;\n    \n    0\n}\n\n// Missing proper error handling and resource cleanup\n#[no_mangle]\nextern \"C\" fn plugin_teardown(context: *mut PluginContext) -> i32 {\n    // No null check\n    let context = unsafe { &mut *context };\n    \n    // Potential double-free if plugin_data was already freed\n    if !context.plugin_data.is_null() {\n        unsafe {\n            Box::from_raw(context.plugin_data as *mut PluginData);\n        }\n    }\n    \n    0\n}\n```",
+        "improved": "```rust\n// Safe plugin interface with proper checks and documentation\n#[no_mangle]\nextern \"C\" fn plugin_init(context: *mut PluginContext) -> i32 {\n    // Null check before dereferencing\n    if context.is_null() {\n        return -1; // Error code for null context\n    }\n    \n    let context = unsafe { &mut *context };\n    \n    // Validate API version before proceeding\n    if context.api_version != CURRENT_API_VERSION {\n        return -2; // Error code for version mismatch\n    }\n    \n    // Safely set callback with validation\n    if context.register_callback.is_null() {\n        return -3; // Error code for missing callback function\n    }\n    \n    // Allocate plugin data with proper error handling\n    match PluginData::new() {\n        Ok(data) => {\n            let boxed_data = Box::new(data);\n            context.plugin_data = Box::into_raw(boxed_data) as *mut c_void;\n        }\n        Err(_) => return -4, // Error code for allocation failure\n    }\n    \n    0 // Success\n}\n\n#[no_mangle]\nextern \"C\" fn plugin_teardown(context: *mut PluginContext) -> i32 {\n    // Null check before dereferencing\n    if context.is_null() {\n        return -1; // Error code for null context\n    }\n    \n    let context = unsafe { &mut *context };\n    \n    // Safe cleanup with proper null checking\n    if !context.plugin_data.is_null() {\n        unsafe {\n            // Convert back to Box and drop\n            let _ = Box::from_raw(context.plugin_data as *mut PluginData);\n        }\n        // Mark as null to prevent double-free\n        context.plugin_data = std::ptr::null_mut();\n    }\n    \n    0 // Success\n}\n```"
+      },
+      "prevention_strategies": [
+        "Implement thorough validation for all FFI parameters",
+        "Use Rust's safety features and encapsulate unsafe code",
+        "Create clear ownership rules for resources",
+        "Implement comprehensive error handling",
+        "Add automated tests for memory safety issues"
+      ],
+      "related_patterns": ["C ABI Interface Pattern", "Resource Ownership Pattern"],
+      "detection_methods": [
+        "Static analysis tools for memory safety",
+        "Fuzz testing of plugin interfaces",
+        "Memory sanitizers in test environments",
+        "Code reviews focused on unsafe code blocks"
+      ]
+    },
+    {
+      "id": "anti-pattern-005",
+      "name": "Monolithic Plugin Design",
+      "type": "maintainability",
+      "description": "Creating plugins as large, tightly coupled monoliths rather than modular components with clear interfaces.",
+      "symptoms": [
+        "Difficult to maintain and extend plugins",
+        "Excessive resource usage by plugins",
+        "Poor performance due to loading unnecessary functionality",
+        "Difficulty in testing individual plugin components"
+      ],
+      "causes": [
+        "Lack of clear component boundaries within plugins",
+        "Insufficient modularity in plugin design",
+        "Attempting to implement too much functionality in a single plugin",
+        "Poor separation of concerns in plugin architecture"
+      ],
+      "consequences": [
+        "Decreased maintainability of the plugin ecosystem",
+        "Higher resource usage by plugins",
+        "More complex testing and debugging",
+        "Difficulty in evolving plugin capabilities over time"
+      ],
+      "refactoring_solution": "Design plugins with clear component boundaries and a modular architecture. Split large plugins into smaller, focused ones with well-defined interfaces. Implement dependency mechanisms for plugins that need to work together.",
+      "code_example": {
+        "problematic": "```rust\n// Monolithic plugin that does everything\n#[no_mangle]\nextern \"C\" fn plugin_init(context: *mut PluginContext) -> i32 {\n    // Initialize everything at once\n    initialize_ui_components();\n    initialize_data_processing();\n    initialize_network_handling();\n    initialize_file_system_access();\n    initialize_database_connections();\n    \n    // Register all possible callbacks\n    register_dozens_of_callbacks(context);\n    \n    0\n}\n\n// Hundreds of interrelated functions with complex dependencies\n// ...\n",
+        "improved": "```rust\n// Modular plugin architecture with clear component boundaries\n\n// Core plugin module for initialization\n#[no_mangle]\nextern \"C\" fn plugin_init(context: *mut PluginContext) -> i32 {\n    if context.is_null() {\n        return -1;\n    }\n    \n    let context = unsafe { &mut *context };\n    \n    // Create plugin state with modular components\n    let state = PluginState {\n        // Only initialize components that are needed\n        ui_module: if has_permission(context, \"ui\") { \n            Some(UiModule::new()) \n        } else { \n            None \n        },\n        \n        data_module: if has_permission(context, \"data\") { \n            Some(DataModule::new()) \n        } else { \n            None \n        },\n        \n        // Other modules initialized on demand\n        network_module: None,\n        file_module: None,\n    };\n    \n    // Store state in context\n    let boxed_state = Box::new(state);\n    context.plugin_data = Box::into_raw(boxed_state) as *mut c_void;\n    \n    // Register only the core callbacks\n    register_core_callbacks(context);\n    \n    0\n}\n\n// Lazy initialization for modules\n#[no_mangle]\nextern \"C\" fn initialize_module(context: *mut PluginContext, module_name: *const c_char) -> i32 {\n    // Safety checks...\n    \n    let state = get_plugin_state(context);\n    let module_name = unsafe { CStr::from_ptr(module_name).to_str().unwrap_or(\"\") };\n    \n    match module_name {\n        \"network\" => {\n            if state.network_module.is_none() {\n                state.network_module = Some(NetworkModule::new());\n                register_network_callbacks(context);\n            }\n        },\n        \"file\" => {\n            if state.file_module.is_none() && has_permission(context, \"file\") {\n                state.file_module = Some(FileModule::new());\n                register_file_callbacks(context);\n            }\n        },\n        // Other modules...\n        _ => return -1, // Unknown module\n    }\n    \n    0\n}\n\n// Each module in its own file with clear interfaces\n// ...\n```"
+      },
+      "prevention_strategies": [
+        "Design plugins with modularity in mind from the start",
+        "Use lazy initialization for components that aren't always needed",
+        "Create clear interfaces between plugin components",
+        "Implement dependency injection for plugin modules",
+        "Consider a microplug-in architecture for complex functionality"
+      ],
+      "related_patterns": ["Modular Design Pattern", "Lazy Loading Pattern", "Dependency Injection Pattern"],
+      "detection_methods": [
+        "Code complexity metrics for plugins",
+        "Dependency analysis within plugins",
+        "Resource usage profiling",
+        "Code reviews focused on modularity"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "decisions": [
+    {
+      "id": "ADR-001",
+      "title": "Plugin Package Format as ZIP Archive",
+      "status": "accepted",
+      "date": "2023-05-01",
+      "context": "We need a standard format for plugin distribution that can contain all necessary plugin files including manifest, DLL, and resources.",
+      "decision": "Use ZIP archive format for plugin packages with a standardized internal structure.",
+      "consequences": {
+        "positive": [
+          "ZIP is widely supported and familiar to developers",
+          "Good compression for efficient distribution",
+          "Built-in support in most programming languages",
+          "Can contain multiple file types required for plugins"
+        ],
+        "negative": [
+          "Less secure than some alternatives (mitigated by signature verification)",
+          "Manual validation required for internal structure"
+        ]
+      },
+      "alternatives_considered": [
+        "MSI/NSIS installers (rejected: too complex for simple plugins)",
+        "Single DLL files (rejected: insufficient for plugins needing resources)",
+        "Custom binary format (rejected: adds unnecessary complexity)"
+      ],
+      "related_requirements": ["US2", "5.1"],
+      "related_constraints": ["constraint-010"]
+    },
+    {
+      "id": "ADR-002",
+      "title": "C ABI for Plugin Interface",
+      "status": "accepted",
+      "date": "2023-05-02",
+      "context": "Need a stable interface for communication between the host application and plugins that supports dynamic loading/unloading.",
+      "decision": "Use C ABI (Application Binary Interface) for plugin interfaces with standardized entry points.",
+      "consequences": {
+        "positive": [
+          "Maximum compatibility across languages and compiler versions",
+          "Stable binary interface not affected by Rust version changes",
+          "Direct support via Rust's libloading crate",
+          "Low overhead for cross-boundary calls"
+        ],
+        "negative": [
+          "More verbose than Rust-specific interfaces",
+          "Manual memory management across boundaries",
+          "Limited support for complex data structures"
+        ]
+      },
+      "alternatives_considered": [
+        "Rust dylib with rustc ABI (rejected: less stable across versions)",
+        "WASM plugins (deferred: planned for future as sandboxed alternative)",
+        "JSON-RPC over IPC (rejected: higher overhead for frequent calls)"
+      ],
+      "related_requirements": ["5.4"],
+      "related_constraints": ["constraint-003"]
+    },
+    {
+      "id": "ADR-003",
+      "title": "Permission-based Security Model",
+      "status": "accepted",
+      "date": "2023-05-03",
+      "context": "Plugins need access to system resources, but this access must be controlled for security.",
+      "decision": "Implement a permission-based security model where plugins must declare and be granted explicit permissions.",
+      "consequences": {
+        "positive": [
+          "Granular control over plugin capabilities",
+          "User visibility into plugin access requirements",
+          "Reduced security risks from malicious plugins",
+          "Explicit documentation of plugin requirements"
+        ],
+        "negative": [
+          "Additional development overhead for permission checks",
+          "User friction with permission prompts",
+          "Potential for permission fatigue"
+        ]
+      },
+      "alternatives_considered": [
+        "All-or-nothing trust model (rejected: too permissive)",
+        "Capability-based security (deferred: more complex implementation)",
+        "Sandboxing only (rejected: insufficient without permission controls)"
+      ],
+      "related_requirements": ["US4", "6.2"],
+      "related_constraints": ["constraint-002"]
+    },
+    {
+      "id": "ADR-004",
+      "title": "JSON Manifest for Plugin Metadata",
+      "status": "accepted",
+      "date": "2023-05-05",
+      "context": "Plugins need to declare metadata, dependencies, and required permissions in a standard format.",
+      "decision": "Use JSON format for plugin manifests with a strict schema validation.",
+      "consequences": {
+        "positive": [
+          "Human-readable and editable format",
+          "Widespread tooling support",
+          "Easy to parse and validate",
+          "Extensible for future metadata needs"
+        ],
+        "negative": [
+          "No built-in schema validation (requires separate validation step)",
+          "More verbose than some alternatives"
+        ]
+      },
+      "alternatives_considered": [
+        "TOML (rejected: less widespread for plugin manifests)",
+        "XML (rejected: more verbose and complex)",
+        "Binary format (rejected: not human-readable/editable)"
+      ],
+      "related_requirements": ["5.1", "5.5"],
+      "related_constraints": ["constraint-005"]
+    },
+    {
+      "id": "ADR-005",
+      "title": "Tauri Commands for Plugin UI Integration",
+      "status": "accepted",
+      "date": "2023-05-08",
+      "context": "Need a mechanism for the WebView UI to interact with the plugin system.",
+      "decision": "Use Tauri commands and events for communication between the WebView UI and the plugin system.",
+      "consequences": {
+        "positive": [
+          "Consistent with Tauri's existing communication model",
+          "TypeScript type safety with codegen",
+          "Bi-directional communication support",
+          "Built-in security with permission checking"
+        ],
+        "negative": [
+          "Serialization overhead for complex data structures",
+          "Limited to JSON-serializable data"
+        ]
+      },
+      "alternatives_considered": [
+        "Custom IPC protocol (rejected: unnecessary complexity)",
+        "WebSockets (rejected: overkill for internal communication)",
+        "Custom window.external API (rejected: less integration with Tauri)"
+      ],
+      "related_requirements": ["5.5", "US1", "US3"],
+      "related_constraints": []
+    }
+  ]
+}

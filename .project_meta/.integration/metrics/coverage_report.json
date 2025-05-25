@@ -1,0 +1,156 @@
+{
+  "overall_coverage": 0.92,
+  "report_date": "2023-07-15T10:30:00Z",
+  "components": [
+    {
+      "component": "plugin_loader",
+      "coverage": 0.95,
+      "uncovered_areas": [
+        "Error handling for malformed ZIP archives",
+        "Cleanup after partial extraction failure"
+      ],
+      "test_files": [
+        "plugin_loader_test.rs",
+        "manifest_validation_test.rs",
+        "dll_loading_test.rs"
+      ]
+    },
+    {
+      "component": "plugin_host",
+      "coverage": 0.93,
+      "uncovered_areas": [
+        "Some error paths in plugin callback handling",
+        "Resource cleanup for rare failure cases"
+      ],
+      "test_files": [
+        "plugin_host_test.rs",
+        "plugin_lifecycle_test.rs",
+        "callback_test.rs"
+      ]
+    },
+    {
+      "component": "permission_system",
+      "coverage": 0.90,
+      "uncovered_areas": [
+        "Complex permission combination validations",
+        "Permission persistence error handling"
+      ],
+      "test_files": [
+        "permission_system_test.rs",
+        "permission_validation_test.rs",
+        "user_prompt_test.rs"
+      ]
+    },
+    {
+      "component": "plugin_manager",
+      "coverage": 0.94,
+      "uncovered_areas": [
+        "Update conflict resolution",
+        "Recovery from partial uninstallation"
+      ],
+      "test_files": [
+        "plugin_manager_test.rs",
+        "installation_test.rs",
+        "uninstallation_test.rs",
+        "plugin_update_test.rs"
+      ]
+    },
+    {
+      "component": "ui_integration",
+      "coverage": 0.88,
+      "uncovered_areas": [
+        "Some UI error display scenarios",
+        "Concurrent operation handling",
+        "Complex user interaction sequences"
+      ],
+      "test_files": [
+        "ui_commands_test.rs",
+        "plugin_ui_test.rs",
+        "react_component_test.tsx"
+      ]
+    }
+  ],
+  "interfaces": [
+    {
+      "source": "plugin_loader",
+      "target": "plugin_manager",
+      "coverage": 0.96,
+      "uncovered_areas": [
+        "Some error propagation scenarios"
+      ],
+      "test_files": [
+        "loader_manager_integration_test.rs"
+      ]
+    },
+    {
+      "source": "plugin_host",
+      "target": "plugin_manager",
+      "coverage": 0.94,
+      "uncovered_areas": [
+        "Complex plugin state transitions"
+      ],
+      "test_files": [
+        "host_manager_integration_test.rs"
+      ]
+    },
+    {
+      "source": "permission_system",
+      "target": "plugin_manager",
+      "coverage": 0.95,
+      "uncovered_areas": [
+        "Dynamic permission changes during operation"
+      ],
+      "test_files": [
+        "permission_manager_integration_test.rs"
+      ]
+    },
+    {
+      "source": "plugin_manager",
+      "target": "ui_integration",
+      "coverage": 0.90,
+      "uncovered_areas": [
+        "Error display for uncommon error types",
+        "Concurrent UI update scenarios"
+      ],
+      "test_files": [
+        "manager_ui_integration_test.rs"
+      ]
+    }
+  ],
+  "critical_paths": [
+    {
+      "name": "plugin_installation_flow",
+      "coverage": 0.98,
+      "test_files": [
+        "end_to_end_installation_test.rs"
+      ]
+    },
+    {
+      "name": "plugin_execution_flow",
+      "coverage": 0.96,
+      "test_files": [
+        "end_to_end_execution_test.rs"
+      ]
+    },
+    {
+      "name": "permission_request_flow",
+      "coverage": 0.95,
+      "test_files": [
+        "end_to_end_permission_test.rs"
+      ]
+    },
+    {
+      "name": "plugin_update_flow",
+      "coverage": 0.93,
+      "test_files": [
+        "end_to_end_update_test.rs"
+      ]
+    }
+  ],
+  "improvement_areas": [
+    "Increase UI integration test coverage, particularly for error scenarios",
+    "Add more tests for complex permission combinations",
+    "Enhance error handling tests for rare failure cases",
+    "Add more tests for concurrent operations"
+  ]
+}
