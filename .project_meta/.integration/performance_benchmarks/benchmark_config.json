@@ -1,0 +1,292 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2025-05-25T15:04:51+03:00",
+  "benchmark_categories": [
+    {
+      "name": "plugin_loading",
+      "description": "Benchmarks for plugin loading and initialization performance",
+      "benchmarks": [
+        {
+          "id": "cold_load_time",
+          "description": "Time to load plugin from cold start",
+          "metric_type": "duration_ms",
+          "target_value": "<2000",
+          "methodology": "Measure time from load request to plugin initialization completion",
+          "test_script": "cold_load_benchmark.js",
+          "iterations": 20,
+          "warmup_iterations": 2
+        },
+        {
+          "id": "warm_load_time",
+          "description": "Time to load plugin from warm cache",
+          "metric_type": "duration_ms",
+          "target_value": "<500",
+          "methodology": "Measure time from load request to plugin initialization after previous load",
+          "test_script": "warm_load_benchmark.js",
+          "iterations": 20,
+          "warmup_iterations": 5
+        },
+        {
+          "id": "parallel_load_scaling",
+          "description": "Loading performance with multiple plugins",
+          "metric_type": "duration_ms",
+          "target_value": "linear_scaling",
+          "methodology": "Measure load time with increasing number of plugins (1, 2, 5, 10)",
+          "test_script": "parallel_load_benchmark.js",
+          "iterations": 10,
+          "warmup_iterations": 2
+        }
+      ]
+    },
+    {
+      "name": "api_performance",
+      "description": "Benchmarks for API call performance",
+      "benchmarks": [
+        {
+          "id": "simple_api_latency",
+          "description": "Latency for simple API calls",
+          "metric_type": "duration_ms",
+          "target_value": "<5",
+          "methodology": "Measure round-trip time for basic API calls",
+          "test_script": "simple_api_benchmark.js",
+          "iterations": 1000,
+          "warmup_iterations": 100
+        },
+        {
+          "id": "complex_api_latency",
+          "description": "Latency for complex API calls with large data",
+          "metric_type": "duration_ms",
+          "target_value": "<50",
+          "methodology": "Measure round-trip time for complex API calls with large data structures",
+          "test_script": "complex_api_benchmark.js",
+          "iterations": 100,
+          "warmup_iterations": 10
+        },
+        {
+          "id": "api_throughput",
+          "description": "Maximum API calls per second",
+          "metric_type": "calls_per_second",
+          "target_value": ">1000",
+          "methodology": "Measure maximum sustainable API call rate",
+          "test_script": "api_throughput_benchmark.js",
+          "iterations": 5,
+          "warmup_iterations": 1,
+          "duration_seconds": 10
+        }
+      ]
+    },
+    {
+      "name": "memory_usage",
+      "description": "Benchmarks for memory consumption",
+      "benchmarks": [
+        {
+          "id": "base_memory_footprint",
+          "description": "Base memory footprint of idle plugin",
+          "metric_type": "memory_mb",
+          "target_value": "<20",
+          "methodology": "Measure private memory usage of plugin after initialization",
+          "test_script": "base_memory_benchmark.js",
+          "iterations": 10,
+          "warmup_iterations": 2
+        },
+        {
+          "id": "memory_growth",
+          "description": "Memory growth during sustained usage",
+          "metric_type": "memory_mb_per_hour",
+          "target_value": "<5",
+          "methodology": "Measure memory growth during sustained operation",
+          "test_script": "memory_growth_benchmark.js",
+          "iterations": 3,
+          "warmup_iterations": 1,
+          "duration_minutes": 10
+        },
+        {
+          "id": "peak_memory_usage",
+          "description": "Peak memory usage during intensive operations",
+          "metric_type": "memory_mb",
+          "target_value": "<100",
+          "methodology": "Measure maximum memory usage during intensive operations",
+          "test_script": "peak_memory_benchmark.js",
+          "iterations": 5,
+          "warmup_iterations": 1
+        }
+      ]
+    },
+    {
+      "name": "sandbox_overhead",
+      "description": "Benchmarks for sandbox isolation overhead",
+      "benchmarks": [
+        {
+          "id": "sandbox_startup_overhead",
+          "description": "Additional time required for sandbox initialization",
+          "metric_type": "duration_ms",
+          "target_value": "<100",
+          "methodology": "Compare plugin loading with and without sandbox",
+          "test_script": "sandbox_startup_benchmark.js",
+          "iterations": 20,
+          "warmup_iterations": 3
+        },
+        {
+          "id": "sandbox_api_overhead",
+          "description": "API call overhead introduced by sandbox",
+          "metric_type": "percentage",
+          "target_value": "<10",
+          "methodology": "Compare API call performance with and without sandbox",
+          "test_script": "sandbox_api_benchmark.js",
+          "iterations": 100,
+          "warmup_iterations": 10
+        },
+        {
+          "id": "sandbox_memory_overhead",
+          "description": "Additional memory required by sandbox",
+          "metric_type": "memory_mb",
+          "target_value": "<15",
+          "methodology": "Compare memory usage with and without sandbox",
+          "test_script": "sandbox_memory_benchmark.js",
+          "iterations": 10,
+          "warmup_iterations": 2
+        }
+      ]
+    },
+    {
+      "name": "ui_performance",
+      "description": "Benchmarks for UI integration performance",
+      "benchmarks": [
+        {
+          "id": "ui_render_time",
+          "description": "Time to render plugin UI components",
+          "metric_type": "duration_ms",
+          "target_value": "<16",
+          "methodology": "Measure time from render request to completion",
+          "test_script": "ui_render_benchmark.js",
+          "iterations": 100,
+          "warmup_iterations": 10
+        },
+        {
+          "id": "ui_interaction_latency",
+          "description": "Latency for UI interaction events",
+          "metric_type": "duration_ms",
+          "target_value": "<50",
+          "methodology": "Measure time from user action to UI response",
+          "test_script": "ui_interaction_benchmark.js",
+          "iterations": 50,
+          "warmup_iterations": 5
+        },
+        {
+          "id": "ui_memory_impact",
+          "description": "Memory impact of plugin UI components",
+          "metric_type": "memory_mb",
+          "target_value": "<10",
+          "methodology": "Measure additional memory usage from UI components",
+          "test_script": "ui_memory_benchmark.js",
+          "iterations": 10,
+          "warmup_iterations": 2
+        }
+      ]
+    },
+    {
+      "name": "wasm_performance",
+      "description": "Benchmarks specific to WASM plugin performance",
+      "benchmarks": [
+        {
+          "id": "wasm_vs_native_load",
+          "description": "Loading time comparison between WASM and native plugins",
+          "metric_type": "ratio",
+          "target_value": "<1.5",
+          "methodology": "Compare load times of equivalent WASM and native plugins",
+          "test_script": "wasm_load_benchmark.js",
+          "iterations": 20,
+          "warmup_iterations": 3
+        },
+        {
+          "id": "wasm_vs_native_api",
+          "description": "API performance comparison between WASM and native plugins",
+          "metric_type": "ratio",
+          "target_value": "<2.0",
+          "methodology": "Compare API call performance between equivalent implementations",
+          "test_script": "wasm_api_benchmark.js",
+          "iterations": 100,
+          "warmup_iterations": 10
+        },
+        {
+          "id": "wasm_vs_native_memory",
+          "description": "Memory usage comparison between WASM and native plugins",
+          "metric_type": "ratio",
+          "target_value": "<1.2",
+          "methodology": "Compare memory usage between equivalent implementations",
+          "test_script": "wasm_memory_benchmark.js",
+          "iterations": 10,
+          "warmup_iterations": 2
+        }
+      ]
+    }
+  ],
+  "test_environments": [
+    {
+      "name": "standard_hardware",
+      "description": "Standard hardware configuration",
+      "hardware": {
+        "cpu": "Intel Core i5 (8th gen or equivalent)",
+        "ram": "16GB",
+        "storage": "SSD"
+      },
+      "software": {
+        "os": "Windows 10 (latest)",
+        "other_factors": "No other significant applications running"
+      }
+    },
+    {
+      "name": "minimum_hardware",
+      "description": "Minimum supported hardware configuration",
+      "hardware": {
+        "cpu": "Intel Core i3 (6th gen or equivalent)",
+        "ram": "8GB",
+        "storage": "HDD"
+      },
+      "software": {
+        "os": "Windows 10 (latest)",
+        "other_factors": "Standard background applications"
+      }
+    },
+    {
+      "name": "high_performance",
+      "description": "High-end hardware configuration",
+      "hardware": {
+        "cpu": "Intel Core i9 or AMD Ryzen 9",
+        "ram": "32GB",
+        "storage": "NVMe SSD"
+      },
+      "software": {
+        "os": "Windows 11 (latest)",
+        "other_factors": "Optimized for performance"
+      }
+    }
+  ],
+  "analysis_settings": {
+    "statistical_methods": [
+      "mean",
+      "median",
+      "standard_deviation",
+      "percentile_95",
+      "minimum",
+      "maximum"
+    ],
+    "regression_detection": {
+      "enabled": true,
+      "significance_threshold": 5,
+      "comparison_baseline": "previous_release"
+    },
+    "visualization": [
+      "time_series",
+      "box_plots",
+      "comparison_charts"
+    ],
+    "automated_recommendations": true
+  },
+  "reporting": {
+    "format": "json",
+    "include_raw_data": true,
+    "include_system_metrics": true,
+    "archive_previous_results": true
+  }
+}

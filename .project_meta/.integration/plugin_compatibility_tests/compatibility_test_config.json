@@ -1,0 +1,233 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2025-05-25T15:04:51+03:00",
+  "test_categories": [
+    {
+      "name": "api_compatibility",
+      "description": "Tests for API compatibility across versions",
+      "tests": [
+        {
+          "id": "backward_compatibility",
+          "description": "Tests plugin compatibility with previous API versions",
+          "test_script": "backward_compatibility_test.js",
+          "target_versions": ["current", "current-1", "current-2"],
+          "criticality": "high"
+        },
+        {
+          "id": "forward_compatibility",
+          "description": "Tests plugin behavior with newer API versions",
+          "test_script": "forward_compatibility_test.js",
+          "target_versions": ["current", "current+1-beta"],
+          "criticality": "medium"
+        },
+        {
+          "id": "api_deprecation",
+          "description": "Tests plugin behavior with deprecated APIs",
+          "test_script": "api_deprecation_test.js",
+          "target_versions": ["current"],
+          "criticality": "medium"
+        }
+      ]
+    },
+    {
+      "name": "platform_compatibility",
+      "description": "Tests for compatibility across different platforms",
+      "tests": [
+        {
+          "id": "windows_version_compatibility",
+          "description": "Tests plugin compatibility across Windows versions",
+          "test_script": "windows_version_test.js",
+          "target_platforms": ["windows-10", "windows-11", "windows-server-2022"],
+          "criticality": "high"
+        },
+        {
+          "id": "architecture_compatibility",
+          "description": "Tests plugin compatibility across CPU architectures",
+          "test_script": "architecture_test.js",
+          "target_architectures": ["x86", "x64", "arm64"],
+          "criticality": "high"
+        },
+        {
+          "id": "ui_compatibility",
+          "description": "Tests plugin UI compatibility across platforms",
+          "test_script": "ui_compatibility_test.js",
+          "target_platforms": ["windows-10", "windows-11"],
+          "target_display_settings": ["standard", "high-dpi", "multi-monitor"],
+          "criticality": "medium"
+        }
+      ]
+    },
+    {
+      "name": "dependency_compatibility",
+      "description": "Tests for plugin dependency compatibility",
+      "tests": [
+        {
+          "id": "plugin_dependency_resolution",
+          "description": "Tests correct resolution of plugin dependencies",
+          "test_script": "dependency_resolution_test.js",
+          "dependency_scenarios": ["simple", "complex", "circular", "version-conflict"],
+          "criticality": "high"
+        },
+        {
+          "id": "system_dependency_compatibility",
+          "description": "Tests compatibility with system dependencies",
+          "test_script": "system_dependency_test.js",
+          "system_components": ["directx", "dotnet", "vcredist"],
+          "criticality": "high"
+        },
+        {
+          "id": "shared_dependency_management",
+          "description": "Tests handling of shared dependencies between plugins",
+          "test_script": "shared_dependency_test.js",
+          "scenarios": ["version-match", "version-mismatch", "side-by-side"],
+          "criticality": "medium"
+        }
+      ]
+    },
+    {
+      "name": "runtime_compatibility",
+      "description": "Tests for runtime compatibility issues",
+      "tests": [
+        {
+          "id": "lifecycle_compatibility",
+          "description": "Tests plugin lifecycle events across versions",
+          "test_script": "lifecycle_test.js",
+          "lifecycle_events": ["load", "unload", "suspend", "resume", "update"],
+          "criticality": "high"
+        },
+        {
+          "id": "error_handling_compatibility",
+          "description": "Tests error handling compatibility across versions",
+          "test_script": "error_handling_test.js",
+          "error_scenarios": ["api-error", "runtime-exception", "resource-failure"],
+          "criticality": "medium"
+        },
+        {
+          "id": "performance_profile_compatibility",
+          "description": "Tests performance characteristics across versions",
+          "test_script": "performance_profile_test.js",
+          "metrics": ["startup-time", "memory-usage", "api-latency"],
+          "criticality": "low"
+        }
+      ]
+    },
+    {
+      "name": "wasm_compatibility",
+      "description": "Tests for WASM-specific compatibility",
+      "tests": [
+        {
+          "id": "wasm_runtime_compatibility",
+          "description": "Tests compatibility across WASM runtime versions",
+          "test_script": "wasm_runtime_test.js",
+          "runtime_versions": ["wasmtime-1.0", "wasmtime-latest"],
+          "criticality": "high"
+        },
+        {
+          "id": "wasm_feature_compatibility",
+          "description": "Tests compatibility with WASM features",
+          "test_script": "wasm_feature_test.js",
+          "features": ["threads", "simd", "tail-calls", "garbage-collection"],
+          "criticality": "medium"
+        },
+        {
+          "id": "wasm_native_interop",
+          "description": "Tests compatibility between WASM and native plugins",
+          "test_script": "wasm_native_interop_test.js",
+          "interop_scenarios": ["wasm-to-native", "native-to-wasm", "shared-resources"],
+          "criticality": "high"
+        }
+      ]
+    },
+    {
+      "name": "security_compatibility",
+      "description": "Tests for security model compatibility",
+      "tests": [
+        {
+          "id": "permission_model_compatibility",
+          "description": "Tests compatibility with evolving permission models",
+          "test_script": "permission_model_test.js",
+          "permission_scenarios": ["basic", "extended", "granular"],
+          "criticality": "high"
+        },
+        {
+          "id": "signature_verification_compatibility",
+          "description": "Tests compatibility with signature verification changes",
+          "test_script": "signature_verification_test.js",
+          "scenarios": ["algorithm-change", "key-length-increase", "certificate-requirements"],
+          "criticality": "high"
+        },
+        {
+          "id": "sandbox_compatibility",
+          "description": "Tests compatibility with evolving sandbox implementation",
+          "test_script": "sandbox_compatibility_test.js",
+          "sandbox_features": ["process-isolation", "memory-protection", "resource-limits"],
+          "criticality": "high"
+        }
+      ]
+    }
+  ],
+  "test_matrix": [
+    {
+      "name": "core_compatibility_matrix",
+      "description": "Core compatibility test matrix for all plugin versions",
+      "plugin_versions": ["latest", "latest-1", "latest-2"],
+      "host_versions": ["latest", "latest-1"],
+      "test_categories": ["api_compatibility", "runtime_compatibility"],
+      "execution_frequency": "daily"
+    },
+    {
+      "name": "platform_compatibility_matrix",
+      "description": "Platform-specific compatibility test matrix",
+      "plugin_versions": ["latest"],
+      "platforms": ["windows-10", "windows-11", "windows-server-2022"],
+      "architectures": ["x86", "x64", "arm64"],
+      "test_categories": ["platform_compatibility"],
+      "execution_frequency": "weekly"
+    },
+    {
+      "name": "wasm_compatibility_matrix",
+      "description": "WASM-specific compatibility test matrix",
+      "plugin_versions": ["latest"],
+      "wasm_runtimes": ["wasmtime-1.0", "wasmtime-latest"],
+      "host_versions": ["latest"],
+      "test_categories": ["wasm_compatibility", "api_compatibility"],
+      "execution_frequency": "weekly"
+    },
+    {
+      "name": "security_compatibility_matrix",
+      "description": "Security model compatibility test matrix",
+      "plugin_versions": ["latest", "latest-1"],
+      "security_models": ["standard", "enhanced", "enterprise"],
+      "host_versions": ["latest"],
+      "test_categories": ["security_compatibility"],
+      "execution_frequency": "weekly"
+    },
+    {
+      "name": "dependency_compatibility_matrix",
+      "description": "Dependency resolution compatibility test matrix",
+      "plugin_ecosystems": ["simple", "complex", "mixed"],
+      "host_versions": ["latest"],
+      "test_categories": ["dependency_compatibility"],
+      "execution_frequency": "weekly"
+    }
+  ],
+  "compatibility_reporting": {
+    "format": "json",
+    "generate_matrix": true,
+    "include_detailed_results": true,
+    "compatibility_score_calculation": "weighted_success_rate",
+    "historical_tracking": true,
+    "notifications": {
+      "compatibility_regression": true,
+      "new_incompatibility": true,
+      "threshold": "medium"
+    }
+  },
+  "test_execution": {
+    "parallel_execution": true,
+    "max_concurrent_tests": 4,
+    "timeout_per_test": 300,
+    "retry_failed_tests": 1,
+    "environment_reset_between_tests": true
+  }
+}

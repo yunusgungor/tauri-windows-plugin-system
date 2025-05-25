@@ -1,0 +1,38 @@
+[package]
+name = "resource-usage-plugin"
+version = "0.1.0"
+edition = "2021"
+description = "Test plugin for Tauri Windows Plugin System"
+authors = ["Tauri Windows Plugin System Team"]
+license = "MIT"
+
+[dependencies]
+# Temel bağımlılıklar
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+log = "0.4"
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Windows API
+windows = { version = "0.48", features = [
+    "Win32_Foundation",
+    "Win32_System_ProcessStatus",
+    "Win32_System_Threading",
+    "Win32_System_Performance",
+    "Win32_System_SystemInformation",
+    "Win32_Security",
+    "Win32_System_Memory",
+    "Win32_NetworkManagement_IpHelper",
+]}
+
+# Test plugin API
+plugin-interface = { path = "../plugin_interface" }
+
+[lib]
+name = "resource_usage_plugin"
+crate-type = ["cdylib"]
+
+[[bin]]
+name = "resource_usage_plugin_app"
+path = "src/main.rs"

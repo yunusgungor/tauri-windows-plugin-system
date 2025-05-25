@@ -1,0 +1,160 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2025-05-25T15:04:51+03:00",
+  "security_boundaries": {
+    "process_isolation": {
+      "enabled": true,
+      "mechanism": "windows_job_objects",
+      "constraints": {
+        "prevent_process_creation": true,
+        "limit_working_set": true,
+        "max_memory_mb": 512,
+        "max_cpu_percentage": 30
+      }
+    },
+    "filesystem_boundaries": {
+      "enabled": true,
+      "access_model": "whitelist",
+      "permitted_paths": [
+        "{plugin_data_dir}",
+        "{plugin_temp_dir}",
+        "{plugin_config_dir}"
+      ],
+      "readonly_paths": [
+        "{plugin_install_dir}"
+      ],
+      "denied_paths": [
+        "{system_directories}",
+        "{user_documents}",
+        "{host_application_data}"
+      ]
+    },
+    "network_boundaries": {
+      "enabled": true,
+      "default_policy": "deny",
+      "outbound_connections": {
+        "requires_permission": true,
+        "whitelisted_domains": [],
+        "rate_limits": {
+          "max_connections_per_minute": 60,
+          "max_bandwidth_kbps": 1024
+        }
+      },
+      "inbound_connections": {
+        "allowed": false
+      }
+    },
+    "registry_boundaries": {
+      "enabled": true,
+      "access_model": "whitelist",
+      "permitted_keys": [
+        "HKEY_CURRENT_USER\\Software\\{plugin_vendor}\\{plugin_id}",
+        "HKEY_CURRENT_USER\\Software\\{application_name}\\Plugins\\{plugin_id}"
+      ],
+      "readonly_keys": [
+        "HKEY_CURRENT_USER\\Software\\{application_name}\\Settings"
+      ]
+    },
+    "api_boundaries": {
+      "enabled": true,
+      "default_policy": "deny",
+      "permission_levels": [
+        "core",
+        "filesystem",
+        "network",
+        "ui",
+        "system",
+        "interprocess"
+      ],
+      "permission_inheritance": false,
+      "api_rate_limiting": {
+        "enabled": true,
+        "max_calls_per_second": 1000
+      }
+    },
+    "memory_boundaries": {
+      "enabled": true,
+      "shared_memory_access": "permission_based",
+      "max_total_memory_mb": 512,
+      "memory_isolation": "process_based"
+    },
+    "ipc_boundaries": {
+      "enabled": true,
+      "mechanisms": ["message_passing", "shared_memory"],
+      "validation_required": true,
+      "message_size_limit_kb": 1024,
+      "rate_limiting": {
+        "max_messages_per_second": 100
+      }
+    },
+    "ui_boundaries": {
+      "enabled": true,
+      "window_creation": {
+        "allowed": true,
+        "requires_permission": true,
+        "max_windows": 5
+      },
+      "ui_integration": {
+        "allowed": true,
+        "integration_points": ["toolbar", "sidebar", "settings", "context_menu"],
+        "requires_approval": true
+      }
+    },
+    "wasm_specific_boundaries": {
+      "enabled": false,
+      "memory_limits": {
+        "max_memory_pages": 1000,
+        "max_table_size": 10000
+      },
+      "execution_time_limits": {
+        "max_execution_time_ms": 1000,
+        "yield_required": true
+      },
+      "import_restrictions": {
+        "allowed_imports": ["env", "tauri", "plugin_api"],
+        "restricted_imports": ["javascript", "dom"]
+      }
+    }
+  },
+  "security_enforcement": {
+    "violation_response": {
+      "default_action": "terminate_plugin",
+      "logging": {
+        "enabled": true,
+        "include_stack_trace": true,
+        "include_plugin_metadata": true
+      },
+      "notification": {
+        "notify_user": true,
+        "notify_admin": true
+      },
+      "grace_period_ms": 1000
+    },
+    "monitoring": {
+      "realtime_monitoring": true,
+      "resource_usage_tracking": true,
+      "behavioral_analysis": false,
+      "sampling_interval_ms": 1000
+    },
+    "security_escalation": {
+      "allowed": false,
+      "requires_user_confirmation": true,
+      "temporary_duration_ms": 300000
+    }
+  },
+  "recovery_strategies": {
+    "plugin_crash": {
+      "auto_restart": false,
+      "max_restart_attempts": 3,
+      "cooldown_period_ms": 5000
+    },
+    "resource_exhaustion": {
+      "action": "throttle",
+      "notification_threshold_percentage": 80
+    },
+    "security_violation": {
+      "action": "terminate",
+      "blacklist_duration_minutes": 60
+    }
+  }
+}

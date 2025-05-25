@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<implementation_workflow_request id="IWR-TAURI-PLUGIN-002" timestamp="2025-05-25T15:30:45+03:00">
+  <metadata>
+    <title>Tauri Windows Plugin System Geliştirme İstemi (Sandbox, WASM, Mağaza ve Bağımlılık Yönetimi)</title>
+    <purpose>
+      Tauri Windows Plugin System'in güvenlik, performans, genişletilebilirlik ve dağıtım yeteneklerini geliştirmek.
+      Belirlenen yol haritasını takip ederek plugin sandbox, imza doğrulama, plugin mağazası ve WASM entegrasyonu geliştirme aşamalarını uygulamak.
+      Plugin'ler arası bağımlılık yönetimi ve iletişim mekanizmalarını geliştirmek.
+      Kapsamlı test sistemlerini ve dokümantasyonu oluşturmak.
+    </purpose>
+    <target_workflow_steps>
+      <step_emphasis ref="analyze_initial_architecture">Mevcut sandbox_architecture.md, security_boundaries.json, wasm_integration_plan.md, plugin_api_specification.md ve plugin_store_architecture.md dokümanlarını temel alarak detaylı mimari tasarımı tamamlamak.</step_emphasis>
+      <step_emphasis ref="define_modular_structure">Plugin sistemi için güvenlik katmanları, sandbox izolasyonu, WASM entegrasyonu ve plugin mağazası için modüler yapıyı tanımlamak.</step_emphasis>
+      <step_emphasis ref="create_roadmap_and_stories">Mevcut yol haritasını ve user story'leri detaylandırmak, bağımlılıkları netleştirmek ve önceliklendirmeyi optimize etmek.</step_emphasis>
+      <step_emphasis ref="execute_next_story">İlk öncelikli story'leri (sandbox mimarisi tasarımı ve dijital imza altyapısı) uygulamaya başlamak.</step_emphasis>
+      <step_emphasis ref="integration_phase">Geliştirilen komponenentleri entegre etmek ve kapsamlı güvenlik, performans ve uyumluluk testlerini gerçekleştirmek.</step_emphasis>
+      <step_emphasis ref="learn_patterns">Plugin sistemlerinde güvenlik desenleri, sandbox izolasyonu, WASM entegrasyonu ve bağımlılık yönetimi için en iyi pratikleri belirlemek ve uygulamak.</step_emphasis>
+    </target_workflow_steps>
+    <required_verification>true</required_verification>
+    <error_handling_priority>critical</error_handling_priority>
+  </metadata>
+
+  <context>
+    <project_state>
+      <prd_status>validated</prd_status>
+      <architecture_status>in_progress</architecture_status>
+      <modular_structure_status>in_progress</modular_structure_status>
+      <roadmap_status>updated</roadmap_status>
+      <stories_status>defined</stories_status>
+      <project_development_status>in_progress</project_development_status>
+    </project_state>
+
+    <dependencies>
+      <!-- Temel bağımlılıklar -->
+      <dependency>PRD.md</dependency>
+      <!-- Mimari artifactler -->
+      <dependency>.project_meta/.architecture/module_definitions.json</dependency>
+      <dependency>.project_meta/.architecture/coding_standards.md</dependency>
+      <dependency>.project_meta/.architecture/component_specifications/</dependency>
+      <dependency>.project_meta/.architecture/architecture_principles.md</dependency>
+      <dependency>.project_meta/.architecture/architecture_constraints.json</dependency>
+      <dependency>.project_meta/.architecture/adr_log.json</dependency>
+      <dependency>.project_meta/.architecture/technology_stack.md</dependency>
+      <!-- Plugin sistem spesifik bağımlılıklar -->
+      <dependency>.project_meta/.architecture/plugin_system/sandbox_architecture.md</dependency>
+      <dependency>.project_meta/.architecture/plugin_system/security_boundaries.json</dependency>
+      <dependency>.project_meta/.architecture/plugin_system/wasm_integration_plan.md</dependency>
+      <dependency>.project_meta/.architecture/plugin_system/plugin_api_specification.md</dependency>
+      <dependency>.project_meta/.architecture/plugin_system/plugin_store_architecture.md</dependency>
+      <!-- Entegrasyon ve test artifactleri -->
+      <dependency>.project_meta/.integration/integration_status.json</dependency>
+      <dependency>.project_meta/.integration/security_test_suite/security_test_config.json</dependency>
+      <dependency>.project_meta/.integration/performance_benchmarks/benchmark_config.json</dependency>
+      <dependency>.project_meta/.integration/plugin_compatibility_tests/compatibility_test_config.json</dependency>
+      <!-- Roadmap ve story artifactleri -->
+      <dependency>.project_meta/.stories/roadmap.json</dependency>
+    </dependencies>
+  </context>
+
+  <workflow_settings>
+    <core_directives>
+      <directive>Öncelikle sandbox mimarisi tasarımını tamamlayın ve ilk prototip implementasyonunu oluşturun.</directive>
+      <directive>Dijital imza altyapısını tasarlayın ve plugin imzalama/doğrulama süreçlerini implemente edin.</directive>
+      <directive>Plugin sandbox için Windows Job Objects ve ACL tabanlı izolasyon mekanizmalarını kullanın.</directive>
+      <directive>WASM runtime entegrasyonu için Wasmtime kütüphanesini kullanarak ilk entegrasyon adımlarını gerçekleştirin.</directive>
+      <directive>Plugin mağazası için REST API tasarımını oluşturun ve client tarafı entegrasyonunu başlatın.</directive>
+      <directive>Plugin bağımlılık modeli ve çözümleme algoritmasını geliştirin.</directive>
+      <directive>Performans optimizasyonları için Flatbuffers ve paylaşımlı bellek mekanizmalarını kullanın.</directive>
+      <directive>Güvenlik testleri için kapsamlı sandbox kaçış testleri ve bellek izolasyon testleri oluşturun.</directive>
+    </core_directives>
+
+    <quality_standards>
+      <standard>Tüm sandbox mekanizmaları Windows'un en güncel güvenlik özelliklerini kullanmalı.</standard>
+      <standard>Sandbox izolasyon bütünlük skoru %98'in üzerinde olmalı.</standard>
+      <standard>İzin doğrulama doğruluk oranı %99.9'un üzerinde olmalı.</standard>
+      <standard>Plugin yükleme süresi 2 saniyeden az olmalı.</standard>
+      <standard>Plugin'ler arası iletişim gecikmesi 100ms'nin altında olmalı.</standard>
+      <standard>WASM entegrasyonu için performans kaybı native implementasyona göre en fazla %20 olmalı.</standard>
+      <standard>Tüm API'ler kapsamlı dokümante edilmeli ve versiyon uyumluluğu garantilenmelidir.</standard>
+      <standard>Plugin mağazası için güvenli iletişim ve imzalı paketler zorunlu olmalıdır.</standard>
+    </quality_standards>
+
+    <learning_integration>
+      <directive>Windows Job Objects kullanarak process izolasyonu için en iyi pratikleri araştırın ve kataloglayın.</directive>
+      <directive>WASM runtime entegrasyonu için güvenlik modellerini inceleyin ve belgelendirin.</directive>
+      <directive>İmza doğrulama sistemleri için güncel güvenlik standartlarını ve algoritma seçimlerini araştırın.</directive>
+      <directive>Plugin bağımlılık yönetimi için çakışma çözümleme stratejilerini geliştirin.</directive>
+      <directive>Asenkron iletişim protokolleri ve performans optimizasyonları için desenler belirleyin.</directive>
+      <directive>Sandbox güvenlik tehdit modellemesi yapın ve savunma stratejileri geliştirin.</directive>
+    </learning_integration>
+
+    <architecture_analysis_mechanism>
+      <process>Sandbox mimarisinde bellek izolasyonu için kapsamlı güvenlik analizi yapın.</process>
+      <process>WASM-Native entegrasyonu için API bridge performans analizleri gerçekleştirin.</process>
+      <process>Plugin mağazası API'si için güvenlik sınır analizi yapın.</process>
+      <process>Bağımlılık yönetimi algoritmaları için performans ve ölçeklenebilirlik testleri uygulayın.</process>
+      <process>Komponent'ler arası bağımlılıkları düzenli olarak kontrol edin ve optimize edin.</process>
+      <process>İzin sistemi için detaylı kapsam ve güvenlik analizleri yapın.</process>
+    </architecture_analysis_mechanism>
+
+    <pattern_analysis_mechanism>
+      <process>Process izolasyonu için Windows-spesifik güvenlik desenlerini analiz edin.</process>
+      <process>WASM runtime entegrasyonu için hafıza izolasyonu desenlerini belirleyin.</process>
+      <process>Plugin imzalama ve doğrulama için güvenlik desenlerini kataloglayın.</process>
+      <process>Plugin mağazası istemcisi için kullanıcı deneyimi desenlerini tanımlayın.</process>
+      <process>Bağımlılık çözümleme için algoritma desenlerini optimize edin.</process>
+      <process>Plugin'ler arası iletişim için performans desenleri geliştirin.</process>
+    </pattern_analysis_mechanism>
+
+    <error_analysis_mechanism>
+      <process>Sandbox izolasyon hatalarını kategorilere ayırın ve kaynağına göre sınıflandırın.</process>
+      <process>WASM entegrasyon hatalarını runtime, memory ve API katmanlarına göre ayrıştırın.</process>
+      <process>İmza doğrulama hatalarını imza, sertifika ve güven zinciri kategorilerine göre analiz edin.</process>
+      <process>Plugin bağımlılık çözümleme hatalarını çakışma tiplerine göre gruplandırın.</process>
+      <process>Plugin mağazası entegrasyon hatalarını client, server ve ağ kategorilerine göre izole edin.</process>
+      <process>Güvenlik ihlallerini tespit için otomatik analiz mekanizmaları geliştirin.</process>
+    </error_analysis_mechanism>
+
+    <integration_implementation_strategies>
+      <strategy>Sandbox, WASM ve plugin mağazası komponentleri için bağımsız entegrasyon test ortamları oluşturun.</strategy>
+      <strategy>Sandbox ve WASM entegrasyonu için katmanlı yaklaşım kullanarak her katmanı ayrı ayrı test edin.</strategy>
+      <strategy>Plugin mağazası için mock servisler kullanarak client entegrasyonunu bağımsız test edin.</strategy>
+      <strategy>Bağımlılık yönetimi için sentetik plugin ağları oluşturarak farklı senaryoları test edin.</strategy>
+      <strategy>Geriye dönük uyumluluk için otomatik API uyumluluk testleri geliştirin.</strategy>
+      <strategy>Güvenlik testleri için penetrasyon test senaryoları ve kötü niyetli plugin simülatörleri oluşturun.</strategy>
+    </integration_implementation_strategies>
+
+    <human_interaction_points>
+      <point event="sandbox_security_risk_detected" action="request_review">Sandbox izolasyon mekanizmasında güvenlik riski tespit edildiğinde, risk değerlendirmesi için insan müdahalesi isteyin.</point>
+      <point event="wasm_integration_stability_issue" action="request_confirmation">WASM entegrasyonunda kararlılık sorunu tespit edildiğinde, çözüm stratejisi için insan müdahalesi isteyin.</point>
+      <point event="plugin_api_breaking_change" action="request_approval">Plugin API'sinde kırıcı değişiklik gerektiğinde, etki analizi ve onay için insan müdahalesi isteyin.</point>
+      <point event="signature_verification_policy_decision" action="request_guidance">İmza doğrulama politikalarında değişiklik gerektiğinde rehberlik isteyin.</point>
+      <point event="dependency_resolution_conflict" action="request_decision">Kritik bağımlılık çözümleme çakışmalarında çözüm stratejisi için insan müdahalesi isteyin.</point>
+    </human_interaction_points>
+  </workflow_settings>
+
+  <implementation_plan>
+    <phase id="phase-1" name="Sandbox ve Güvenlik Altyapısı">
+      <task id="task-1-1" story_id="story-050">
+        <title>Sandbox Mimarisi Prototip Implementasyonu</title>
+        <description>Windows Job Objects kullanarak temel process izolasyon mekanizmasını implemente edin.</description>
+        <acceptance_criteria>
+          <criterion>Windows Job Objects ile process sınırlama mekanizması çalışır durumda</criterion>
+          <criterion>Bellek limitleri doğru şekilde uygulanıyor</criterion>
+          <criterion>Process oluşturma kısıtlamaları aktif</criterion>
+          <criterion>Basit izolasyon testleri başarılı</criterion>
+        </acceptance_criteria>
+        <estimated_effort>3 gün</estimated_effort>
+        <priority>Kritik</priority>
+      </task>
+      <task id="task-1-2" story_id="story-055">
+        <title>Dijital İmza Altyapısı Prototip Implementasyonu</title>
+        <description>RSA/ECC tabanlı imzalama ve doğrulama mekanizmasını implemente edin.</description>
+        <acceptance_criteria>
+          <criterion>RSA-2048 veya ECC-P256 imzalama işlevi çalışır durumda</criterion>
+          <criterion>İmza doğrulama mekanizması başarılı testler geçiyor</criterion>
+          <criterion>Sertifika zinciri doğrulama işlevi implemente edilmiş</criterion>
+          <criterion>İmza formatı belirlenmiş ve dokümante edilmiş</criterion>
+        </acceptance_criteria>
+        <estimated_effort>2 gün</estimated_effort>
+        <priority>Kritik</priority>
+      </task>
+      <task id="task-1-3" story_id="story-050">
+        <title>Kaynak Sınırlama Mekanizması</title>
+        <description>Plugin'ler için CPU, bellek ve disk kullanımı sınırlama mekanizması geliştirin.</description>
+        <acceptance_criteria>
+          <criterion>CPU kullanımı yüzde olarak sınırlandırılabiliyor</criterion>
+          <criterion>Bellek kullanımı hard ve soft limitlerle kontrol ediliyor</criterion>
+          <criterion>Disk I/O hız sınırlaması aktif</criterion>
+          <criterion>Performans etki analizi tamamlanmış</criterion>
+        </acceptance_criteria>
+        <estimated_effort>2 gün</estimated_effort>
+        <priority>Yüksek</priority>
+      </task>
+    </phase>
+    <phase id="phase-2" name="WASM Entegrasyonu Temelleri">
+      <task id="task-2-1" story_id="story-051">
+        <title>Wasmtime Entegrasyon Araştırması</title>
+        <description>Wasmtime kütüphanesinin Rust ile entegrasyonu için araştırma ve POC geliştirin.</description>
+        <acceptance_criteria>
+          <criterion>Wasmtime API'si incelenmiş ve dokümante edilmiş</criterion>
+          <criterion>Basit WASM modülü yükleme ve çalıştırma POC'si tamamlanmış</criterion>
+          <criterion>Bellek izolasyonu özellikleri değerlendirilmiş</criterion>
+          <criterion>Performans karakteristikleri ölçülmüş</criterion>
+        </acceptance_criteria>
+        <estimated_effort>3 gün</estimated_effort>
+        <priority>Yüksek</priority>
+      </task>
+      <task id="task-2-2" story_id="story-051">
+        <title>WASM Module Loader Prototip</title>
+        <description>WASM modüllerini yükleyip çalıştırabilen temel bir loader geliştirin.</description>
+        <acceptance_criteria>
+          <criterion>WASM modüllerini dosyadan yükleme işlevi tamamlanmış</criterion>
+          <criterion>Bellek limitleri uygulanabiliyor</criterion>
+          <criterion>Temel hata yakalama mekanizması implemente edilmiş</criterion>
+          <criterion>Örnek modüller başarıyla çalıştırılabiliyor</criterion>
+        </acceptance_criteria>
+        <estimated_effort>4 gün</estimated_effort>
+        <priority>Yüksek</priority>
+      </task>
+    </phase>
+    <phase id="phase-3" name="Plugin Mağazası Temelleri">
+      <task id="task-3-1" story_id="story-060">
+        <title>Plugin Mağazası API Tasarımı</title>
+        <description>Plugin mağazası için RESTful API tasarımını detaylandırın.</description>
+        <acceptance_criteria>
+          <criterion>Endpoint'ler ve veri modelleri tanımlanmış</criterion>
+          <criterion>Güvenlik gereksinimleri belirlenmiş</criterion>
+          <criterion>OpenAPI (Swagger) formatında API dokümantasyonu oluşturulmuş</criterion>
+          <criterion>Endpoint'ler için test senaryoları tanımlanmış</criterion>
+        </acceptance_criteria>
+        <estimated_effort>2 gün</estimated_effort>
+        <priority>Orta</priority>
+      </task>
+      <task id="task-3-2" story_id="story-061">
+        <title>Plugin Mağazası İstemci Prototip</title>
+        <description>Plugin mağazası istemcisi için temel UI ve işlevleri geliştirin.</description>
+        <acceptance_criteria>
+          <criterion>Plugin listeleme ve arama UI prototip tamamlanmış</criterion>
+          <criterion>Plugin detay görünümü prototip tamamlanmış</criterion>
+          <criterion>Mock API entegrasyonu gerçekleştirilmiş</criterion>
+          <criterion>Temel kullanıcı deneyimi akışları test edilmiş</criterion>
+        </acceptance_criteria>
+        <estimated_effort>3 gün</estimated_effort>
+        <priority>Orta</priority>
+      </task>
+    </phase>
+    <phase id="phase-4" name="Bağımlılık Yönetimi Temelleri">
+      <task id="task-4-1" story_id="story-065">
+        <title>Bağımlılık Modeli Tasarımı</title>
+        <description>Plugin'ler için bağımlılık modeli ve veri yapılarını tasarlayın.</description>
+        <acceptance_criteria>
+          <criterion>Bağımlılık tanımlama formatı belirlenmiş</criterion>
+          <criterion>Versiyon kısıtlama sözdizimi tanımlanmış</criterion>
+          <criterion>Bağımlılık grafiği veri yapısı tasarlanmış</criterion>
+          <criterion>Örnek senaryolarla test edilmiş</criterion>
+        </acceptance_criteria>
+        <estimated_effort>2 gün</estimated_effort>
+        <priority>Orta</priority>
+      </task>
+      <task id="task-4-2" story_id="story-066">
+        <title>Bağımlılık Çözümleme Algoritması Prototip</title>
+        <description>Bağımlılık çözümleme algoritmasının ilk prototipini geliştirin.</description>
+        <acceptance_criteria>
+          <criterion>Basit bağımlılık ağaçları çözümlenebiliyor</criterion>
+          <criterion>Versiyon kısıtlamaları doğru şekilde değerlendiriliyor</criterion>
+          <criterion>Çakışma tespiti yapılabiliyor</criterion>
+          <criterion>Test senaryoları oluşturulmuş ve çalıştırılmış</criterion>
+        </acceptance_criteria>
+        <estimated_effort>3 gün</estimated_effort>
+        <priority>Orta</priority>
+      </task>
+    </phase>
+    <phase id="phase-5" name="Test ve Entegrasyon Altyapısı">
+      <task id="task-5-1">
+        <title>Güvenlik Test Senaryoları</title>
+        <description>Sandbox ve imza doğrulama için kapsamlı güvenlik test senaryoları geliştirin.</description>
+        <acceptance_criteria>
+          <criterion>Sandbox kaçış testleri tasarlanmış</criterion>
+          <criterion>İmza sahteciliği testleri oluşturulmuş</criterion>
+          <criterion>Kaynak tüketimi saldırı testleri tanımlanmış</criterion>
+          <criterion>Test automation scripti geliştirilmiş</criterion>
+        </acceptance_criteria>
+        <estimated_effort>2 gün</estimated_effort>
+        <priority>Yüksek</priority>
+      </task>
+      <task id="task-5-2">
+        <title>Performans Benchmark Aracı</title>
+        <description>Plugin sistemi performansını ölçmek için benchmark aracı geliştirin.</description>
+        <acceptance_criteria>
+          <criterion>Yükleme süresi ölçümü yapılabiliyor</criterion>
+          <criterion>API çağrı performansı ölçülebiliyor</criterion>
+          <criterion>Bellek kullanımı izlenebiliyor</criterion>
+          <criterion>Sonuçlar raporlanabiliyor ve karşılaştırılabiliyor</criterion>
+        </acceptance_criteria>
+        <estimated_effort>2 gün</estimated_effort>
+        <priority>Orta</priority>
+      </task>
+    </phase>
+  </implementation_plan>
+
+  <metrics>
+    <security_metrics>
+      <metric name="sandbox_escape_prevention" description="Sandbox kaçış önleme başarı oranı" target=">99%"/>
+      <metric name="permission_enforcement_accuracy" description="İzin uygulama doğruluk oranı" target=">99.9%"/>
+      <metric name="signature_verification_reliability" description="İmza doğrulama güvenilirlik oranı" target=">99.99%"/>
+      <metric name="resource_isolation_effectiveness" description="Kaynak izolasyonu etkinlik skoru" target=">98%"/>
+      <metric name="wasm_isolation_integrity" description="WASM izolasyon bütünlük skoru" target=">99%"/>
+    </security_metrics>
+    
+    <performance_metrics>
+      <metric name="plugin_load_time" description="Plugin yükleme süresi" target="<2s"/>
+      <metric name="plugin_api_latency" description="Plugin API çağrı gecikmesi" target="<5ms"/>
+      <metric name="wasm_execution_overhead" description="WASM yürütme ek yükü" target="<20%"/>
+      <metric name="memory_usage_per_plugin" description="Plugin başına bellek kullanımı" target="<20MB"/>
+      <metric name="sandbox_overhead" description="Sandbox mekanizması ek yükü" target="<10%"/>
+      <metric name="store_browse_responsiveness" description="Mağaza tarama tepkime süresi" target="<200ms"/>
+      <metric name="dependency_resolution_time" description="Bağımlılık çözümleme süresi (10 plugin)" target="<1s"/>
+    </performance_metrics>
+    
+    <quality_metrics>
+      <metric name="code_coverage" description="Test kodu kapsama oranı" target=">90%"/>
+      <metric name="api_documentation_coverage" description="API dokümantasyon kapsama oranı" target="100%"/>
+      <metric name="backward_compatibility" description="Geriye dönük uyumluluk başarı oranı" target=">95%"/>
+      <metric name="plugin_compatibility_score" description="Plugin uyumluluk skoru" target=">90%"/>
+      <metric name="user_experience_rating" description="Kullanıcı deneyimi değerlendirme puanı" target=">4.5/5"/>
+    </quality_metrics>
+  </metrics>
+
+  <documentation_requirements>
+    <requirement>
+      <title>Mimari Belgeleri Güncellemeleri</title>
+      <description>Sandbox, WASM, Mağaza ve Bağımlılık bileşenleri için mimari dokümanların güncellenmesi</description>
+      <deliverables>
+        <deliverable>Güncellenmiş sandbox_architecture.md</deliverable>
+        <deliverable>Güncellenmiş security_boundaries.json</deliverable>
+        <deliverable>Güncellenmiş wasm_integration_plan.md</deliverable>
+        <deliverable>Güncellenmiş plugin_api_specification.md</deliverable>
+        <deliverable>Güncellenmiş plugin_store_architecture.md</deliverable>
+      </deliverables>
+    </requirement>
+    <requirement>
+      <title>Geliştirici Kılavuzu Belgeleri</title>
+      <description>Plugin geliştiricileri için kapsamlı dökümantasyon</description>
+      <deliverables>
+        <deliverable>Plugin Geliştirme Rehberi</deliverable>
+        <deliverable>API Referans Dokümanı</deliverable>
+        <deliverable>Güvenlik En İyi Uygulamaları Kılavuzu</deliverable>
+        <deliverable>WASM Plugin Geliştirme Kılavuzu</deliverable>
+        <deliverable>Mağaza Entegrasyon Kılavuzu</deliverable>
+      </deliverables>
+    </requirement>
+    <requirement>
+      <title>Test ve Entegrasyon Belgeleri</title>
+      <description>Test stratejileri ve entegrasyon adımları için belgelendirme</description>
+      <deliverables>
+        <deliverable>Güvenlik Test Planı ve Senaryoları</deliverable>
+        <deliverable>Performans Benchmark Metodolojisi</deliverable>
+        <deliverable>Entegrasyon Test Planı</deliverable>
+        <deliverable>Uyumluluk Test Matrisi</deliverable>
+      </deliverables>
+    </requirement>
+  </documentation_requirements>
+</implementation_workflow_request>

@@ -1,0 +1,227 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2025-05-25T15:04:51+03:00",
+  "test_categories": [
+    {
+      "name": "sandbox_isolation",
+      "description": "Tests to verify plugin sandbox isolation effectiveness",
+      "tests": [
+        {
+          "id": "sandbox_escape_attempt",
+          "description": "Attempts to escape the plugin sandbox environment",
+          "severity": "critical",
+          "test_script": "sandbox_escape_tests.js",
+          "expected_result": "denied",
+          "target_components": ["plugin_host", "sandbox_container"]
+        },
+        {
+          "id": "process_creation_restriction",
+          "description": "Tests if plugins can create unauthorized processes",
+          "severity": "critical",
+          "test_script": "process_creation_tests.js",
+          "expected_result": "denied",
+          "target_components": ["sandbox_container", "permission_system"]
+        },
+        {
+          "id": "memory_isolation",
+          "description": "Tests memory isolation between plugins and host",
+          "severity": "critical",
+          "test_script": "memory_isolation_tests.js",
+          "expected_result": "isolated",
+          "target_components": ["plugin_host", "sandbox_container"]
+        }
+      ]
+    },
+    {
+      "name": "permission_system",
+      "description": "Tests for the permission system effectiveness",
+      "tests": [
+        {
+          "id": "unauthorized_api_access",
+          "description": "Attempts to access APIs without proper permissions",
+          "severity": "high",
+          "test_script": "unauthorized_api_tests.js",
+          "expected_result": "denied",
+          "target_components": ["permission_system", "plugin_api"]
+        },
+        {
+          "id": "permission_escalation",
+          "description": "Attempts to gain higher permissions than granted",
+          "severity": "critical",
+          "test_script": "permission_escalation_tests.js",
+          "expected_result": "denied",
+          "target_components": ["permission_system"]
+        },
+        {
+          "id": "permission_persistence",
+          "description": "Tests if permission changes persist correctly",
+          "severity": "medium",
+          "test_script": "permission_persistence_tests.js",
+          "expected_result": "maintained",
+          "target_components": ["permission_system", "plugin_manager"]
+        }
+      ]
+    },
+    {
+      "name": "resource_access",
+      "description": "Tests for unauthorized resource access attempts",
+      "tests": [
+        {
+          "id": "filesystem_access",
+          "description": "Tests filesystem access restrictions",
+          "severity": "high",
+          "test_script": "filesystem_access_tests.js",
+          "expected_result": "restricted",
+          "target_components": ["sandbox_container", "permission_system"]
+        },
+        {
+          "id": "network_access",
+          "description": "Tests network access restrictions",
+          "severity": "high",
+          "test_script": "network_access_tests.js",
+          "expected_result": "restricted",
+          "target_components": ["sandbox_container", "permission_system"]
+        },
+        {
+          "id": "registry_access",
+          "description": "Tests Windows registry access restrictions",
+          "severity": "high",
+          "test_script": "registry_access_tests.js",
+          "expected_result": "restricted",
+          "target_components": ["sandbox_container", "permission_system"]
+        }
+      ]
+    },
+    {
+      "name": "plugin_verification",
+      "description": "Tests for plugin signature verification",
+      "tests": [
+        {
+          "id": "modified_plugin",
+          "description": "Tests loading of modified plugin binaries",
+          "severity": "critical",
+          "test_script": "modified_plugin_tests.js",
+          "expected_result": "rejected",
+          "target_components": ["plugin_loader", "plugin_manager"]
+        },
+        {
+          "id": "invalid_signature",
+          "description": "Tests loading of plugins with invalid signatures",
+          "severity": "critical",
+          "test_script": "invalid_signature_tests.js",
+          "expected_result": "rejected",
+          "target_components": ["plugin_loader"]
+        },
+        {
+          "id": "expired_certificate",
+          "description": "Tests handling of plugins with expired certificates",
+          "severity": "high",
+          "test_script": "expired_certificate_tests.js",
+          "expected_result": "warning",
+          "target_components": ["plugin_loader", "plugin_manager"]
+        }
+      ]
+    },
+    {
+      "name": "malicious_plugins",
+      "description": "Tests system response to simulated malicious plugins",
+      "tests": [
+        {
+          "id": "resource_exhaustion",
+          "description": "Tests plugin attempting resource exhaustion attacks",
+          "severity": "high",
+          "test_script": "resource_exhaustion_tests.js",
+          "expected_result": "contained",
+          "target_components": ["sandbox_container", "plugin_host"]
+        },
+        {
+          "id": "data_exfiltration",
+          "description": "Tests plugin attempting data exfiltration",
+          "severity": "critical",
+          "test_script": "data_exfiltration_tests.js",
+          "expected_result": "blocked",
+          "target_components": ["sandbox_container", "permission_system"]
+        },
+        {
+          "id": "host_application_corruption",
+          "description": "Tests plugin attempting to corrupt host application",
+          "severity": "critical",
+          "test_script": "corruption_attempt_tests.js",
+          "expected_result": "prevented",
+          "target_components": ["plugin_host", "sandbox_container"]
+        }
+      ]
+    },
+    {
+      "name": "wasm_specific",
+      "description": "Tests specific to WASM plugin security",
+      "tests": [
+        {
+          "id": "wasm_memory_access",
+          "description": "Tests WASM memory access boundaries",
+          "severity": "critical",
+          "test_script": "wasm_memory_tests.js",
+          "expected_result": "contained",
+          "target_components": ["wasm_runtime", "plugin_host"]
+        },
+        {
+          "id": "wasm_api_limitation",
+          "description": "Tests WASM API access limitations",
+          "severity": "high",
+          "test_script": "wasm_api_tests.js",
+          "expected_result": "restricted",
+          "target_components": ["wasm_runtime", "plugin_api"]
+        },
+        {
+          "id": "wasm_execution_limits",
+          "description": "Tests WASM execution time limits",
+          "severity": "medium",
+          "test_script": "wasm_execution_tests.js",
+          "expected_result": "limited",
+          "target_components": ["wasm_runtime", "plugin_host"]
+        }
+      ]
+    }
+  ],
+  "test_environments": [
+    {
+      "name": "standard",
+      "description": "Standard test environment with default settings",
+      "host_configuration": {
+        "os": "Windows 10",
+        "permission_policy": "standard",
+        "security_level": "normal"
+      }
+    },
+    {
+      "name": "high_security",
+      "description": "High security test environment",
+      "host_configuration": {
+        "os": "Windows 11",
+        "permission_policy": "strict",
+        "security_level": "high"
+      }
+    },
+    {
+      "name": "enterprise",
+      "description": "Enterprise configuration test environment",
+      "host_configuration": {
+        "os": "Windows 10 Enterprise",
+        "permission_policy": "enterprise",
+        "security_level": "high"
+      }
+    }
+  ],
+  "reporting": {
+    "detailed_logs": true,
+    "save_artifacts": true,
+    "generate_metrics": true,
+    "notification_threshold": "medium"
+  },
+  "schedule": {
+    "frequency": "daily",
+    "timeout_per_test": 300,
+    "parallel_execution": true,
+    "max_concurrent_tests": 4
+  }
+}

@@ -32,6 +32,41 @@
       "description": "Implement security features, testing, and finalize documentation",
       "target_date": "2023-07-15T00:00:00Z",
       "status": "completed"
+    },
+    {
+      "id": "milestone-5",
+      "name": "Enhanced Security & Sandbox",
+      "description": "Implement advanced sandbox isolation and security mechanisms for plugins",
+      "target_date": "2025-07-15T00:00:00Z",
+      "status": "in_progress"
+    },
+    {
+      "id": "milestone-6",
+      "name": "Performance Optimization",
+      "description": "Optimize plugin loading, communication, and resource usage",
+      "target_date": "2025-08-15T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "milestone-7",
+      "name": "Plugin Store & Distribution",
+      "description": "Implement central plugin store, distribution channels, and update mechanisms",
+      "target_date": "2025-09-15T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "milestone-8",
+      "name": "WASM Support & Cross-Platform",
+      "description": "Add WebAssembly support for cross-platform plugin compatibility",
+      "target_date": "2025-10-15T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "milestone-9",
+      "name": "Advanced API & SDK",
+      "description": "Extend plugin APIs and develop comprehensive SDK for plugin developers",
+      "target_date": "2025-11-15T00:00:00Z",
+      "status": "planned"
     }
   ],
   "iterations": [
@@ -74,9 +109,509 @@
       "start_date": "2023-07-11T00:00:00Z",
       "end_date": "2023-07-24T00:00:00Z",
       "status": "completed"
+    },
+    {
+      "id": "iteration-6",
+      "name": "Sprint 6: Sandbox Architecture and Design",
+      "milestone_id": "milestone-5",
+      "start_date": "2025-05-20T00:00:00Z",
+      "end_date": "2025-06-03T00:00:00Z",
+      "status": "in_progress"
+    },
+    {
+      "id": "iteration-7",
+      "name": "Sprint 7: Process Isolation and Resource Control",
+      "milestone_id": "milestone-5",
+      "start_date": "2025-06-04T00:00:00Z",
+      "end_date": "2025-06-17T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "iteration-8",
+      "name": "Sprint 8: Enhanced Permission Model",
+      "milestone_id": "milestone-5",
+      "start_date": "2025-06-18T00:00:00Z",
+      "end_date": "2025-07-01T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "iteration-9",
+      "name": "Sprint 9: Advanced Signature Verification",
+      "milestone_id": "milestone-5",
+      "start_date": "2025-07-02T00:00:00Z",
+      "end_date": "2025-07-15T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "iteration-10",
+      "name": "Sprint 10: Plugin Loading Optimization",
+      "milestone_id": "milestone-6",
+      "start_date": "2025-07-16T00:00:00Z",
+      "end_date": "2025-07-29T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "iteration-11",
+      "name": "Sprint 11: Plugin Communication Performance",
+      "milestone_id": "milestone-6",
+      "start_date": "2025-07-30T00:00:00Z",
+      "end_date": "2025-08-12T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "iteration-12",
+      "name": "Sprint 12: Resource Usage Optimization",
+      "milestone_id": "milestone-6",
+      "start_date": "2025-08-13T00:00:00Z",
+      "end_date": "2025-08-26T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "iteration-13",
+      "name": "Sprint 13: Plugin Store Architecture",
+      "milestone_id": "milestone-7",
+      "start_date": "2025-08-27T00:00:00Z",
+      "end_date": "2025-09-09T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "iteration-14",
+      "name": "Sprint 14: Plugin Store Client Integration",
+      "milestone_id": "milestone-7",
+      "start_date": "2025-09-10T00:00:00Z",
+      "end_date": "2025-09-23T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "iteration-15",
+      "name": "Sprint 15: Plugin Dependency Management",
+      "milestone_id": "milestone-7",
+      "start_date": "2025-09-24T00:00:00Z",
+      "end_date": "2025-10-07T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "iteration-16",
+      "name": "Sprint 16: WASM Runtime Integration",
+      "milestone_id": "milestone-8",
+      "start_date": "2025-10-08T00:00:00Z",
+      "end_date": "2025-10-21T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "iteration-17",
+      "name": "Sprint 17: WASM API Bridge",
+      "milestone_id": "milestone-8",
+      "start_date": "2025-10-22T00:00:00Z",
+      "end_date": "2025-11-04T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "iteration-18",
+      "name": "Sprint 18: WASM Security Model",
+      "milestone_id": "milestone-8",
+      "start_date": "2025-11-05T00:00:00Z",
+      "end_date": "2025-11-18T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "iteration-19",
+      "name": "Sprint 19: Enhanced Plugin API",
+      "milestone_id": "milestone-9",
+      "start_date": "2025-11-19T00:00:00Z",
+      "end_date": "2025-12-02T00:00:00Z",
+      "status": "planned"
+    },
+    {
+      "id": "iteration-20",
+      "name": "Sprint 20: Developer SDK and Documentation",
+      "milestone_id": "milestone-9",
+      "start_date": "2025-12-03T00:00:00Z",
+      "end_date": "2025-12-16T00:00:00Z",
+      "status": "planned"
     }
   ],
   "stories": [
+    {
+      "id": "story-050",
+      "title": "WASM Sandbox Architecture Design",
+      "description": "Design the WASM sandbox architecture that will provide secure isolation for WASM-based plugins",
+      "acceptance_criteria": [
+        "Detailed architecture document with security boundaries defined",
+        "Isolation strategy outlined with memory protection approach",
+        "Resource control mechanisms specified",
+        "Security threat model completed",
+        "Integration path with existing plugin system documented"
+      ],
+      "iteration_id": "iteration-6",
+      "status": "in_progress",
+      "priority": "critical",
+      "effort": "high",
+      "tags": ["security", "wasm", "architecture"],
+      "assigned_to": "security_team",
+      "dependencies": []
+    },
+    {
+      "id": "story-051",
+      "title": "WASM Runtime Integration",
+      "description": "Integrate Wasmtime runtime into the plugin system for executing WASM modules",
+      "acceptance_criteria": [
+        "Wasmtime integrated as a dependency",
+        "Basic WASM module loading implemented",
+        "Memory limits enforced for WASM modules",
+        "Error handling for WASM runtime errors implemented",
+        "Performance benchmarks for WASM module execution created"
+      ],
+      "iteration_id": "iteration-16",
+      "status": "planned",
+      "priority": "high",
+      "effort": "high",
+      "tags": ["wasm", "runtime", "integration"],
+      "assigned_to": "wasm_integration_team",
+      "dependencies": ["story-050"]
+    },
+    {
+      "id": "story-052",
+      "title": "WASM API Bridge Development",
+      "description": "Create a bidirectional API bridge between WASM modules and the native plugin host",
+      "acceptance_criteria": [
+        "Function calling mechanism from host to WASM implemented",
+        "Callback system from WASM to host implemented",
+        "Type conversion layer for complex data structures created",
+        "Error propagation across boundary implemented",
+        "Performance optimization for high-frequency API calls"
+      ],
+      "iteration_id": "iteration-17",
+      "status": "planned",
+      "priority": "high",
+      "effort": "high",
+      "tags": ["wasm", "api", "bridge"],
+      "assigned_to": "wasm_integration_team",
+      "dependencies": ["story-051"]
+    },
+    {
+      "id": "story-053",
+      "title": "WASM Security Model Implementation",
+      "description": "Implement security controls specific to WASM plugins including execution constraints",
+      "acceptance_criteria": [
+        "WASM-specific permission model implemented",
+        "Execution time limits for WASM modules enforced",
+        "Memory access controls implemented",
+        "Import restrictions for WASM modules enforced",
+        "Security testing suite for WASM plugins created"
+      ],
+      "iteration_id": "iteration-18",
+      "status": "planned",
+      "priority": "critical",
+      "effort": "high",
+      "tags": ["wasm", "security", "sandbox"],
+      "assigned_to": "security_team",
+      "dependencies": ["story-051", "story-052"]
+    },
+    {
+      "id": "story-054",
+      "title": "WASM-Native Plugin Compatibility Layer",
+      "description": "Create an abstraction layer that provides uniform interface for both WASM and native plugins",
+      "acceptance_criteria": [
+        "Plugin type detection and routing mechanism implemented",
+        "Common plugin interface for both WASM and native plugins defined",
+        "Resource management unified across plugin types",
+        "Lifecycle management compatible with both plugin types",
+        "Plugin-to-plugin communication working across types"
+      ],
+      "iteration_id": "iteration-17",
+      "status": "planned",
+      "priority": "high",
+      "effort": "high",
+      "tags": ["wasm", "compatibility", "abstraction"],
+      "assigned_to": "wasm_integration_team",
+      "dependencies": ["story-051", "story-052"]
+    },
+    {
+      "id": "story-055",
+      "title": "Digital Signature Infrastructure Design",
+      "description": "Design the enhanced digital signature infrastructure for plugin verification",
+      "acceptance_criteria": [
+        "Signature algorithm selection (RSA/ECC) with appropriate key sizes defined",
+        "Certificate chain architecture designed",
+        "Key management strategy documented",
+        "Signature format specification completed",
+        "Integration with existing plugin loader designed"
+      ],
+      "iteration_id": "iteration-6",
+      "status": "in_progress",
+      "priority": "critical",
+      "effort": "medium",
+      "tags": ["security", "signature", "architecture"],
+      "assigned_to": "security_team",
+      "dependencies": []
+    },
+    {
+      "id": "story-056",
+      "title": "Plugin Signing Tool Development",
+      "description": "Develop a tool for developers to digitally sign their plugins",
+      "acceptance_criteria": [
+        "Command-line signing tool implemented",
+        "Integration with common build pipelines (GitHub Actions, etc.)",
+        "Key generation and management capabilities",
+        "Timestamping integration for signature validity",
+        "Documentation for plugin developers created"
+      ],
+      "iteration_id": "iteration-9",
+      "status": "planned",
+      "priority": "high",
+      "effort": "medium",
+      "tags": ["security", "signature", "tools"],
+      "assigned_to": "security_team",
+      "dependencies": ["story-055"]
+    },
+    {
+      "id": "story-057",
+      "title": "Signature Verification Implementation",
+      "description": "Implement signature verification in the plugin loader",
+      "acceptance_criteria": [
+        "Signature extraction and parsing implemented",
+        "Certificate chain validation logic implemented",
+        "Revocation checking (CRL/OCSP) implemented",
+        "Verification caching for performance implemented",
+        "Comprehensive testing with valid and invalid signatures"
+      ],
+      "iteration_id": "iteration-9",
+      "status": "planned",
+      "priority": "critical",
+      "effort": "high",
+      "tags": ["security", "signature", "verification"],
+      "assigned_to": "security_team",
+      "dependencies": ["story-055", "story-056"]
+    },
+    {
+      "id": "story-058",
+      "title": "Signature Policy Management",
+      "description": "Implement configurable signature verification policies",
+      "acceptance_criteria": [
+        "Configurable trust levels (strict, standard, permissive) implemented",
+        "Organization-specific certificate pinning implemented",
+        "Policy enforcement in verification process implemented",
+        "User interface for policy configuration created",
+        "Enterprise policy deployment mechanism implemented"
+      ],
+      "iteration_id": "iteration-9",
+      "status": "planned",
+      "priority": "high",
+      "effort": "medium",
+      "tags": ["security", "signature", "policy"],
+      "assigned_to": "security_team",
+      "dependencies": ["story-057"]
+    },
+    {
+      "id": "story-059",
+      "title": "Certificate Trust Store Management",
+      "description": "Implement management of trusted certificate authorities for plugin verification",
+      "acceptance_criteria": [
+        "Trust store initialization and persistence implemented",
+        "Certificate import and export functionality created",
+        "Automatic updates of trust store implemented",
+        "UI for trust management created",
+        "Certificate metadata display implemented"
+      ],
+      "iteration_id": "iteration-9",
+      "status": "planned",
+      "priority": "medium",
+      "effort": "medium",
+      "tags": ["security", "signature", "certificate"],
+      "assigned_to": "security_team",
+      "dependencies": ["story-057"]
+    },
+    {
+      "id": "story-060",
+      "title": "Plugin Store Architecture Design",
+      "description": "Design the architecture for the plugin store and distribution system",
+      "acceptance_criteria": [
+        "Repository structure and storage architecture defined",
+        "Plugin metadata schema designed",
+        "API specifications for store operations documented",
+        "Security model for store operations defined",
+        "Integration with signature verification system designed"
+      ],
+      "iteration_id": "iteration-13",
+      "status": "planned",
+      "priority": "high",
+      "effort": "high",
+      "tags": ["store", "architecture", "distribution"],
+      "assigned_to": "store_team",
+      "dependencies": ["story-055"]
+    },
+    {
+      "id": "story-061",
+      "title": "Plugin Store Client Implementation",
+      "description": "Implement the client-side functionality for browsing and installing plugins from the store",
+      "acceptance_criteria": [
+        "Store browsing interface implemented",
+        "Plugin details view implemented",
+        "Plugin installation flow from store implemented",
+        "Rating and review system implemented",
+        "User authentication for store operations implemented"
+      ],
+      "iteration_id": "iteration-14",
+      "status": "planned",
+      "priority": "high",
+      "effort": "high",
+      "tags": ["store", "client", "ui"],
+      "assigned_to": "store_team",
+      "dependencies": ["story-060"]
+    },
+    {
+      "id": "story-062",
+      "title": "Plugin Store Server API Implementation",
+      "description": "Implement the server-side API for the plugin store",
+      "acceptance_criteria": [
+        "Plugin listing and search endpoints implemented",
+        "Plugin metadata endpoints implemented",
+        "Download and installation endpoints implemented",
+        "User authentication and authorization implemented",
+        "Rate limiting and abuse prevention implemented"
+      ],
+      "iteration_id": "iteration-13",
+      "status": "planned",
+      "priority": "high",
+      "effort": "high",
+      "tags": ["store", "server", "api"],
+      "assigned_to": "store_team",
+      "dependencies": ["story-060"]
+    },
+    {
+      "id": "story-063",
+      "title": "Plugin Developer Portal",
+      "description": "Implement a developer portal for managing plugin submissions to the store",
+      "acceptance_criteria": [
+        "Developer account management implemented",
+        "Plugin submission workflow implemented",
+        "Version management interface implemented",
+        "Analytics dashboard for plugin usage implemented",
+        "Developer documentation integration implemented"
+      ],
+      "iteration_id": "iteration-14",
+      "status": "planned",
+      "priority": "medium",
+      "effort": "high",
+      "tags": ["store", "developer", "portal"],
+      "assigned_to": "store_team",
+      "dependencies": ["story-062"]
+    },
+    {
+      "id": "story-064",
+      "title": "Plugin Update System",
+      "description": "Implement an automatic update system for plugins",
+      "acceptance_criteria": [
+        "Update checking mechanism implemented",
+        "Delta update support for bandwidth efficiency implemented",
+        "Update scheduling and policies implemented",
+        "Rollback capability for failed updates implemented",
+        "Update notifications for users implemented"
+      ],
+      "iteration_id": "iteration-15",
+      "status": "planned",
+      "priority": "high",
+      "effort": "medium",
+      "tags": ["store", "updates", "distribution"],
+      "assigned_to": "store_team",
+      "dependencies": ["story-061", "story-062"]
+    },
+    {
+      "id": "story-065",
+      "title": "Plugin Dependency Model Design",
+      "description": "Design the dependency model for plugins, including version constraints and resolution strategy",
+      "acceptance_criteria": [
+        "Dependency declaration format defined",
+        "Version constraint syntax and semantics specified",
+        "Dependency resolution algorithm designed",
+        "Conflict resolution strategies documented",
+        "Circular dependency detection approach defined"
+      ],
+      "iteration_id": "iteration-15",
+      "status": "planned",
+      "priority": "high",
+      "effort": "medium",
+      "tags": ["dependency", "architecture", "versioning"],
+      "assigned_to": "dependency_team",
+      "dependencies": []
+    },
+    {
+      "id": "story-066",
+      "title": "Dependency Resolution Implementation",
+      "description": "Implement the dependency resolution algorithm for plugins",
+      "acceptance_criteria": [
+        "Dependency graph construction implemented",
+        "Version constraint satisfaction logic implemented",
+        "Topological sorting for installation order implemented",
+        "Conflict detection and resolution implemented",
+        "Performance optimization for large dependency trees"
+      ],
+      "iteration_id": "iteration-15",
+      "status": "planned",
+      "priority": "high",
+      "effort": "high",
+      "tags": ["dependency", "algorithm", "resolution"],
+      "assigned_to": "dependency_team",
+      "dependencies": ["story-065"]
+    },
+    {
+      "id": "story-067",
+      "title": "Shared Plugin Resources Management",
+      "description": "Implement management of shared resources between plugins",
+      "acceptance_criteria": [
+        "Shared library loading and versioning implemented",
+        "Resource deduplication across plugins implemented",
+        "Reference counting and cleanup for shared resources implemented",
+        "Version compatibility verification for shared components",
+        "Isolation for plugin-specific resource variants"
+      ],
+      "iteration_id": "iteration-15",
+      "status": "planned",
+      "priority": "medium",
+      "effort": "high",
+      "tags": ["dependency", "resources", "sharing"],
+      "assigned_to": "dependency_team",
+      "dependencies": ["story-066"]
+    },
+    {
+      "id": "story-068",
+      "title": "Plugin-to-Plugin Communication Framework",
+      "description": "Implement a framework for communication between interdependent plugins",
+      "acceptance_criteria": [
+        "Plugin discovery mechanism implemented",
+        "Message passing protocol defined and implemented",
+        "API versioning and compatibility checking implemented",
+        "Security controls for inter-plugin communication implemented",
+        "Performance optimization for high-frequency communication"
+      ],
+      "iteration_id": "iteration-12",
+      "status": "planned",
+      "priority": "high",
+      "effort": "high",
+      "tags": ["dependency", "communication", "interoperability"],
+      "assigned_to": "dependency_team",
+      "dependencies": ["story-065"]
+    },
+    {
+      "id": "story-069",
+      "title": "Dependency Management UI",
+      "description": "Implement user interface for viewing and managing plugin dependencies",
+      "acceptance_criteria": [
+        "Dependency graph visualization implemented",
+        "Conflict resolution interface implemented",
+        "Dependency health indicators implemented",
+        "Manual override capabilities for advanced users implemented",
+        "Dependency impact analysis for plugin operations"
+      ],
+      "iteration_id": "iteration-15",
+      "status": "planned",
+      "priority": "medium",
+      "effort": "medium",
+      "tags": ["dependency", "ui", "management"],
+      "assigned_to": "dependency_team",
+      "dependencies": ["story-066", "story-067"]
+    },
     {
       "id": "story-001",
       "title": "Define Plugin Package Format",

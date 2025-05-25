@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tauri Windows Plugin System Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>Tauri Windows Plugin System Demo</h1>
+      <div class="header-actions">
+        <button id="check-updates-btn">Güncellemeleri Kontrol Et</button>
+        <button id="refresh-btn">Yenile</button>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <div class="sidebar">
+        <div class="section">
+          <h2>Plugin Mağazası</h2>
+          <div class="search-box">
+            <input type="text" id="search-input" placeholder="Plugin ara...">
+            <button id="search-btn">Ara</button>
+          </div>
+          <div id="search-results" class="plugin-list">
+            <!-- Arama sonuçları buraya gelecek -->
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="section">
+          <h2>Kurulu Pluginler</h2>
+          <div id="installed-plugins" class="plugin-list">
+            <!-- Kurulu pluginler buraya gelecek -->
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Plugin Detayları</h2>
+          <div id="plugin-details" class="details-panel">
+            <p class="placeholder">Plugin seçilmedi</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Test Plugin'leri</h2>
+          <div class="test-plugins-panel">
+            <div class="test-controls">
+              <button id="start-test-btn" class="primary-btn">Test Senaryosunu Başlat</button>
+              <span id="test-status">Test başlatılmadı</span>
+            </div>
+            <div id="test-plugins-container" class="test-plugins-list">
+              <!-- Test plugin'leri buraya gelecek -->
+            </div>
+            <div id="test-progress" class="test-progress">
+              <div class="progress-bar">
+                <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+              <div id="test-step-info" class="test-step-info">Hazır</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Kaynak Kullanımı</h2>
+          <div id="resource-usage" class="usage-panel">
+            <div class="usage-chart">
+              <div class="chart-container">
+                <canvas id="cpu-chart"></canvas>
+              </div>
+              <div class="chart-container">
+                <canvas id="memory-chart"></canvas>
+              </div>
+            </div>
+            <div id="resource-stats" class="stats">
+              <!-- Kaynak istatistikleri buraya gelecek -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="system-logs">
+      <h2>Sistem Logları</h2>
+      <div id="log-container" class="log-panel">
+        <!-- Loglar buraya gelecek -->
+      </div>
+    </div>
+
+    <div class="notification-container" id="notification-container">
+      <!-- Bildirimler buraya gelecek -->
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

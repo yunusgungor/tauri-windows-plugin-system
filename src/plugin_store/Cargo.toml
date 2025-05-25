@@ -1,0 +1,76 @@
+[package]
+name = "tauri-plugin-store"
+version = "0.1.0"
+edition = "2021"
+description = "Plugin Store Client for Tauri Windows Plugin System"
+authors = ["Tauri Windows Plugin System Team"]
+license = "MIT"
+repository = "https://github.com/tauri-apps/plugins-workspace"
+keywords = ["tauri", "plugin", "store", "marketplace", "distribution"]
+
+[dependencies]
+# Core dependencies
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+log = "0.4"
+tauri = { version = "1.4", features = ["api-all"] }
+
+# HTTP Client
+reqwest = { version = "0.11", features = ["json", "stream", "multipart"] }
+http = "0.2"
+url = "2.3"
+
+# Async support
+tokio = { version = "1.28", features = ["full"] }
+futures = "0.3"
+async-trait = "0.1.68"
+
+# Utility
+semver = "1.0"     # Semantic versioning
+uuid = { version = "1.3", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+once_cell = "1.18"
+parking_lot = "0.12"
+dashmap = "5.4.0" 
+directories = "5.0"  # Platform-specific directories
+mime = "0.3"         # MIME types
+notify = "6.0"       # Filesystem notifications
+
+# Compression
+zip = "0.6"
+flate2 = "1.0"
+
+# Crypto & Security
+sha2 = "0.10"        # SHA256 hashing
+base64 = "0.21"      # Base64 encoding/decoding
+tempfile = "3.7"     # Secure temporary files
+
+# Plugin integration
+tauri-plugin-signature = { path = "../signature" }
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.48", features = [
+    "Win32_Foundation",
+    "Win32_System_Com",
+    "Win32_UI_Shell",
+    "Win32_System_Threading",
+    "Win32_Security",
+    "Win32_Storage_FileSystem",
+]}
+
+[build-dependencies]
+tauri-build = { version = "1.4" }
+
+[dev-dependencies]
+rstest = "0.17.0"
+wiremock = "0.5"      # HTTP mocking
+tempfile = "3.7.0"
+
+[[example]]
+name = "basic_store_client"
+path = "examples/basic_store_client.rs"
+
+[[example]]
+name = "plugin_installation"
+path = "examples/plugin_installation.rs"

@@ -1,0 +1,72 @@
+[package]
+name = "tauri-plugin-wasm"
+version = "0.1.0"
+edition = "2021"
+description = "WebAssembly integration for Tauri Windows Plugin System"
+authors = ["Tauri Windows Plugin System Team"]
+license = "MIT"
+repository = "https://github.com/tauri-apps/plugins-workspace"
+keywords = ["tauri", "plugin", "wasm", "webassembly", "cross-platform"]
+
+[dependencies]
+# Core dependencies
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+log = "0.4"
+tauri = { version = "1.4", features = ["api-all"] }
+
+# WASM runtime
+wasmtime = "10.0.1"      # WebAssembly runtime
+wasmtime-wasi = "10.0.1" # WASI support
+wasi-common = "10.0.1"   # Common WASI functionality
+wasi-cap-std-sync = "10.0.1" # Capabilities-based WASI implementation
+wat = "1.0"              # Text format to binary conversion
+
+# Async support
+tokio = { version = "1.28", features = ["full"] }
+futures = "0.3"
+async-trait = "0.1.68"
+
+# Plugin system integration
+uuid = { version = "1.3", features = ["v4", "serde"] }
+parking_lot = "0.12"     # Thread-safe primitives
+once_cell = "1.18"       # Lazy statics
+dashmap = "5.4.0"        # Thread-safe HashMap
+
+# Serialization
+rmp-serde = "1.1.1"      # MessagePack serialization
+bincode = "1.3.3"        # Binary serialization
+
+# Security
+cap-std = "1.0.14"       # Capability-based security
+cap-directories = "0.1.0" # Capability-based directory access
+cap-tempfile = "1.0.14"   # Safe tempfile creation
+
+# Cross-platform support
+cfg-if = "1.0"           # Conditional compilation
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.48", features = [
+    "Win32_Foundation",
+    "Win32_System_Threading",
+    "Win32_Security",
+    "Win32_System_Memory",
+    "Win32_System_Diagnostics_Debug",
+]}
+
+[build-dependencies]
+tauri-build = { version = "1.4" }
+
+[dev-dependencies]
+tempfile = "3.7.0"
+rstest = "0.17.0"
+criterion = "0.5"
+
+[[example]]
+name = "basic_wasm_plugin"
+path = "examples/basic_wasm_plugin.rs"
+
+[[example]]
+name = "plugin_host"
+path = "examples/plugin_host.rs"
